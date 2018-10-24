@@ -30,18 +30,8 @@ CREATE TABLE `donvitinh` (
   PRIMARY KEY (`Id`),
   UNIQUE KEY `Id_UNIQUE` (`Id`),
   UNIQUE KEY `MaDonViTinh_UNIQUE` (`MaDonViTinh`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `donvitinh`
---
-
-LOCK TABLES `donvitinh` WRITE;
-/*!40000 ALTER TABLE `donvitinh` DISABLE KEYS */;
-INSERT INTO `donvitinh` VALUES (1,'DVT1','Chiếc',10);
-/*!40000 ALTER TABLE `donvitinh` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `khachhang`
@@ -60,17 +50,8 @@ CREATE TABLE `khachhang` (
   PRIMARY KEY (`Id`),
   UNIQUE KEY `Id_UNIQUE` (`Id`),
   UNIQUE KEY `MaKhachHang_UNIQUE` (`MaKhachHang`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `khachhang`
---
-
-LOCK TABLES `khachhang` WRITE;
-/*!40000 ALTER TABLE `khachhang` DISABLE KEYS */;
-/*!40000 ALTER TABLE `khachhang` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `loaivattu`
@@ -87,17 +68,8 @@ CREATE TABLE `loaivattu` (
   PRIMARY KEY (`Id`),
   UNIQUE KEY `Id_UNIQUE` (`Id`),
   UNIQUE KEY `MaLoaiVatTu_UNIQUE` (`MaLoaiVatTu`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `loaivattu`
---
-
-LOCK TABLES `loaivattu` WRITE;
-/*!40000 ALTER TABLE `loaivattu` DISABLE KEYS */;
-/*!40000 ALTER TABLE `loaivattu` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `nhacungcap`
@@ -117,17 +89,8 @@ CREATE TABLE `nhacungcap` (
   PRIMARY KEY (`Id`),
   UNIQUE KEY `Id_UNIQUE` (`Id`),
   UNIQUE KEY `MaNhaCungCap_UNIQUE` (`MaNhaCungCap`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `nhacungcap`
---
-
-LOCK TABLES `nhacungcap` WRITE;
-/*!40000 ALTER TABLE `nhacungcap` DISABLE KEYS */;
-/*!40000 ALTER TABLE `nhacungcap` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `nhomvattu`
@@ -145,17 +108,8 @@ CREATE TABLE `nhomvattu` (
   PRIMARY KEY (`Id`),
   UNIQUE KEY `MaNhomVatTu_UNIQUE` (`MaNhomVatTu`),
   UNIQUE KEY `Id_UNIQUE` (`Id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `nhomvattu`
---
-
-LOCK TABLES `nhomvattu` WRITE;
-/*!40000 ALTER TABLE `nhomvattu` DISABLE KEYS */;
-/*!40000 ALTER TABLE `nhomvattu` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `user`
@@ -175,17 +129,8 @@ CREATE TABLE `user` (
   PRIMARY KEY (`Id`),
   UNIQUE KEY `Id_UNIQUE` (`Id`),
   UNIQUE KEY `Username_UNIQUE` (`Username`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `user`
---
-
-LOCK TABLES `user` WRITE;
-/*!40000 ALTER TABLE `user` DISABLE KEYS */;
-/*!40000 ALTER TABLE `user` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `vattu`
@@ -211,17 +156,8 @@ CREATE TABLE `vattu` (
   PRIMARY KEY (`Id`),
   UNIQUE KEY `Id_UNIQUE` (`Id`),
   UNIQUE KEY `MaVatTu_UNIQUE` (`MaVatTu`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `vattu`
---
-
-LOCK TABLES `vattu` WRITE;
-/*!40000 ALTER TABLE `vattu` DISABLE KEYS */;
-/*!40000 ALTER TABLE `vattu` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `vattuchungtu`
@@ -242,17 +178,8 @@ CREATE TABLE `vattuchungtu` (
   PRIMARY KEY (`Id`),
   UNIQUE KEY `Id_UNIQUE` (`Id`),
   UNIQUE KEY `MaChungTu_UNIQUE` (`MaChungTu`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `vattuchungtu`
---
-
-LOCK TABLES `vattuchungtu` WRITE;
-/*!40000 ALTER TABLE `vattuchungtu` DISABLE KEYS */;
-/*!40000 ALTER TABLE `vattuchungtu` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `vattuchungtuchitiet`
@@ -269,17 +196,8 @@ CREATE TABLE `vattuchungtuchitiet` (
   `ThanhTien` varchar(45) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
   PRIMARY KEY (`Id`),
   UNIQUE KEY `Id_UNIQUE` (`Id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `vattuchungtuchitiet`
---
-
-LOCK TABLES `vattuchungtuchitiet` WRITE;
-/*!40000 ALTER TABLE `vattuchungtuchitiet` DISABLE KEYS */;
-/*!40000 ALTER TABLE `vattuchungtuchitiet` ENABLE KEYS */;
-UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -290,4 +208,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-10-24  0:01:40
+-- Dump completed on 2018-10-24 15:23:28

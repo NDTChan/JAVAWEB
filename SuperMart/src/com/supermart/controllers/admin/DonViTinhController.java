@@ -12,6 +12,7 @@ import com.supermart.models.DonViTinh;
 import com.supermart.service.DonViTinhService;
 
 @Controller
+@RequestMapping(value="admin", method=RequestMethod.GET)
 public class DonViTinhController {
 	
 	@Autowired
@@ -39,13 +40,13 @@ public class DonViTinhController {
 //		return new ModelAndView("redirect:/admin/listEmp");
 //	}
 	
-	@RequestMapping(value="admin/donvitinh", method=RequestMethod.GET)
+	@RequestMapping(value="donvitinh", method=RequestMethod.GET)
 	
 	public ModelAndView getAllEmployeeAdmin(ModelMap model)
 	{
 		List<DonViTinh> ls=_service.list();
 		System.out.println(ls);
-		ModelAndView modelView=new ModelAndView("donvitinh/index");
+		ModelAndView modelView=new ModelAndView("donvitinh");
 		modelView.addObject("list",ls);
 		return modelView;
 	}
