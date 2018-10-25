@@ -27,7 +27,16 @@
 		<put-attribute name="body"
 			value="/WEB-INF/views/jsp/admin/donvitinh/index.jsp" />
 	</definition>
-
+	<definition name="donvitinh/add" extends="admin">
+		<put-attribute name="title" value="Đơn vị tính" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/jsp/admin/donvitinh/add.jsp" />
+	</definition>
+	<definition name="donvitinh/edit" extends="admin">
+		<put-attribute name="title" value="Đơn vị tính" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/jsp/admin/donvitinh/edit.jsp" />
+	</definition>
 
 	<!-- Trang bán hàng -->
 	<definition name="home"
