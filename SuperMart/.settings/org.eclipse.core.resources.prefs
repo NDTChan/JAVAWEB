@@ -1,2 +1,5 @@
 eclipse.preferences.version=1
 encoding//WebContent/WEB-INF/tiles.xml=UTF-8
+encoding//WebContent/WEB-INF/views/jsp/admin/donvitinh/index.jsp=UTF-8
+encoding//WebContent/WEB-INF/views/layout/menu.jsp=UTF-8
+encoding//src/com/supermart/controllers/admin/DonViTinhController.java=UTF-8
