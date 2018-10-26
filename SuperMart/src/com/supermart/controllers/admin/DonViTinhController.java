@@ -2,10 +2,11 @@ package com.supermart.controllers.admin;
 
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.supermart.models.DonViTinh;
@@ -13,25 +14,14 @@ import com.supermart.service.DonViTinhService;
 
 @Controller
 @RequestMapping(value = "admin", method = RequestMethod.GET)
+@RestController
 public class DonViTinhController {
 
 	@Autowired
 	DonViTinhService _service;
 
-	@RequestMapping(value = "admin/deleteEmp", method = RequestMethod.GET)
-	public ModelAndView deleteEmployee(String id) {
-		int idEmp = Integer.parseInt(id);
-		_service.delete(idEmp);
-		return new ModelAndView("redirect:/admin/listEmp");
-	}
-
-	@RequestMapping(value = "admin/deleteCom", method = RequestMethod.GET)
-	public ModelAndView deleteCompany(String id) {
-		return new ModelAndView("redirect:/admin/listEmp");
-	}
-
 	@RequestMapping(value = "donvitinh", method = RequestMethod.GET)
-	public ModelAndView getAllEmployeeAdmin(ModelMap model) {
+	public ModelAndView getAll(ModelMap model) {
 		List<DonViTinh> ls = _service.list();
 		ModelAndView modelView = new ModelAndView("donvitinh");
 		modelView.addObject("list", ls);
@@ -90,6 +80,21 @@ public class DonViTinhController {
 				return modelView;
 			}
 		}
-		
+	}
+	
+	@RequestMapping(value = "donvitinh/detail", method = RequestMethod.GET)
+	public ModelAndView detail(String id) {
+		int Id = Integer.parseInt(id);
+		DonViTinh instance = _service.getById(Id);
+		ModelAndView modelView = new ModelAndView("donvitinh/detail");
+		modelView.addObject("instance",instance);
+		return modelView;
+	}
+
+	@RequestMapping(value = "donvitinh/deleteItem", method = RequestMethod.GET, produces = "application/json")
+	public ResponseEntity<String> delete(String id) {
+		int Id = Integer.parseInt(id);
+		_service.delete(Id);
+		return new ResponseEntity<String>("true",HttpStatus.OK);
 	}
 }

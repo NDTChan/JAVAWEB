@@ -38,12 +38,19 @@
 						<td>${stt.index+1 }</td>
 						<td>${m.getMaDonViTinh()}</td>
 						<td>${m.getTenDonViTinh()}</td>
-						<td>${m.getTrangThai()}</td>
+						<td>
+							<c:if test="${m.getTrangThai() =='10'}" >
+								<span class="label label-success">Sử dụng</span>
+							</c:if> 
+							<c:if test="${m.getTrangThai() =='0'}" >
+								<span class="label label-warning">Không sử dụng</span>
+							</c:if> 
+						</td>
 						<td class="text-center">
 							<p>
-								<a class="btn btn-info btn-xs"><i class="fa fa-fw fa-info"></i></a>
+								<a class="btn btn-info btn-xs" href="${pageContext.request.contextPath}/admin/donvitinh/detail?id=${m.getId()}"><i class="fa fa-fw fa-info"></i></a>
 								<a class="btn btn-warning btn-xs" href="${pageContext.request.contextPath}/admin/donvitinh/edit?id=${m.getId()}"><i class="fa fa-fw fa-edit"></i></a> 
-								<a class="btn btn-danger btn-xs"><i class="fa fa-fw fa-trash-o"></i></a>
+								<a class="btn btn-danger btn-xs" onclick="deleteItem(${m.getId()})"><i class="fa fa-fw fa-trash-o"></i></a>
 							</p>
 						</td>
 					</tr>
@@ -61,6 +68,17 @@
 		</div>
 	</div>
 </div>
+
+<script>
+	function deleteItem(id){
+		$.get("${pageContext.request.contextPath}/admin/donvitinh/deleteItem?id="+id, function(data, status){
+	        if(data==='true'){
+	        	alert('Xóa thành công');
+	        	window.location='${pageContext.request.contextPath}/admin/donvitinh';
+	        }
+	    });
+	}
+</script>
 
 
 
