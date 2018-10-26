@@ -20,7 +20,6 @@ public class DonViTinhService {
 	
 //	Session session;
 	
-	
 	public List<DonViTinh> list()
 	{
 		String hql="FROM DonViTinh";
@@ -41,6 +40,7 @@ public class DonViTinhService {
 	{
 		return (DonViTinh)sessionFactory.getCurrentSession().get(DonViTinh.class, id);
 	}
+	
 	public void add(DonViTinh emp)
 	{
 //		sessionFactory.getCurrentSession().beginTransaction();

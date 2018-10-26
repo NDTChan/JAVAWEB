@@ -1,6 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-    
+<%@page contentType="text/html" pageEncoding="UTF-8" %>    
 <header class="main-header">
     <a href="index2.html" class="logo">
       <span class="logo-mini"><b>A</b>LT</span>

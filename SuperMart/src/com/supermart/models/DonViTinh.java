@@ -9,6 +9,22 @@ public class DonViTinh implements Serializable{
 	private String MaDonViTinh;
 	private String TenDonViTinh;
 	private int TrangThai;
+	
+	public DonViTinh() {
+		Id  = 0 ; 
+		MaDonViTinh ="";
+		TenDonViTinh="";
+		TrangThai = 0;
+	}
+	
+	public DonViTinh(int id,String madonvi , String tenDonVi, int trangthai) {
+		Id  = id ; 
+		MaDonViTinh =madonvi;
+		TenDonViTinh=tenDonVi;
+		TrangThai = trangthai;
+	}
+	
+	
 	public int getId() {
 		return Id;
 	}
