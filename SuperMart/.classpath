@@ -13,6 +13,26 @@
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
+	<classpathentry kind="lib" path="D:/Java/SuperMart/WebContent/WEB-INF/lib/tiles-3.0.8-bin/tiles-3.0.8/lib/commons-beanutils-1.8.0.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="D:/Java/SuperMart/WebContent/WEB-INF/lib/tiles-3.0.8-bin/tiles-3.0.8/lib/commons-digester-2.0.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="D:/Java/SuperMart/WebContent/WEB-INF/lib/tiles-3.0.8-bin/tiles-3.0.8/lib/jcl-over-slf4j-1.7.6.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="D:/Java/SuperMart/WebContent/WEB-INF/lib/tiles-3.0.8-bin/tiles-3.0.8/lib/slf4j-api-1.7.6.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry kind="lib" path="D:/Java/SuperMart/WebContent/WEB-INF/lib/antlr-2.7.6.jar">
 		<attributes>
 			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
@@ -394,16 +414,6 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="lib" path="D:/Java/SuperMart/WebContent/WEB-INF/lib/tiles-velocity-3.0.8.jar">
-		<attributes>
-			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
-		</attributes>
-	</classpathentry>
-	<classpathentry kind="lib" path="D:/Java/SuperMart/WebContent/WEB-INF/lib/tiles-3.0.8-bin/tiles-3.0.8/lib/commons-digester-2.0.jar">
-		<attributes>
-			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
-		</attributes>
-	</classpathentry>
-	<classpathentry kind="lib" path="D:/Java/SuperMart/WebContent/WEB-INF/lib/tiles-3.0.8-bin/tiles-3.0.8/lib/commons-beanutils-1.8.0.jar">
 		<attributes>
 			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
 		</attributes>

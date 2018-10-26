@@ -1,6 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-
+<%@page contentType="text/html" pageEncoding="UTF-8" %>
  <footer class="main-footer">
  <!-- To the right -->
  <div class="pull-right hidden-xs">

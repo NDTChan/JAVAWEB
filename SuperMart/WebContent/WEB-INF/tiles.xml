@@ -3,19 +3,58 @@
        "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
        "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
 <tiles-definitions>
-  <definition name="admin" template="/WEB-INF/views/layout/layout.jsp">
-    <put-attribute name="title" value="index" />
-    <put-attribute name="header" value="/WEB-INF/views/layout/header.jsp" />
-    <put-attribute name="menu" value="/WEB-INF/views/layout/menu.jsp" />
-    <put-attribute name="body" value="/WEB-INF/views/jsp/dashboard.jsp" />
-    <put-attribute name="footer" value="/WEB-INF/views/layout/footer.jsp" />
-  </definition>
-  <definition name="hello" extends="admin">
-    <put-attribute name="title" value="hello" />
-    <put-attribute name="body" value="/WEB-INF/views/jsp/hello.jsp" />
-  </definition> 
-  <definition name="donvitinh/index" extends="admin">
-    <put-attribute name="title" value="Đơn vị tính" />
-    <put-attribute name="body" value="/WEB-INF/views/jsp/admin/donvitinh/index.jsp" />
-  </definition> 
+
+	<!-- Trang quản trị -->
+	<definition name="admin"
+		template="/WEB-INF/views/layout/layout.jsp">
+		<put-attribute name="title" value="index" />
+		<put-attribute name="header"
+			value="/WEB-INF/views/layout/header.jsp" />
+		<put-attribute name="menu"
+			value="/WEB-INF/views/layout/menu.jsp" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/jsp/dashboard.jsp" />
+		<put-attribute name="footer"
+			value="/WEB-INF/views/layout/footer.jsp" />
+	</definition>
+	<definition name="hello" extends="admin">
+		<put-attribute name="title" value="hello" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/jsp/hello.jsp" />
+	</definition>
+	
+	<!-- 	Đơn vị tính -->
+	<definition name="donvitinh" extends="admin">
+		<put-attribute name="title" value="Đơn vị tính" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/jsp/admin/donvitinh/index.jsp" />
+	</definition>
+	<definition name="donvitinh/add" extends="admin">
+		<put-attribute name="title" value="Đơn vị tính" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/jsp/admin/donvitinh/add.jsp" />
+	</definition>
+	<definition name="donvitinh/edit" extends="admin">
+		<put-attribute name="title" value="Đơn vị tính" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/jsp/admin/donvitinh/edit.jsp" />
+	</definition>
+	<definition name="donvitinh/detail" extends="admin">
+		<put-attribute name="title" value="Đơn vị tính" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/jsp/admin/donvitinh/detail.jsp" />
+	</definition>
+
+	<!-- Trang bán hàng -->
+	<definition name="home"
+		template="/WEB-INF/views/layouthome/layout.jsp">
+		<put-attribute name="title" value="Supper Mart" />
+		<put-attribute name="header"
+			value="/WEB-INF/views/layouthome/header.jsp" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/jsp/home/home.jsp" />
+		<put-attribute name="footer"
+			value="/WEB-INF/views/layouthome/footer.jsp" />
+	</definition>
+
 </tiles-definitions>
