@@ -6,5 +6,6 @@
 <hibernate-configuration>
     <session-factory>
         <mapping resource="com/supermart/models/DonViTinh.hbm.xml" />
-    </session-factory>   
+        <mapping resource="com/supermart/models/User.hbm.xml" />
+    </session-factory>     
 </hibernate-configuration>
