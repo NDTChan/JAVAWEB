@@ -23,7 +23,6 @@ public class AuthService {
 		String sqlQuery = "from User u where u.Username='" + uname + "' and u.Password='" + upwd + "'";
 		try {
 			List<User> userObj = sessionFactory.getCurrentSession().createQuery(sqlQuery).list();
-			System.out.println(userObj);
 			if (userObj != null && userObj.size() > 0) {
 				log.info("Id= " + userObj.get(0).getId() + ", FullName= " + userObj.get(0).getFullName()
 						+ ", Password= " + userObj.get(0).getPassword());

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -56,6 +57,10 @@
 							aria-hidden="true"></i>
 						</span>
 					</div>
+					
+					<c:if test="${error}">
+						<span style="color: red"> Sai tên đăng nhập hoặc mật khẩu ! </span>
+					</c:if>
 
 					<div class="container-login100-form-btn">
 						<button class="login100-form-btn" type="submit" form="loginForm"

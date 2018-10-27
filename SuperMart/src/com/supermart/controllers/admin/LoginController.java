@@ -34,7 +34,10 @@ public class LoginController {
 			session.setAttribute("username", username);
 			return new ModelAndView("admin", "output", msg);
 		} else {
-			return new ModelAndView("login", "output", msg);
+			boolean error = true;
+			ModelAndView mav = new ModelAndView("login");
+			mav.addObject("error", error);
+			return mav;
 		}
 	}
 	
