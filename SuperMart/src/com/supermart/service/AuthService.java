@@ -18,7 +18,6 @@ public class AuthService {
 
 	@SuppressWarnings({ "unchecked", "deprecation" })
 	public boolean findUser(String uname, String upwd) {
-		log.info("Checking the user in the database");
 		boolean isValidUser = false;
 		String sqlQuery = "from User u where u.Username='" + uname + "' and u.Password='" + upwd + "'";
 		try {
