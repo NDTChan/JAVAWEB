@@ -3,19 +3,19 @@ package com.supermart.models;
 import java.io.Serializable;
 
 public class VatTu implements Serializable {
-	private static final long serialVersionUID = 6329454289569501949L;
-	private int Id;
-	private String MaVatTu;
-	private String TenVatTu;
-	private String BarCode;
-	private String MaLoaiVatTu;
-	private String MaNhaCungCap;
-	private String MaDonViTinh;
-	private double GiaMua;
-	private double GiaBan;
-	private double SoLuong;
-	private String Anh;
-	private int TrangThai;
+	public static final long serialVersionUID = 6329454289569501949L;
+	public int Id;
+	public String MaVatTu;
+	public String TenVatTu;
+	public String BarCode;
+	public String MaLoaiVatTu;
+	public String MaNhaCungCap;
+	public String MaDonViTinh;
+	public double GiaMua;
+	public double GiaBan;
+	public double SoLuong;
+	public String Anh;
+	public int TrangThai;
 	
 	public VatTu() {
 		super();

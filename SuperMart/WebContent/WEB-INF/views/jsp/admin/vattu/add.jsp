@@ -9,8 +9,8 @@
 			tra lại !</span>
 		<div class="row"></div>
 	</c:if>
-	<form:form method="POST"
-	action="${pageContext.request.contextPath}/admin/vattu/form" modelAttribute="vattu">
+	<form:form method="POST" name="form"
+	action="${pageContext.request.contextPath}/admin/vattu/addAction"  modelAttribute="vattu">
 		<input type="hidden" class="form-control" value="${operation }"
 			name="Operation" maxlength="255"> <input type="hidden"
 			class="form-control" value="0" name="Id" maxlength="255">
@@ -19,8 +19,7 @@
 				<div class="col-md-10">
 					<div class="form-group">
 						<label>Mã vật tư</label><span style="color: red"> (*)</span>
-						<input type="text" class="form-control" name="MaVatTu"
-							maxlength="255" required>
+						<form:input path="MaVatTu" class="form-control" maxlength="255"/>
 					</div>
 				</div>
 			</div>
@@ -28,8 +27,8 @@
 				<div class="col-md-10">
 					<div class="form-group">
 						<label>Tên vật tư</label><span style="color: red"> (*)</span>
-						<input type="text" class="form-control" name="TenVatTu"
-							maxlength="255" required>
+						<form:input path="TenVatTu" type="text" class="form-control" name="TenVatTu"
+							maxlength="255"/>
 					</div>
 				</div>
 			</div>
@@ -37,8 +36,8 @@
 				<div class="col-md-10">
 					<div class="form-group">
 						<label>Bar Code</label><span style="color: red"> (*)</span>
-						<input type="text" class="form-control" name="TenVatTu"
-							maxlength="255" required>
+						<form:input path="BarCode" type="text" class="form-control" name="BarCode"
+							maxlength="255" />
 					</div>
 				</div>
 			</div>
@@ -46,8 +45,8 @@
 				<div class="col-md-10">
 					<div class="form-group">
 						<label>Loại Vật tư</label><span style="color: red"> (*)</span>
-						<input type="text" class="form-control" name="TenVatTu"
-							maxlength="255" required>
+						<form:input path="MaLoaiVatTu" type="text" class="form-control" name="MaLoaiVatTu"
+							maxlength="255" />
 					</div>
 				</div>
 			</div>
@@ -55,25 +54,68 @@
 				<div class="col-md-10">
 					<div class="form-group">
 						<label>Nhà Cung cấp</label><span style="color: red"> (*)</span>
-						<input type="text" class="form-control" name="TenVatTu"
-							maxlength="255" required>
+						<form:input path="MaNhaCungCap" type="text" class="form-control" name="MaNhaCungCap"
+							maxlength="255" />
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-5">
+					<div class="form-group">
+						<label>Đơn vị tính</label><span style="color: red"> (*)</span>
+						<form:input path="MaDonViTinh" type="text" class="form-control" name="MaDonViTinh"
+							maxlength="255" />
+					</div>
+				</div>
+				<div class="col-md-5">
+					<div class="form-group">
+						<label>Số lượng</label><span style="color: red"> (*)</span>
+						<form:input path="SoLuong" type="text" class="form-control" name="SoLuong"
+							maxlength="255" />
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-5">
+					<div class="form-group">
+						<label>Giá Mua</label><span style="color: red"> (*)</span>
+						<form:input path="GiaMua" type="text" class="form-control" name="GiaMua"
+							maxlength="255" />
+					</div>
+				</div>
+				<div class="col-md-5">
+					<div class="form-group">
+						<label>Giá Bán</label><span style="color: red"> (*)</span>
+						<form:input path="GiaBan" type="text" class="form-control" name="GiaBan"
+							maxlength="255" />
 					</div>
 				</div>
 			</div>
 			<div class="row">
 				<div class="col-md-10">
 					<div class="form-group">
-						<label>Đơn vị tính</label><span style="color: red"> (*)</span>
-						<input type="text" class="form-control" name="TenVatTu"
-							maxlength="255" required>
+						<label>Ảnh</label><span style="color: red"> (*)</span>
+						<form:input path="Anh" type="text" class="form-control" name="Anh"
+							maxlength="255" />
 					</div>
 				</div>
 			</div>
 			<div class="row">
-				<button class="btn btn-primary" type="submit" form="addForm"
+				<div class="col-md-10">
+					<div class="form-group">
+						<label>Trạng thái</label> <select class="form-control"
+							name="TrangThai">
+							<option value="10">Sử dụng</option>
+							<option value="0">Không sử dụng</option>
+						</select>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<button class="btn btn-primary" type="submit"
 					value="Submit">Lưu lại</button>
 				<button type="button" class="btn btn-default"
-					onclick="window.location='${pageContext.request.contextPath}/admin/donvitinh';">
+					onclick="window.location='${pageContext.request.contextPath}/admin/vattu';">
 					Hủy</button>
 			</div>
 		</div>

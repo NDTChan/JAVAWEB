@@ -5,7 +5,7 @@
 	<div class="box-header">
 		<h3 class="box-title">
 			<button type="button" class="btn btn-block btn-primary"
-				onclick="window.location='${pageContext.request.contextPath}/admin/donvitinh/add';">
+				onclick="window.location='${pageContext.request.contextPath}/admin/vattu/add';">
 				<i class="fa fa-plus"></i> Thêm mới
 			</button>
 		</h3>
