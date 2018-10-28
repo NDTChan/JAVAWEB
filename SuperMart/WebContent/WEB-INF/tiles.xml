@@ -51,6 +51,28 @@
 		<put-attribute name="body"
 			value="/WEB-INF/views/jsp/admin/donvitinh/detail.jsp" />
 	</definition>
+	
+	<!-- 	Vật tư -->
+	<definition name="vattu" extends="admin">
+		<put-attribute name="title" value="Vật tư" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/jsp/admin/vattu/index.jsp" />
+	</definition>
+	<definition name="vattu/add" extends="admin">
+		<put-attribute name="title" value="Vật tư" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/jsp/admin/vattu/add.jsp" />
+	</definition>
+	<definition name="vattu/edit" extends="admin">
+		<put-attribute name="title" value="Vật tư" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/jsp/admin/vattu/edit.jsp" />
+	</definition>
+	<definition name="vattu/detail" extends="admin">
+		<put-attribute name="title" value="Vật tư" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/jsp/admin/vattu/detail.jsp" />
+	</definition>
 
 	<!-- Trang bán hàng -->
 	<definition name="home"
