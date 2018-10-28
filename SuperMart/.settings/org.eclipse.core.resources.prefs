@@ -5,3 +5,4 @@ encoding//WebContent/WEB-INF/views/jsp/login.jsp=UTF-8
 encoding//WebContent/WEB-INF/views/layout/menu.jsp=UTF-8
 encoding//src/com/supermart/controllers/admin/DonViTinhController.java=UTF-8
 encoding//src/com/supermart/service/RegisterService.java=UTF-8
+encoding//src/com/supermart/controllers/admin/VatTuController.java=UTF-8
