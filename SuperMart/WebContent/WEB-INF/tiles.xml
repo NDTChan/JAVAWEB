@@ -6,6 +6,10 @@
 	<definition name="login"
 		template="/WEB-INF/views/jsp/login.jsp">
 	</definition>
+	
+	<definition name="register"
+		template="/WEB-INF/views/jsp/register.jsp">
+	</definition>
 
 	<!-- Trang quản trị -->
 	<definition name="admin"
