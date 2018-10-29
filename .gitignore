@@ -1,7 +1,6 @@
 
 /SuperMart/WebContent/WEB-INF/*.xml
 *target*
-*.war
 *.ear
 *.class
 
