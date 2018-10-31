@@ -1,5 +1,8 @@
 package com.supermart.controllers.admin;
 
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.supermart.models.VatTu;
@@ -68,5 +72,41 @@ public class VatTuController {
 		int Id = Integer.parseInt(id);
 		_service.delete(Id);
 		return new ResponseEntity<String>("true", HttpStatus.OK);
+	}
+	
+	@RequestMapping(value="vattu/uploadFile",
+            method=RequestMethod.POST)
+	public ResponseEntity<String> createRole(@RequestParam("name") String name,@RequestParam("image") MultipartFile image){
+	// your code goes hereys
+		System.out.println(image);
+		if(image != null) {
+			try {
+				byte[] bytes = image.getBytes();
+				String rootPath = System.getProperty("user.dir") + "/Upload";
+				String rootPathEx = System.getProperty("java.class.path") + "/Upload";
+				
+				
+				System.out.println(rootPathEx);
+				File dir  = new File(rootPath + File.separator);
+				if(!dir.exists()) {
+					dir.mkdirs();
+				}
+				
+				File serverFile = new File(dir.getAbsolutePath() + File.separator + name);
+				BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(serverFile));
+				stream.write(bytes);
+				stream.close();
+				System.out.println("Server File Location="
+						+ serverFile.getAbsolutePath());
+
+				return new ResponseEntity<String>(serverFile.getAbsolutePath(), HttpStatus.OK);
+			}catch(Exception e) {
+				System.out.println(e);
+				return new ResponseEntity<String>("Đéo tìm thấy file", HttpStatus.NOT_FOUND);
+			}
+		}else {
+			return new ResponseEntity<String>("Đéo tìm thấy file", HttpStatus.NOT_FOUND);
+		}
+		
 	}
 }

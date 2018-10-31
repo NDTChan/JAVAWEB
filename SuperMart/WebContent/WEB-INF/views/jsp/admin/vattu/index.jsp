@@ -54,7 +54,7 @@
 						<td>${m.getGiaMua()}</td>
 						<td>${m.getGiaBan()}</td>
 						<td>${m.getSoLuong()}</td>
-						<td>${m.getAnh()}</td>
+						<td> <img src="${pageContext.request.contextPath}${m.getAnh()}"/></td>
 						<td>
 							<c:if test="${m.getTrangThai() =='10'}" >
 								<span class="label label-success">Sử dụng</span>

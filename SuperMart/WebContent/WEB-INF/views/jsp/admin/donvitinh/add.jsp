@@ -7,6 +7,7 @@
 		<span style="color: red"> Xảy ra lỗi khi thêm. Vui lòng kiểm
 			tra lại !</span>
 		<div class="row"></div>
+		
 	</c:if>
 	<form id="addForm" method="get"
 		action="${pageContext.request.contextPath}/admin/donvitinh/form">
