@@ -8,5 +8,6 @@
         <mapping resource="com/supermart/models/DonViTinh.hbm.xml" />
         <mapping resource="com/supermart/models/User.hbm.xml" />
         <mapping resource="com/supermart/models/VatTu.hbm.xml" />
+        <mapping resource="com/supermart/models/LoaiVatTu.hbm.xml" />
     </session-factory>     
 </hibernate-configuration>

@@ -73,7 +73,29 @@
 		<put-attribute name="body"
 			value="/WEB-INF/views/jsp/admin/vattu/detail.jsp" />
 	</definition>
-
+	
+	<!-- Loai Vat tu -->
+	<definition name="loaivattu" extends="admin">
+		<put-attribute name="title" value="Loại vật tư" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/jsp/admin/loaivattu/index.jsp" />
+				</definition>
+	<definition name="loaivattu/add" extends="admin">
+		<put-attribute name="title" value="Loại vật tư" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/jsp/admin/loaivattu/add.jsp" />
+	</definition>
+	<definition name="loaivattu/edit" extends="admin">
+		<put-attribute name="title" value="Loại vật tư" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/jsp/admin/loaivattu/edit.jsp" />
+	</definition>
+	<definition name="loaivattu/detail" extends="admin">
+		<put-attribute name="title" value="Loại vật tư" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/jsp/admin/loaivattu/detail.jsp" />
+	
+	</definition>
 	<!-- Trang bán hàng -->
 	<definition name="home"
 		template="/WEB-INF/views/layouthome/layout.jsp">
