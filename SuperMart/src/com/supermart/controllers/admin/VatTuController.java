@@ -4,7 +4,13 @@ import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
+
+import javax.servlet.Servlet;
+import javax.servlet.ServletContext;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -24,12 +30,15 @@ public class VatTuController {
 
 	@Autowired
 	VatTuService _service;
+	@Autowired
+	ServletContext servletContext;
 
 	@RequestMapping(value = "vattu", method = RequestMethod.GET)
 	public ModelAndView getAll(ModelMap model) {
 		List<VatTu> ls = _service.list();
 		ModelAndView modelView = new ModelAndView("vattu");
 		modelView.addObject("list", ls);
+		System.out.println(ls.get(2).getAnh());
 		return modelView;
 	}
 
@@ -82,24 +91,19 @@ public class VatTuController {
 		if(image != null) {
 			try {
 				byte[] bytes = image.getBytes();
-				String rootPath = System.getProperty("user.dir") + "/Upload";
-				String rootPathEx = System.getProperty("java.class.path") + "/Upload";
+				String rootPath = "/Upload";
 				
-				
-				System.out.println(rootPathEx);
 				File dir  = new File(rootPath + File.separator);
 				if(!dir.exists()) {
 					dir.mkdirs();
 				}
+				File serverFile = new File(servletContext.getRealPath("/Upload/") + name);
 				
-				File serverFile = new File(dir.getAbsolutePath() + File.separator + name);
 				BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(serverFile));
 				stream.write(bytes);
 				stream.close();
-				System.out.println("Server File Location="
-						+ serverFile.getAbsolutePath());
-
-				return new ResponseEntity<String>(serverFile.getAbsolutePath(), HttpStatus.OK);
+				//System.out.println(serverFile.getAbsolutePath());
+				return new ResponseEntity<String>(serverFile.getName(), HttpStatus.OK);
 			}catch(Exception e) {
 				System.out.println(e);
 				return new ResponseEntity<String>("Đéo tìm thấy file", HttpStatus.NOT_FOUND);

@@ -131,15 +131,12 @@
 		var maNhaCC = document.getElementsByName("MaNhaCungCap");
 		var fullPath = document.getElementById('imageUpload').value;
 		if (fullPath) {
-			var startIndex = (fullPath.indexOf('\\') >= 0 ? fullPath
-					.lastIndexOf('\\') : fullPath.lastIndexOf('/'));
-			var filename = fullPath.substring(startIndex);
-			if (filename.indexOf('\\') === 0 || filename.indexOf('/') === 0) {
-				filename = filename.substring(1);
-			}
 			var data = new FormData();
 			data.append("image", imageFiles.files[0]);
-			data.append("name", filename);
+			var d = new Date();
+		    var n = d.getTime();
+		    var ext = fullPath.substr(fullPath.lastIndexOf('.') + 1);
+			data.append("name", n+'.'+ext);
 			jQuery
 					.ajax({
 						url : '${pageContext.request.contextPath}/admin/vattu/uploadFile',

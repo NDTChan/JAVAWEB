@@ -51,10 +51,9 @@
 						<td>${m.getMaNhaCungCap()}</td>
 						<td>${m.getMaDonViTinh()}</td>
 						<td>${m.getGiaMua()}</td>
-						<td>${m.getGiaMua()}</td>
 						<td>${m.getGiaBan()}</td>
 						<td>${m.getSoLuong()}</td>
-						<td> <img src="${pageContext.request.contextPath}${m.getAnh()}"/></td>
+						<td> <img src="${pageContext.request.contextPath}/Upload/1541057785510.jpg" alt="Angry face" width="32" height="32" /></td>
 						<td>
 							<c:if test="${m.getTrangThai() =='10'}" >
 								<span class="label label-success">Sử dụng</span>
