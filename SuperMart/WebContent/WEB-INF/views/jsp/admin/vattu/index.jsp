@@ -64,8 +64,8 @@
 						</td>
 						<td class="text-center">
 							<p>
-								<a class="btn btn-info btn-xs" href="${pageContext.request.contextPath}/admin/donvitinh/detail?id=${m.getId()}"><i class="fa fa-fw fa-info"></i></a>
-								<a class="btn btn-warning btn-xs" href="${pageContext.request.contextPath}/admin/donvitinh/edit?id=${m.getId()}"><i class="fa fa-fw fa-edit"></i></a> 
+								<a class="btn btn-info btn-xs" href="${pageContext.request.contextPath}/admin/vattu/detail?id=${m.getId()}"><i class="fa fa-fw fa-info"></i></a>
+								<a class="btn btn-warning btn-xs" href="${pageContext.request.contextPath}/admin/vattu/edit?id=${m.getId()}"><i class="fa fa-fw fa-edit"></i></a> 
 								<a class="btn btn-danger btn-xs" onclick="deleteItem(${m.getId()})"><i class="fa fa-fw fa-trash-o"></i></a>
 							</p>
 						</td>
@@ -87,10 +87,10 @@
 
 <script>
 	function deleteItem(id){
-		$.get("${pageContext.request.contextPath}/admin/donvitinh/deleteItem?id="+id, function(data, status){
+		$.get("${pageContext.request.contextPath}/admin/vattu/deleteItem?id="+id, function(data, status){
 	        if(data==='true'){
 	        	alert('Xóa thành công');
-	        	window.location='${pageContext.request.contextPath}/admin/donvitinh';
+	        	window.location='${pageContext.request.contextPath}/admin/vattu';
 	        }
 	    });
 	}
