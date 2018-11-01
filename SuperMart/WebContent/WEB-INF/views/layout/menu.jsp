@@ -36,8 +36,9 @@
           </a>
           <ul class="treeview-menu">
             <li><a href="${pageContext.request.contextPath}/admin/donvitinh">Danh mục đơn vị tính</a></li>
-             <li><a href="${pageContext.request.contextPath}/admin/loaivattu">Danh mục loại vật tư</a></li>
+            <li><a href="${pageContext.request.contextPath}/admin/loaivattu">Danh mục loại vật tư</a></li>
             <li><a href="${pageContext.request.contextPath}/admin/vattu">Danh mục vật tư</a></li>
+            <li><a href="${pageContext.request.contextPath}/admin/khachhang">Danh mục khách hàng</a></li>
             <li><a href="#">Link in level 2</a></li>
           </ul>
         </li>

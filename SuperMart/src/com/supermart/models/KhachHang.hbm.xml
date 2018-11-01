@@ -1,0 +1,16 @@
+	<!DOCTYPE hibernate-mapping PUBLIC
+	        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+	 
+	<hibernate-mapping package="com.supermart.models">
+	<class name="KhachHang" table="khachhang">
+        <id name="Id" type="int" column="Id">
+        	 <generator class="increment"/>
+        </id>
+        <property name="MaKhachHang" column="MaKhachHang"/>
+       	<property name="TenKhachHang" column="TenKhacHang"/>
+       	<property name="DiaChi" column="DiaChi"/>
+       	<property name="DienThoai" column="DienThoai"/>
+       	<property name="Email" column="Email"/>
+	    </class>
+	</hibernate-mapping>
