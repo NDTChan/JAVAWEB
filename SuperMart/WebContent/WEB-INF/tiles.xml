@@ -6,7 +6,7 @@
 	<definition name="login"
 		template="/WEB-INF/views/jsp/login.jsp">
 	</definition>
-	
+
 	<definition name="register"
 		template="/WEB-INF/views/jsp/register.jsp">
 	</definition>
@@ -29,8 +29,8 @@
 		<put-attribute name="body"
 			value="/WEB-INF/views/jsp/hello.jsp" />
 	</definition>
-	
-	<!-- 	Đơn vị tính -->
+
+	<!-- Đơn vị tính -->
 	<definition name="donvitinh" extends="admin">
 		<put-attribute name="title" value="Đơn vị tính" />
 		<put-attribute name="body"
@@ -51,8 +51,8 @@
 		<put-attribute name="body"
 			value="/WEB-INF/views/jsp/admin/donvitinh/detail.jsp" />
 	</definition>
-	
-	<!-- 	Vật tư -->
+
+	<!-- Vật tư -->
 	<definition name="vattu" extends="admin">
 		<put-attribute name="title" value="Vật tư" />
 		<put-attribute name="body"
@@ -73,13 +73,35 @@
 		<put-attribute name="body"
 			value="/WEB-INF/views/jsp/admin/vattu/detail.jsp" />
 	</definition>
-	
-	<!-- Loai Vat tu -->
+
+	<!-- Nhóm Vat tu -->
+	<definition name="nhomvattu" extends="admin">
+		<put-attribute name="title" value="Nhóm vật tư" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/jsp/admin/nhomvattu/index.jsp" />
+	</definition>
+	<definition name="nhomvattu/add" extends="admin">
+		<put-attribute name="title" value="Nhóm vật tư" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/jsp/admin/nhomvattu/add.jsp" />
+	</definition>
+	<definition name="nhomvattu/edit" extends="admin">
+		<put-attribute name="title" value="Nhóm vật tư" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/jsp/admin/nhomvattu/edit.jsp" />
+	</definition>
+	<definition name="nhomvattu/detail" extends="admin">
+		<put-attribute name="title" value="Nhóm vật tư" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/jsp/admin/nhomvattu/detail.jsp" />
+	</definition>
+
+<!-- Loai Vat tu -->
 	<definition name="loaivattu" extends="admin">
 		<put-attribute name="title" value="Loại vật tư" />
 		<put-attribute name="body"
 			value="/WEB-INF/views/jsp/admin/loaivattu/index.jsp" />
-				</definition>
+	</definition>
 	<definition name="loaivattu/add" extends="admin">
 		<put-attribute name="title" value="Loại vật tư" />
 		<put-attribute name="body"
@@ -95,7 +117,7 @@
 		<put-attribute name="body"
 			value="/WEB-INF/views/jsp/admin/loaivattu/detail.jsp" />
 	</definition>
-	
+
 	<!-- Nha Cung Cap -->
 	<definition name="nhacungcap" extends="admin">
 		<put-attribute name="title" value="Nhà Cung Cấp" />
@@ -133,7 +155,7 @@
 		<put-attribute name="body"
 			value="/WEB-INF/views/jsp/admin/khachhang/edit.jsp" />
 	</definition>
-				
+
 	<!-- Trang bán hàng -->
 	<definition name="home"
 		template="/WEB-INF/views/layouthome/layout.jsp">
