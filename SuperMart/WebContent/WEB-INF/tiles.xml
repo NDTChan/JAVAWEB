@@ -94,8 +94,25 @@
 		<put-attribute name="title" value="Loại vật tư" />
 		<put-attribute name="body"
 			value="/WEB-INF/views/jsp/admin/loaivattu/detail.jsp" />
-	
 	</definition>
+	
+	<!-- Khach Hang -->
+	<definition name="khachhang" extends="admin">
+		<put-attribute name="title" value="Khách Hàng" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/jsp/admin/khachhang/index.jsp" />
+	</definition>
+	<definition name="khachhang/add" extends="admin">
+		<put-attribute name="title" value="Vật tư" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/jsp/admin/khachhang/add.jsp" />
+	</definition>
+	<definition name="khachhang/edit" extends="admin">
+		<put-attribute name="title" value="Khách hàng" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/jsp/admin/khachhang/edit.jsp" />
+	</definition>
+				
 	<!-- Trang bán hàng -->
 	<definition name="home"
 		template="/WEB-INF/views/layouthome/layout.jsp">
