@@ -98,7 +98,7 @@
 					<div class="form-group">
 						<label>Ảnh</label><span style="color: red"> (*)</span>
 						<input id="imageUpload" type="file" class="form-control" onChange="loadImage()"/>
-						<form:input path="Anh" id="Anh" type="text" name="Anh" 
+						<form:input path="Anh" id="Anh" type="hidden" name="Anh" 
  							class="form-control" maxlength="255" /> 
 					</div>
 				</div>

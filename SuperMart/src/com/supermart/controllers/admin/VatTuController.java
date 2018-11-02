@@ -38,7 +38,6 @@ public class VatTuController {
 		List<VatTu> ls = _service.list();
 		ModelAndView modelView = new ModelAndView("vattu");
 		modelView.addObject("list", ls);
-		System.out.println(ls.get(2).getAnh());
 		return modelView;
 	}
 
@@ -52,7 +51,6 @@ public class VatTuController {
 	
 	@RequestMapping(value = "vattu/addAction", method = RequestMethod.POST)
     public String submit( @ModelAttribute("vattu")VatTu vattu) throws IOException{
-        System.out.println(vattu.getTenVatTu());
         _service.add(vattu);
         return "vattu";
     }
@@ -102,7 +100,7 @@ public class VatTuController {
 				BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(serverFile));
 				stream.write(bytes);
 				stream.close();
-				//System.out.println(serverFile.getAbsolutePath());
+				System.out.println(serverFile.getAbsolutePath());
 				return new ResponseEntity<String>(serverFile.getName(), HttpStatus.OK);
 			}catch(Exception e) {
 				System.out.println(e);

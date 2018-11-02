@@ -61,8 +61,8 @@ public class VatTuService {
 	}
 	public void delete(int id)
 	{
-		VatTu dvt=getById(id);
-		sessionFactory.getCurrentSession().delete(dvt);
+		VatTu vt=getById(id);
+		sessionFactory.getCurrentSession().delete(vt);
 	}
 
 }
