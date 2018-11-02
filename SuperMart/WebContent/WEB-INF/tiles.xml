@@ -96,6 +96,27 @@
 			value="/WEB-INF/views/jsp/admin/loaivattu/detail.jsp" />
 	</definition>
 	
+	<!-- Nha Cung Cap -->
+	<definition name="nhacungcap" extends="admin">
+		<put-attribute name="title" value="Nhà Cung Cấp" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/jsp/admin/nhacungcap/index.jsp" />
+	</definition>
+	<definition name="nhacungcap/add" extends="admin">
+		<put-attribute name="title" value="Nhà Cung Cấp" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/jsp/admin/nhacungcap/add.jsp" />
+	</definition>
+	<definition name="nhacungcap/edit" extends="admin">
+		<put-attribute name="title" value="Nhà Cung Cấp" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/jsp/admin/nhacungcap/edit.jsp" />
+	</definition>
+	<definition name="nhacungcap/detail" extends="admin">
+		<put-attribute name="title" value="Nhà Cung Cấp" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/jsp/admin/nhacungcap/detail.jsp" />
+	</definition>
 	<!-- Khach Hang -->
 	<definition name="khachhang" extends="admin">
 		<put-attribute name="title" value="Khách Hàng" />

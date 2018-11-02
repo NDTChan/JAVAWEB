@@ -10,5 +10,6 @@
         <mapping resource="com/supermart/models/VatTu.hbm.xml" />
         <mapping resource="com/supermart/models/LoaiVatTu.hbm.xml" />
         <mapping resource="com/supermart/models/KhachHang.hbm.xml" />
+        <mapping resource="com/supermart/models/NhaCungCap.hbm.xml" />
     </session-factory>     
 </hibernate-configuration>
