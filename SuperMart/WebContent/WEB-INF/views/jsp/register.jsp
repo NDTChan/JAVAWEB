@@ -69,7 +69,7 @@
 					<input type="text" class="form-control" placeholder="Address" name="Address">
 					<span class="glyphicon glyphicon-home form-control-feedback"></span>
 				</div>
-				<c:if test="${error}">
+				<c:if test="${error}==true">
 					<span style="color: red"> Tên đăng nhập đã trùng hoặc kết nối đến cơ sở dữ liệu bị lỗi !
 					</span>
 				</c:if>
