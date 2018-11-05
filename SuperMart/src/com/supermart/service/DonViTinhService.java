@@ -24,7 +24,6 @@ public class DonViTinhService {
 	{
 		String hql="FROM DonViTinh";
 		Query query=sessionFactory.getCurrentSession().createQuery(hql);
-		System.out.println(query.list());
 		return query.list();
 	}
 	
