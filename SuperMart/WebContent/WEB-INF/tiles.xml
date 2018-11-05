@@ -160,12 +160,12 @@
 	<definition name="home"
 		template="/WEB-INF/views/layouthome/layout.jsp">
 		<put-attribute name="title" value="Supper Mart" />
-		<put-attribute name="header"
-			value="/WEB-INF/views/layouthome/header.jsp" />
 		<put-attribute name="body"
 			value="/WEB-INF/views/jsp/home/home.jsp" />
-		<put-attribute name="footer"
-			value="/WEB-INF/views/layouthome/footer.jsp" />
 	</definition>
 
+	<!--partial view -->
+	<definition name="viewNewMerchansedise" template="/WEB-INF/views/jsp/home/partialView/viewNewMerchansedise.jsp">
+	</definition>
+	
 </tiles-definitions>

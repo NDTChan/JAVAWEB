@@ -1,13 +1,12 @@
 @charset "utf-8";
 @import url("http://fonts.googleapis.com/css?family=Open+Sans:regular,italic,bold");
-<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 
 /* common
 ----------------------------------------------------------------------------- */
 body{
 	font-size: 12px;
 	font-family: 'Open Sans', arial, tahoma, sans-serif;
-	background:url(<c:url value="/resources/themes/images/bg.png" />) repeat 0 0 fixed;
+	background:url("/SuperMart/resources/themes/images/bg.png") repeat 0 0 fixed;
 }
 label, input, button, select, textarea{
 	font-size: 12px;
@@ -86,7 +85,7 @@ section#copyright{
 	margin-right: -10px;	
 }
 section.header_text{
-	background:url(<c:url value="/resources/themes/images/bg_h.png" />) no-repeat bottom;
+/* 	background:url("/SuperMart/resources/themes/images/bg_h.png") no-repeat bottom; */
 	text-align:center;
 	padding:15px 0 20px 0;
 	font-size:16px;
@@ -212,7 +211,7 @@ section#footer-bar  a:hover{
 	text-decoration:underline;	
 }
 section#footer-bar  .nav a{
-	background: url(<c:url value="/resources/themes/images/trigger_right.png" />) no-repeat 5px 7px;
+/* 	background: url(<c:url value="/SuperMart/resources/themes/images/trigger_right.png" />) no-repeat 5px 7px; */
 }
 section#footer-bar h4 {
 	padding: 0;
@@ -227,7 +226,7 @@ section#footer-bar .social_icons a {
 	width: 29px;
 	height: 28px;
 	text-indent: -9999px;
-	background-image: url(<c:url value="/resources/themes/images/social-icons.png" />);
+/* 	background-image: url(<c:url value="/SuperMart/resources/themes/images/social-icons.png" />); */
 	background-repeat: no-repeat;
 	margin-right: 10px;
 	-webkit-transition: all 0.4s;
@@ -423,7 +422,7 @@ section.navbar{
 	border-bottom:1px solid #eee;
 }
 .product-box span.sale_tag {
-	background: url(<c:url value="/resources/themes/images/sprites.png" />) no-repeat scroll 0 0 transparent;
+/* 	background: url("/SuperMart/resources/themes/images/sprites.png") no-repeat scroll 0 0 transparent; */
 	height: 54px;
 	position: absolute;
 	width: 55px;
@@ -467,7 +466,7 @@ section.navbar{
 /* title style for h4 tag
 ----------------------------------------------------------------------------- */
 h4.title{
-	background: url(<c:url value="/resources/themes/images/line_bar.png />) 0 8px repeat-x;
+	background: url("/SuperMart/resources/themes/images/line_bar.png") 0 8px repeat-x;
 	padding-bottom:5px;
 	margin-bottom:15px;
 	overflow:hidden;
@@ -489,11 +488,11 @@ h4.title span.text{
 	padding-right:10px;
 }
 h4.title .left{
-	background: url(<c:url value="/resources/themes/images/arrow-pleft.png />) #eee no-repeat center center;	
+	background: url("/SuperMart/resources/themes/images/arrow-pleft.png") #eee no-repeat center center;	
 	margin-right:2px;	
 }
 h4.title .right{
-	background: url(<c:url value="/resources/themes/images/arrow-p.png />) #eee no-repeat center center;	
+	background: url("/SuperMart/resources/themes/images/arrow-p.png") #eee no-repeat center center;	
 }
 h4.title .pull-right{
 	background-color:#fff;
@@ -526,7 +525,7 @@ section.our_client .row{
 	margin-bottom:0;
 }
 .search_form input{
-	background: url(<c:url value="/resources/themes/images/search.png />) #fff no-repeat 97% 6px;
+/* 	background: url(<c:url value="/SuperMart/resources/themes/images/search.png />) #fff no-repeat 97% 6px; */
 	color:#fff;
 	text-shadow:none;
 	padding-right:25px;	
@@ -654,7 +653,7 @@ section.our_client .row{
 	margin-bottom:-30px;
 }
 .block h4{
-	background: url(<c:url value="/resources/themes/images/bg_h.png />) no-repeat bottom left;
+	background: url("value="/SuperMart/resources/themes/images/bg.png") no-repeat bottom left;
 	margin: 0 0 20px 0;
 	border-bottom:1px solid #eee;	
 }
@@ -663,14 +662,14 @@ section.our_client .row{
 /* Navigation list */
 .nav-header{
 	color:#333;
-	background: url(<c:url value="/resources/themes/images/bg_h.png/>) no-repeat bottom left;
+	background: url(<c:url value="/SuperMart/resources/themes/images/bg_h.png/>) no-repeat bottom left;
 	margin-bottom:10px;
 }
 .nav-list li{
 	text-align:left;
 }
 .nav-list li a{
-	background: url(<c:url value="/resources/themes/images/trigger_right.png/>) transparent no-repeat 5px 8px;
+/* 	background: url(<c:url value="/SuperMart/resources/themes/images/trigger_right.png/>) transparent no-repeat 5px 8px; */
 }
 .nav-list > .active > a, .nav-list > .active > a:hover{
 	background-color: transparent;
@@ -713,10 +712,10 @@ section.our_client .row{
     padding:10px 0;
 	text-align:center;	
 	font-weight:bold;
-	background:url(<c:url value="/resources/themes/images/i_submenu.png/>) no-repeat 98% center;
+/* 	background:url(<c:url value="/SuperMart/resources/themes/images/i_submenu.png/>) no-repeat 98% center; */
 }
 ._toggleMenu ul  > li a.parent{
-	background:url(<c:url value="/resources/themes/images/i_plus.png/>) no-repeat 98% center;
+	background:url(<c:url value="/SuperMart/resources/themes/images/i_plus.png/>) no-repeat 98% center;
 }
 ._toggleMenu .nav  ul{
 	list-style: none;
