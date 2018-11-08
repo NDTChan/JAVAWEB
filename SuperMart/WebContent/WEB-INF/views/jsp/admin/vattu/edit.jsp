@@ -33,15 +33,6 @@
 			<div class="row">
 				<div class="col-md-10">
 					<div class="form-group">
-						<label>Barcode</label><span style="color: red"> (*)</span>
-						<input type="text" class="form-control" name="BarCode" value="${instance.getBarCode() }"
-							maxlength="255" required>
-					</div>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-10">
-					<div class="form-group">
 						<label>Mã loại vật tư</label><span style="color: red"> (*)</span>
 						<input type="text" class="form-control" name="MaLoaiVatTu" value="${instance.getMaLoaiVatTu() }"
 							maxlength="255" required>

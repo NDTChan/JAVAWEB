@@ -28,7 +28,6 @@
 					<th>STT</th>
 					<th>Mã Vật tư</th>
 					<th>Tên Vật tư</th>
-					<th>Bar code</th>
 					<th>Loại vật tư</th>
 					<th>Nhà Cung cấp</th>
 					<th>Đơn vị tính</th>
@@ -46,7 +45,6 @@
 						<td>${stt.index+1 }</td>
 						<td>${m.getMaVatTu()}</td>
 						<td>${m.getTenVatTu()}</td>
-						<td>${m.getBarCode()}</td>
 						<td>${m.getMaLoaiVatTu()}</td>
 						<td>${m.getMaNhaCungCap()}</td>
 						<td>${m.getMaDonViTinh()}</td>
