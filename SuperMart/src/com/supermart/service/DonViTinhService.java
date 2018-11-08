@@ -1,5 +1,6 @@
 package com.supermart.service;
 
+import java.util.Iterator;
 import java.util.List;
 
 import javax.transaction.Transactional;
@@ -9,6 +10,7 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.sun.istack.internal.Nullable;
 import com.supermart.models.DonViTinh;
 
 @Component 
@@ -24,18 +26,43 @@ public class DonViTinhService {
 	{
 		String hql="FROM DonViTinh";
 		Query query=sessionFactory.getCurrentSession().createQuery(hql);
-		System.out.println(query.list());
 		return query.list();
 	}
 	
-	public List<DonViTinh> list(int first, int max)
+	public List<DonViTinh> list(int first, int max, String keySearch)
 	{
-		String hql="FROM DonViTinh";
-		Query query=sessionFactory.getCurrentSession().createQuery(hql);
+		Query query;
+		String hql = "";
+		if(keySearch !=null) {
+			hql="FROM DonViTinh dvt WHERE dvt.TenDonViTinh LIKE :keySearch ";
+			query = sessionFactory.getCurrentSession().createQuery(hql);
+			query.setParameter("keySearch", "%" + keySearch + "%");
+		}
+		else {
+			hql="FROM DonViTinh";
+			query = sessionFactory.getCurrentSession().createQuery(hql);
+		}
 		query.setFirstResult(first);
 		query.setMaxResults(max);
 		return query.list();
 	}
+	
+	public long Count(String keySearch) {
+		
+		Query query;
+		String hql = "";
+		if(keySearch !=null) {
+			hql="FROM DonViTinh dvt WHERE dvt.TenDonViTinh LIKE :keySearch ";
+			query = sessionFactory.getCurrentSession().createQuery(hql);
+			query.setParameter("keySearch", "%" + keySearch + "%");
+		}
+		else {
+			hql="FROM DonViTinh";
+			query = sessionFactory.getCurrentSession().createQuery(hql);
+		}
+		return query.list().size();
+	} 
+	
 	public DonViTinh getById(int id)
 	{
 		return (DonViTinh)sessionFactory.getCurrentSession().get(DonViTinh.class, id);
@@ -47,6 +74,7 @@ public class DonViTinhService {
 		sessionFactory.getCurrentSession().saveOrUpdate(emp);
 //		sessionFactory.getCurrentSession().getTransaction().commit();
 	}
+	
 	public void update(int id, String madonvi, String tendonvi,int trangthai)
 	{
 //		sessionFactory.getCurrentSession().beginTransaction();
@@ -57,6 +85,7 @@ public class DonViTinhService {
 		sessionFactory.getCurrentSession().update(dvt);
 //		sessionFactory.getCurrentSession().getTransaction().commit();
 	}
+	
 	public void delete(int id)
 	{
 		DonViTinh dvt=getById(id);

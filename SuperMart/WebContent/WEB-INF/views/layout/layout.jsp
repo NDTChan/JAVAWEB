@@ -1,5 +1,7 @@
+<%@page import="org.apache.jasper.tagplugins.jstl.core.If"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -27,9 +29,23 @@
 	src="${pageContext.request.contextPath}/resources/respond.min.js"></script>
 <link rel="stylesheet"
 	href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+<script
+	src="${pageContext.request.contextPath}/resources/jquery/dist/jquery.min.js"></script>
+<script
+	src="${pageContext.request.contextPath}/resources/bootstrap/dist/js/bootstrap.min.js"></script>
+<script
+	src="${pageContext.request.contextPath}/resources/dist/js/adminlte.min.js"></script>
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
 	<div class="wrapper">
+		<%
+		
+			HttpSession sessionsa = request.getSession(false);
+			String user = (String) sessionsa.getAttribute("username");
+			if (session.getAttribute("username") == null) {
+				response.sendRedirect("/SuperMart/login"); 
+			}
+		%>
 
 		<tiles:insertAttribute name="header" />
 		<tiles:insertAttribute name="menu" />
@@ -55,11 +71,6 @@
 		<tiles:insertAttribute name="footer" />
 		<div class="control-sidebar-bg"></div>
 	</div>
-	<script
-		src="${pageContext.request.contextPath}/resources/jquery/dist/jquery.min.js"></script>
-	<script
-		src="${pageContext.request.contextPath}/resources/bootstrap/dist/js/bootstrap.min.js"></script>
-	<script
-		src="${pageContext.request.contextPath}/resources/dist/js/adminlte.min.js"></script>
+
 </body>
 </html>

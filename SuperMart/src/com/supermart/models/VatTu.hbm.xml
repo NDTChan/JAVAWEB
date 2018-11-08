@@ -9,7 +9,6 @@
         </id>
         <property name="MaVatTu" column="MaVatTu"/>
        	<property name="TenVatTu" column="TenVatTu"/>
-       	<property name="BarCode" column="BarCode"/>
        	<property name="MaLoaiVatTu" column="MaLoaiVatTu"/>
        	<property name="MaNhaCungCap" column="MaNhaCungCap"/>
        	<property name="MaDonViTinh" column="MaDonViTinh"/>

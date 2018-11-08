@@ -5,7 +5,7 @@
 	<div class="box-header">
 		<h3 class="box-title">
 			<button type="button" class="btn btn-block btn-primary"
-				onclick="window.location='${pageContext.request.contextPath}/admin/vattu/add';">
+				onclick="window.location='${pageContext.request.contextPath}/admin/nhomvattu/add';">
 				<i class="fa fa-plus"></i> Thêm mới
 			</button>
 		</h3>
@@ -26,15 +26,9 @@
 			<thead>
 				<tr>
 					<th>STT</th>
-					<th>Mã Vật tư</th>
-					<th>Tên Vật tư</th>
-					<th>Loại vật tư</th>
-					<th>Nhà Cung cấp</th>
-					<th>Đơn vị tính</th>
-					<th>Giá Mua</th>
-					<th>Giá Bán</th>
-					<th>Số lượng</th>
-					<th>Ảnh</th>
+					<th>Mã nhóm vật tư</th>
+					<th>Tên nhóm vật tư</th>
+					<th>Mã loại vật tư</th>
 					<th>Trạng thái</th>
 					<th></th>
 				</tr>
@@ -43,15 +37,9 @@
 				<c:forEach var="m" items="${list}" varStatus="stt">
 					<tr>
 						<td>${stt.index+1 }</td>
-						<td>${m.getMaVatTu()}</td>
-						<td>${m.getTenVatTu()}</td>
+						<td>${m.getMaNhomVatTu()}</td>
+						<td>${m.getTenNhomVatTu()}</td>
 						<td>${m.getMaLoaiVatTu()}</td>
-						<td>${m.getMaNhaCungCap()}</td>
-						<td>${m.getMaDonViTinh()}</td>
-						<td>${m.getGiaMua()}</td>
-						<td>${m.getGiaBan()}</td>
-						<td>${m.getSoLuong()}</td>
-						<td> <img src="${pageContext.request.contextPath}/Upload/${m.getAnh()}" alt="Angry face" width="32" height="32" /></td>
 						<td>
 							<c:if test="${m.getTrangThai() =='10'}" >
 								<span class="label label-success">Sử dụng</span>
@@ -62,8 +50,8 @@
 						</td>
 						<td class="text-center">
 							<p>
-								<a class="btn btn-info btn-xs" href="${pageContext.request.contextPath}/admin/vattu/detail?id=${m.getId()}"><i class="fa fa-fw fa-info"></i></a>
-								<a class="btn btn-warning btn-xs" href="${pageContext.request.contextPath}/admin/vattu/edit?id=${m.getId()}"><i class="fa fa-fw fa-edit"></i></a> 
+								<a class="btn btn-info btn-xs" href="${pageContext.request.contextPath}/admin/nhomvattu/detail?id=${m.getId()}"><i class="fa fa-fw fa-info"></i></a>
+								<a class="btn btn-warning btn-xs" href="${pageContext.request.contextPath}/admin/nhomvattu/edit?id=${m.getId()}"><i class="fa fa-fw fa-edit"></i></a> 
 								<a class="btn btn-danger btn-xs" onclick="deleteItem(${m.getId()})"><i class="fa fa-fw fa-trash-o"></i></a>
 							</p>
 						</td>
@@ -85,10 +73,10 @@
 
 <script>
 	function deleteItem(id){
-		$.get("${pageContext.request.contextPath}/admin/vattu/deleteItem?id="+id, function(data, status){
+		$.get("${pageContext.request.contextPath}/admin/nhomvattu/deleteItem?id="+id, function(data, status){
 	        if(data==='true'){
 	        	alert('Xóa thành công');
-	        	window.location='${pageContext.request.contextPath}/admin/vattu';
+	        	window.location='${pageContext.request.contextPath}/admin/nhomvattu';
 	        }
 	    });
 	}

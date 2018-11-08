@@ -37,15 +37,6 @@
 			<div class="row">
 				<div class="col-md-10">
 					<div class="form-group">
-						<label>Bar Code</label><span style="color: red"> (*)</span>
-						<form:input path="BarCode" type="text" class="form-control"
-							name="BarCode" maxlength="255" />
-					</div>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-10">
-					<div class="form-group">
 						<label>Loại Vật tư</label><span style="color: red"> (*)</span>
 						<form:input path="MaLoaiVatTu" type="text" class="form-control"
 							name="MaLoaiVatTu" maxlength="255" />
@@ -98,7 +89,7 @@
 					<div class="form-group">
 						<label>Ảnh</label><span style="color: red"> (*)</span>
 						<input id="imageUpload" type="file" class="form-control" onChange="loadImage()"/>
-						<form:input path="Anh" id="Anh" type="text" name="Anh" 
+						<form:input path="Anh" id="Anh" type="hidden" name="Anh" 
  							class="form-control" maxlength="255" /> 
 					</div>
 				</div>
