@@ -29,6 +29,12 @@
 	src="${pageContext.request.contextPath}/resources/respond.min.js"></script>
 <link rel="stylesheet"
 	href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+<script
+	src="${pageContext.request.contextPath}/resources/jquery/dist/jquery.min.js"></script>
+<script
+	src="${pageContext.request.contextPath}/resources/bootstrap/dist/js/bootstrap.min.js"></script>
+<script
+	src="${pageContext.request.contextPath}/resources/dist/js/adminlte.min.js"></script>
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
 	<div class="wrapper">
@@ -40,7 +46,7 @@
 				response.sendRedirect("/SuperMart/login"); 
 			}
 		%>
-		
+
 		<tiles:insertAttribute name="header" />
 		<tiles:insertAttribute name="menu" />
 		<div class="content-wrapper">
@@ -65,11 +71,6 @@
 		<tiles:insertAttribute name="footer" />
 		<div class="control-sidebar-bg"></div>
 	</div>
-	<script
-		src="${pageContext.request.contextPath}/resources/jquery/dist/jquery.min.js"></script>
-	<script
-		src="${pageContext.request.contextPath}/resources/bootstrap/dist/js/bootstrap.min.js"></script>
-	<script
-		src="${pageContext.request.contextPath}/resources/dist/js/adminlte.min.js"></script>
+
 </body>
 </html>
