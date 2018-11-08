@@ -54,7 +54,7 @@
 	
 	<!-- 	Vật tư -->
 	<definition name="vattu" extends="admin">
-		<put-attribute name="title" value="Vật tư" />
+		<put-attribute name="t/itle" value="Vật tư" />
 		<put-attribute name="body"
 			value="/WEB-INF/views/jsp/admin/vattu/index.jsp" />
 	</definition>
