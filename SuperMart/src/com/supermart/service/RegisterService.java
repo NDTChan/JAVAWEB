@@ -24,10 +24,8 @@ public class RegisterService {
 		String sqlQuery = "from User u where u.Username='" + user.getUsername() + "'";
 		try {
 			List<User> userObj = sessionFactory.getCurrentSession().createQuery(sqlQuery).list();
-			System.out.println(userObj.size());
 			return userObj != null && userObj.size() > 0 ? true : false;
 		} catch (Exception e) {
-			System.out.println('1');
 			return false;
 		}
 	}

@@ -37,15 +37,6 @@
 			<div class="row">
 				<div class="col-md-10">
 					<div class="form-group">
-						<label>Bar Code</label><span style="color: red"> (*)</span>
-						<form:input path="BarCode" type="text" class="form-control"
-							name="BarCode" maxlength="255" />
-					</div>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-10">
-					<div class="form-group">
 						<label>Loại Vật tư</label><span style="color: red"> (*)</span>
 						<form:input path="MaLoaiVatTu" type="text" class="form-control"
 							name="MaLoaiVatTu" maxlength="255" />

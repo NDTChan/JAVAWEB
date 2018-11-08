@@ -7,7 +7,6 @@ public class VatTu implements Serializable {
 	public int Id;
 	public String MaVatTu;
 	public String TenVatTu;
-	public String BarCode;
 	public String MaLoaiVatTu;
 	public String MaNhaCungCap;
 	public String MaDonViTinh;
@@ -20,13 +19,12 @@ public class VatTu implements Serializable {
 	public VatTu() {
 		super();
 	}
-	public VatTu(int id, String maVatTu, String tenVatTu, String barCode, String maLoaiVatTu, String maNhaCungCap,
+	public VatTu(int id, String maVatTu, String tenVatTu, String maLoaiVatTu, String maNhaCungCap,
 			String maDonViTinh, double giaMua, double giaBan, double soLuong, String anh, int trangThai) {
 		super();
 		Id = id;
 		MaVatTu = maVatTu;
 		TenVatTu = tenVatTu;
-		BarCode = barCode;
 		MaLoaiVatTu = maLoaiVatTu;
 		MaNhaCungCap = maNhaCungCap;
 		MaDonViTinh = maDonViTinh;
@@ -53,12 +51,6 @@ public class VatTu implements Serializable {
 	}
 	public void setTenVatTu(String tenVatTu) {
 		TenVatTu = tenVatTu;
-	}
-	public String getBarCode() {
-		return BarCode;
-	}
-	public void setBarCode(String barCode) {
-		BarCode = barCode;
 	}
 	public String getMaLoaiVatTu() {
 		return MaLoaiVatTu;

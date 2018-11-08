@@ -35,12 +35,22 @@
               </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="${pageContext.request.contextPath}/admin/donvitinh">Danh mục đơn vị tính</a></li>
-            <li><a href="${pageContext.request.contextPath}/admin/loaivattu">Danh mục loại vật tư</a></li>
-            <li><a href="${pageContext.request.contextPath}/admin/nhomvattu">Danh mục nhóm vật tư</a></li>
-            <li><a href="${pageContext.request.contextPath}/admin/vattu">Danh mục vật tư</a></li>
-            <li><a href="${pageContext.request.contextPath}/admin/khachhang">Danh mục khách hàng</a></li>
-            <li><a href="${pageContext.request.contextPath}/admin/nhacungcap">Danh mục nhà cung cấp</a></li>
+            <li><a href="${pageContext.request.contextPath}/admin/donvitinh">Đơn vị tính</a></li>
+            <li><a href="${pageContext.request.contextPath}/admin/loaivattu">Loại vật tư</a></li>
+            <li><a href="${pageContext.request.contextPath}/admin/nhomvattu">Nhóm vật tư</a></li>
+            <li><a href="${pageContext.request.contextPath}/admin/vattu">Vật tư</a></li>
+            <li><a href="${pageContext.request.contextPath}/admin/khachhang">Khách hàng</a></li>
+            <li><a href="${pageContext.request.contextPath}/admin/nhacungcap">Nhà cung cấp</a></li>
+          </ul>
+        </li>
+        <li class="treeview">
+          <a href="#"><i class="fa fa-link"></i> <span>Hệ thống nghiệp vụ</span>
+            <span class="pull-right-container">
+                <i class="fa fa-angle-left pull-right"></i>
+              </span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="${pageContext.request.contextPath}/admin/nhapmua">Nhập mua</a></li>
           </ul>
         </li>
       </ul>
