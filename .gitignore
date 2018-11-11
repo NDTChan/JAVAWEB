@@ -1,4 +1,3 @@
-
 /SuperMart/WebContent/WEB-INF/*.xml
 *target*
 *.ear
@@ -25,3 +24,4 @@ local.properties
 # Locally stored "Eclipse launch configurations"
 *.launch
 /SuperMart/bin
+.classpath
