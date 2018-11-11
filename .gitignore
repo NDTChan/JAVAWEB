@@ -16,7 +16,6 @@ tmp/**/*
 *.swp
 *~.nib
 local.properties
-.classpath
 .settings/
 .loadpath
 
@@ -25,4 +24,4 @@ local.properties
 
 # Locally stored "Eclipse launch configurations"
 *.launch
-/SuperMart/*.classpath
+/SuperMart/bin
