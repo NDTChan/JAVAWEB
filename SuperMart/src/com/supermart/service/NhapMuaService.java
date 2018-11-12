@@ -1,18 +1,14 @@
 package com.supermart.service;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
-
 import javax.transaction.Transactional;
 import org.hibernate.Query;
-import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-
-import com.supermart.models.DonViTinh;
 import com.supermart.models.VatTuChungTu;
-import com.supermart.models.VatTuChungTuChiTiet;
 
 @Component
 @Transactional
@@ -51,10 +47,25 @@ public class NhapMuaService {
 			query = sessionFactory.getCurrentSession().createQuery(hql);
 			query.setParameter("keySearch", "%" + keySearch + "%");
 		} else {
-			hql = "FROM DonViTinh";
+			hql = "FROM VatTuChungTu WHERE LoaiChungTu = 'NMUA'";
 			query = sessionFactory.getCurrentSession().createQuery(hql);
 		}
 		return query.list().size();
 	}
 
+	public String getNewMaChungTu() {
+		String hql = "FROM VatTuChungTu WHERE LoaiChungTu = 'NMUA'";
+		Query query = sessionFactory.getCurrentSession().createQuery(hql);
+		ArrayList<Integer> listIndex = new ArrayList<Integer>();
+		List<VatTuChungTu> listVtct = query.list();
+		if (listVtct.size() > 0) {
+			for (int i = 0; i < listVtct.size(); i++) {
+				listIndex.add(Integer.parseInt(listVtct.get(i).MaChungTu.substring(5)));
+			}
+			Collections.sort(listIndex);
+			return "NMUA" + (listIndex.get(listIndex.size() - 1) + 1);
+		} else {
+			return "NMUA1";
+		}
+	}
 }
