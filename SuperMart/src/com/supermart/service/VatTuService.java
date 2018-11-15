@@ -9,6 +9,7 @@ import org.hibernate.SessionFactory;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
 import com.supermart.models.VatTu;
 
 @Component 
@@ -22,20 +23,44 @@ public class VatTuService {
 	
 	public List<VatTu> list()
 	{
-		String hql="FROM VatTu";
-		Query query=sessionFactory.getCurrentSession().createQuery(hql);
-		System.out.println(query.list());
+		String sql="FROM VatTu";
+		Query query=sessionFactory.getCurrentSession().createQuery(sql);
 		return query.list();
 	}
 	
-	public List<VatTu> list(int first, int max)
+	public List<VatTu> list(int first, int max, String keySearch)
 	{
-		String hql="FROM VatTu";
-		Query query=sessionFactory.getCurrentSession().createQuery(hql);
+		Query query;
+		String sql = "";
+		if(keySearch !=null) {
+			sql ="FROM VatTu kh WHERE kh.TenVatTu LIKE :keySearch ";
+			query = sessionFactory.getCurrentSession().createQuery(sql);
+			query.setParameter("keySearch", "%" + keySearch + "%");
+		}
+		else {
+			sql ="FROM VatTu";
+			query = sessionFactory.getCurrentSession().createQuery(sql);
+		}
 		query.setFirstResult(first);
 		query.setMaxResults(max);
 		return query.list();
 	}
+	
+	public long Count(String keySearch) {
+		Query query;
+		String sql = "";
+		if(keySearch !=null) {
+			sql="FROM VatTu kh WHERE kh.TenVatTu LIKE :keySearch ";
+			query = sessionFactory.getCurrentSession().createQuery(sql);
+			query.setParameter("keySearch", "%" + keySearch + "%");
+		}
+		else {
+			sql ="FROM VatTu";
+			query = sessionFactory.getCurrentSession().createQuery(sql);
+		}
+		return query.list().size();
+	}
+	
 	public VatTu getById(int id)
 	{
 		return (VatTu)sessionFactory.getCurrentSession().get(VatTu.class, id);

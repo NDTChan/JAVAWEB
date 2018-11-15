@@ -16,6 +16,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.supermart.models.VatTu;
+import com.supermart.service.PagingVm;
 import com.supermart.service.VatTuService;
 
 @Controller
@@ -29,10 +30,47 @@ public class VatTuController {
 	ServletContext servletContext;
 
 	@RequestMapping(value = "vattu", method = RequestMethod.GET)
-	public ModelAndView getAll(ModelMap model) {
-		List<VatTu> ls = _service.list();
+	public ModelAndView getAllPaging(ModelMap model, String currentpage, String searchKey) {
+		PagingVm<VatTu> result = new PagingVm<VatTu>();
+		System.out.println(searchKey);
+		long total = 0;
+		int size = 2;
+		List<VatTu> ls ;
+		if(currentpage != null) {
+			int page = Integer.parseInt(currentpage);
+			if(searchKey!=null) {
+				result.setKeySearch(searchKey);
+				ls = _service.list(size*page, size, searchKey);
+				total =_service.Count(searchKey);
+			}
+			else {
+				ls = _service.list(size*page, size, null);
+				total =_service.Count(null);
+			}
+			result.setData(ls);
+			result.setCurrentPage(page);
+		}
+		else {
+			if(searchKey!=null) {
+				result.setKeySearch(searchKey);
+				ls = _service.list(0, size, searchKey);
+				total =_service.Count(searchKey);
+			}
+			else {
+				ls = _service.list(0, size, null);
+				total =_service.Count(null);
+			}
+			result.setData(ls);
+			result.setCurrentPage(0);
+		}
+		
+		long totalPage = total/size;
+		if(totalPage*size < total) {
+			totalPage += 1;
+		}
+		result.setTotal(totalPage);
 		ModelAndView modelView = new ModelAndView("vattu");
-		modelView.addObject("list", ls);
+		modelView.addObject("result", result);
 		return modelView;
 	}
 

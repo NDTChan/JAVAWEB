@@ -1,4 +1,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="java.util.List"%>
+<%@page import="com.supermart.models.NhomVatTu" %>
+<%@page import="com.supermart.service.PagingVm" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <div class="box">
@@ -11,10 +14,9 @@
 		</h3>
 		<div class="box-tools">
 			<div class="input-group input-group-sm" style="width: 300px;">
-				<input type="text" name="table_search"
-					class="form-control pull-right" placeholder="Search">
+				<input type="text" name="table_search" class="form-control pull-right" placeholder="Search" id="searchKey" >
 				<div class="input-group-btn">
-					<button type="submit" class="btn btn-default">
+					<button type="submit" onclick="search()" class="btn btn-default">
 						<i class="fa fa-search"></i>
 					</button>
 				</div>
@@ -34,7 +36,7 @@
 				</tr>
 			</thead>
 			<tbody>
-				<c:forEach var="m" items="${list}" varStatus="stt">
+				<c:forEach var="m" items="${result.getData()}" varStatus="stt">
 					<tr>
 						<td>${stt.index+1 }</td>
 						<td>${m.getMaNhomVatTu()}</td>
@@ -61,17 +63,27 @@
 		</table>
 		<div class="box-footer clearfix">
 			<ul class="pagination pagination-sm no-margin pull-right">
-				<li><a href="#">&laquo;</a></li>
-				<li><a href="#">1</a></li>
-				<li><a href="#">2</a></li>
-				<li><a href="#">3</a></li>
-				<li><a href="#">&raquo;</a></li>
+				<% PagingVm<NhomVatTu> result = null;
+					result = (PagingVm<NhomVatTu>)request.getAttribute("result");
+					for(int i = 0; i < result.getTotal(); i++) { 
+						if(i == result.getCurrentPage()){%>
+							<li><a href="nhomvattu?currentpage=<%= i%>"  style="background-color: #ddd" id="currentPage"><%= i+1 %></a></li>
+						<%}else{ %>
+							<li><a href="nhomvattu?currentpage=<%= i%>"><%= i+1 %></a></li>
+					<%}} %>
 			</ul>
 		</div>
 	</div>
 </div>
 
-<script>
+<script type="text/javascript">
+	$(document).ready(function(){
+		var urlParams = new URLSearchParams(window.location.search);
+		if(urlParams.has('searchKey') == true){
+			$('#searchKey').val(urlParams.get('searchKey'));
+		}
+	});
+	
 	function deleteItem(id){
 		$.get("${pageContext.request.contextPath}/admin/nhomvattu/deleteItem?id="+id, function(data, status){
 	        if(data==='true'){
@@ -79,6 +91,12 @@
 	        	window.location='${pageContext.request.contextPath}/admin/nhomvattu';
 	        }
 	    });
+	}
+	
+	function search(){
+		var searchKey = $('#searchKey').val();
+ 		var url = "${pageContext.request.contextPath}/admin/nhomvattu?currentpage=0&searchKey="+searchKey;
+ 		window.location = url;
 	}
 </script>
 

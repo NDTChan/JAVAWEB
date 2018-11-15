@@ -10,8 +10,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.supermart.models.LoaiVatTu;
 import com.supermart.service.LoaiVatTuService;
-
-
+import com.supermart.service.PagingVm;
 
 @Controller
 @RequestMapping(value = "admin", method = RequestMethod.GET)
@@ -21,10 +20,47 @@ public class LoaiVatTuController {
 	LoaiVatTuService _service;
 
 	@RequestMapping(value = "loaivattu", method = RequestMethod.GET)
-	public ModelAndView getAll(ModelMap model) {
-		List<LoaiVatTu> ls = _service.list();
+	public ModelAndView getAllPaging(ModelMap model, String currentpage, String searchKey) {
+		PagingVm<LoaiVatTu> result = new PagingVm<LoaiVatTu>();
+		System.out.println(searchKey);
+		long total = 0;
+		int size = 2;
+		List<LoaiVatTu> ls ;
+		if(currentpage != null) {
+			int page = Integer.parseInt(currentpage);
+			if(searchKey!=null) {
+				result.setKeySearch(searchKey);
+				ls = _service.list(size*page, size, searchKey);
+				total =_service.Count(searchKey);
+			}
+			else {
+				ls = _service.list(size*page, size, null);
+				total =_service.Count(null);
+			}
+			result.setData(ls);
+			result.setCurrentPage(page);
+		}
+		else {
+			if(searchKey!=null) {
+				result.setKeySearch(searchKey);
+				ls = _service.list(0, size, searchKey);
+				total =_service.Count(searchKey);
+			}
+			else {
+				ls = _service.list(0, size, null);
+				total =_service.Count(null);
+			}
+			result.setData(ls);
+			result.setCurrentPage(0);
+		}
+		
+		long totalPage = total/size;
+		if(totalPage*size < total) {
+			totalPage += 1;
+		}
+		result.setTotal(totalPage);
 		ModelAndView modelView = new ModelAndView("loaivattu");
-		modelView.addObject("list", ls);
+		modelView.addObject("result", result);
 		return modelView;
 	}
 	

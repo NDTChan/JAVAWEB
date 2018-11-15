@@ -11,6 +11,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.supermart.models.KhachHang;
 import com.supermart.service.KhachHangService;
+import com.supermart.service.PagingVm;
 
 @Controller
 @RequestMapping(value = "admin")
@@ -19,14 +20,52 @@ public class KhachHangController {
 	
 	@Autowired
 	KhachHangService _service;
-
+	
 	@RequestMapping(value = "khachhang", method = RequestMethod.GET)
-	public ModelAndView getAll(ModelMap model) {
-		List<KhachHang> ls = _service.list();
+	public ModelAndView getAllPaging(ModelMap model, String currentpage, String searchKey) {
+		PagingVm<KhachHang> result = new PagingVm<KhachHang>();
+		System.out.println(searchKey);
+		long total = 0;
+		int size = 2;
+		List<KhachHang> ls ;
+		if(currentpage != null) {
+			int page = Integer.parseInt(currentpage);
+			if(searchKey!=null) {
+				result.setKeySearch(searchKey);
+				ls = _service.list(size*page, size, searchKey);
+				total =_service.Count(searchKey);
+			}
+			else {
+				ls = _service.list(size*page, size, null);
+				total =_service.Count(null);
+			}
+			result.setData(ls);
+			result.setCurrentPage(page);
+		}
+		else {
+			if(searchKey!=null) {
+				result.setKeySearch(searchKey);
+				ls = _service.list(0, size, searchKey);
+				total =_service.Count(searchKey);
+			}
+			else {
+				ls = _service.list(0, size, null);
+				total =_service.Count(null);
+			}
+			result.setData(ls);
+			result.setCurrentPage(0);
+		}
+		
+		long totalPage = total/size;
+		if(totalPage*size < total) {
+			totalPage += 1;
+		}
+		result.setTotal(totalPage);
 		ModelAndView modelView = new ModelAndView("khachhang");
-		modelView.addObject("list", ls);
+		modelView.addObject("result", result);
 		return modelView;
 	}
+
 	@RequestMapping(value = "khachhang/add", method = RequestMethod.GET)
 	public ModelAndView addKH() {
 		String operation = "add";
@@ -34,6 +73,7 @@ public class KhachHangController {
 		modelView.addObject("operation", operation);
 		return modelView;
 	}
+	
 	@RequestMapping(value = "khachhang/edit", method = RequestMethod.GET)
 	public ModelAndView editKH(int id) {
 		KhachHang instance = _service.getById(id);
@@ -66,12 +106,12 @@ public class KhachHangController {
 			String error = "true";
 			if (Operation.equals("add")) {
 				operation = "add";
-				ModelAndView modelView = new ModelAndView("KhachHang/add");
+				ModelAndView modelView = new ModelAndView("khachhang/add");
 				modelView.addObject("operation", operation);
 				modelView.addObject("error", error);
 				return modelView;
 			} else {
-				ModelAndView modelView = new ModelAndView("KhachHang/edit");
+				ModelAndView modelView = new ModelAndView("khachhang/edit");
 				modelView.addObject("operation", operation);
 				modelView.addObject("error", error);
 				return modelView;

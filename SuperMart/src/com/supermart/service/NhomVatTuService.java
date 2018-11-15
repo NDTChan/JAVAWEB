@@ -19,20 +19,44 @@ public class NhomVatTuService {
 	
 	public List<NhomVatTu> list()
 	{
-		String hql="FROM NhomVatTu";
-		Query query=sessionFactory.getCurrentSession().createQuery(hql);
-		System.out.println(query.list());
+		String sql="FROM NhomVatTu";
+		Query query=sessionFactory.getCurrentSession().createQuery(sql);
 		return query.list();
 	}
 	
-	public List<NhomVatTu> list(int first, int max)
+	public List<NhomVatTu> list(int first, int max, String keySearch)
 	{
-		String hql="FROM NhomVatTu";
-		Query query=sessionFactory.getCurrentSession().createQuery(hql);
+		Query query;
+		String sql = "";
+		if(keySearch !=null) {
+			sql ="FROM NhomVatTu kh WHERE kh.TenNhomVatTu LIKE :keySearch ";
+			query = sessionFactory.getCurrentSession().createQuery(sql);
+			query.setParameter("keySearch", "%" + keySearch + "%");
+		}
+		else {
+			sql ="FROM NhomVatTu";
+			query = sessionFactory.getCurrentSession().createQuery(sql);
+		}
 		query.setFirstResult(first);
 		query.setMaxResults(max);
 		return query.list();
 	}
+	
+	public long Count(String keySearch) {
+		Query query;
+		String sql = "";
+		if(keySearch !=null) {
+			sql="FROM NhomVatTu kh WHERE kh.TenNhomVatTu LIKE :keySearch ";
+			query = sessionFactory.getCurrentSession().createQuery(sql);
+			query.setParameter("keySearch", "%" + keySearch + "%");
+		}
+		else {
+			sql ="FROM NhomVatTu";
+			query = sessionFactory.getCurrentSession().createQuery(sql);
+		}
+		return query.list().size();
+	}
+	
 	public NhomVatTu getById(int id)
 	{
 		return (NhomVatTu)sessionFactory.getCurrentSession().get(NhomVatTu.class, id);

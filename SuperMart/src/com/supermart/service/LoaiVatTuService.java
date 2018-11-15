@@ -21,18 +21,42 @@ public class LoaiVatTuService {
 	{
 		String hql="FROM LoaiVatTu";
 		Query query=sessionFactory.getCurrentSession().createQuery(hql);
-		System.out.println(query.list());
 		return query.list();
 	}
 	
-	public List<LoaiVatTu> list(int first, int max)
+	public List<LoaiVatTu> list(int first, int max, String keySearch)
 	{
-		String hql="FROM LoaiVatTu";
-		Query query=sessionFactory.getCurrentSession().createQuery(hql);
+		Query query;
+		String hql = "";
+		if(keySearch !=null) {
+			hql ="FROM LoaiVatTu kh WHERE kh.TenLoaiVatTu LIKE :keySearch ";
+			query = sessionFactory.getCurrentSession().createQuery(hql);
+			query.setParameter("keySearch", "%" + keySearch + "%");
+		}
+		else {
+			hql ="FROM LoaiVatTu";
+			query = sessionFactory.getCurrentSession().createQuery(hql);
+		}
 		query.setFirstResult(first);
 		query.setMaxResults(max);
 		return query.list();
 	}
+	
+	public long Count(String keySearch) {
+		Query query;
+		String hql = "";
+		if(keySearch !=null) {
+			hql="FROM LoaiVatTu kh WHERE kh.TenLoaiVatTu LIKE :keySearch ";
+			query = sessionFactory.getCurrentSession().createQuery(hql);
+			query.setParameter("keySearch", "%" + keySearch + "%");
+		}
+		else {
+			hql ="FROM LoaiVatTu";
+			query = sessionFactory.getCurrentSession().createQuery(hql);
+		}
+		return query.list().size();
+	}
+	
 	public LoaiVatTu getById(int id)
 	{
 		return (LoaiVatTu)sessionFactory.getCurrentSession().get(LoaiVatTu.class, id);

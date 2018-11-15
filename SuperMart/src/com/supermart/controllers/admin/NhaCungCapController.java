@@ -10,6 +10,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.supermart.models.NhaCungCap;
 import com.supermart.service.NhaCungCapService;
+import com.supermart.service.PagingVm;
 
 
 
@@ -21,10 +22,47 @@ public class NhaCungCapController {
 	NhaCungCapService _service;
 
 	@RequestMapping(value = "nhacungcap", method = RequestMethod.GET)
-	public ModelAndView getAll(ModelMap model) {
-		List<NhaCungCap> ls = _service.list();
+	public ModelAndView getAllPaging(ModelMap model, String currentpage, String searchKey) {
+		PagingVm<NhaCungCap> result = new PagingVm<NhaCungCap>();
+		System.out.println(searchKey);
+		long total = 0;
+		int size = 2;
+		List<NhaCungCap> ls ;
+		if(currentpage != null) {
+			int page = Integer.parseInt(currentpage);
+			if(searchKey!=null) {
+				result.setKeySearch(searchKey);
+				ls = _service.list(size*page, size, searchKey);
+				total =_service.Count(searchKey);
+			}
+			else {
+				ls = _service.list(size*page, size, null);
+				total =_service.Count(null);
+			}
+			result.setData(ls);
+			result.setCurrentPage(page);
+		}
+		else {
+			if(searchKey!=null) {
+				result.setKeySearch(searchKey);
+				ls = _service.list(0, size, searchKey);
+				total =_service.Count(searchKey);
+			}
+			else {
+				ls = _service.list(0, size, null);
+				total =_service.Count(null);
+			}
+			result.setData(ls);
+			result.setCurrentPage(0);
+		}
+		
+		long totalPage = total/size;
+		if(totalPage*size < total) {
+			totalPage += 1;
+		}
+		result.setTotal(totalPage);
 		ModelAndView modelView = new ModelAndView("nhacungcap");
-		modelView.addObject("list", ls);
+		modelView.addObject("result", result);
 		return modelView;
 	}
 	
