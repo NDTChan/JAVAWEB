@@ -32,12 +32,18 @@
 				</div>
 			</div>
 			<div class="row">
-				<div class="col-md-10">
+				<div class="col-md-5">
+					<div class="form-group">
+						<label>Nhà cung cấp</label><span style="color: red"> (*)</span> <input
+							class="form-control" id="autocomplete">
+					</div>
+				</div>
+				<div class="col-md-5">
 					<div class="form-group">
 						<label>Trạng thái</label> <select class="form-control"
 							name="TrangThai">
-							<option value="10">Sử dụng</option>
-							<option value="0">Không sử dụng</option>
+							<option value="10">Đã duyệt</option>
+							<option value="0">Chưa duyệt</option>
 						</select>
 					</div>
 				</div>
@@ -60,5 +66,24 @@
 		document.getElementById("NgayChungTu").value = today.getFullYear()
 				+ '-' + ('0' + (today.getMonth() + 1)).slice(-2) + '-'
 				+ ('0' + today.getDate()).slice(-2);
+
+		var lstNhaCungCap = [];
+		var lstTempNhaCungCap = ${lstNhaCungCap};
+
+		lstTempNhaCungCap.forEach(function(element) {
+			var obj = {
+				value : element.maNhaCungCap,
+				data : element.tenNhaCungCap
+			}
+			lstNhaCungCap.push(obj);
+		});
+
+		console.log(lstNhaCungCap);
+		$('#autocomplete').autocomplete({
+			lookup : lstNhaCungCap,
+			onSelect : function(suggestion) {
+				console.log('suggestion', suggestion);
+			}
+		})
 	});
 </script>
