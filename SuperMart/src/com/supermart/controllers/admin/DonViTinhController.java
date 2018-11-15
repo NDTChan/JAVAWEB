@@ -24,7 +24,6 @@ public class DonViTinhController {
 	@RequestMapping(value = "donvitinh", method = RequestMethod.GET)
 	public ModelAndView getAllPaging(ModelMap model, String currentpage, String searchKey) {
 		PagingVm<DonViTinh> result = new PagingVm<DonViTinh>();
-		System.out.println(searchKey);
 		long total = 0;
 		int size = 2;
 		List<DonViTinh> ls ;

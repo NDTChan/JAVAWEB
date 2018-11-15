@@ -96,7 +96,7 @@
 			value="/WEB-INF/views/jsp/admin/nhomvattu/detail.jsp" />
 	</definition>
 
-<!-- Loai Vat tu -->
+	<!-- Loai Vat tu -->
 	<definition name="loaivattu" extends="admin">
 		<put-attribute name="title" value="Loại vật tư" />
 		<put-attribute name="body"
@@ -156,6 +156,28 @@
 			value="/WEB-INF/views/jsp/admin/khachhang/edit.jsp" />
 	</definition>
 
+	<!-- Nhập mua -->
+	<definition name="nhapmua" extends="admin">
+		<put-attribute name="title" value="Nhập mua" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/jsp/admin/nhapmua/index.jsp" />
+	</definition>
+	<definition name="donvitinh/detail" extends="admin">
+		<put-attribute name="title" value="Nhập mua" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/jsp/admin/nhapmua/detail.jsp" />
+	</definition>
+	<definition name="nhapmua/add" extends="admin">
+		<put-attribute name="title" value="Nhập mua" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/jsp/admin/nhapmua/add.jsp" />
+	</definition>
+	<definition name="nhapmua/edit" extends="admin">
+		<put-attribute name="title" value="Nhập mua" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/jsp/admin/nhapmua/edit.jsp" />
+	</definition>
+
 	<!-- Trang bán hàng -->
 	<definition name="home"
 		template="/WEB-INF/views/layouthome/layout.jsp">
@@ -165,7 +187,8 @@
 	</definition>
 
 	<!--partial view -->
-	<definition name="viewNewMerchansedise" template="/WEB-INF/views/jsp/home/partialView/viewNewMerchansedise.jsp">
+	<definition name="viewNewMerchansedise"
+		template="/WEB-INF/views/jsp/home/partialView/viewNewMerchansedise.jsp">
 	</definition>
-	
+
 </tiles-definitions>
