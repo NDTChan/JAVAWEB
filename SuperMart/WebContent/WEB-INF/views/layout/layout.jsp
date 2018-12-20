@@ -35,10 +35,6 @@
 	src="${pageContext.request.contextPath}/resources/bootstrap/dist/js/bootstrap.min.js"></script>
 <script
 	src="${pageContext.request.contextPath}/resources/dist/js/adminlte.min.js"></script>
-<script
-	src="${pageContext.request.contextPath}/resources/typehead/jquery.autocomplete.min.js"></script>
-	<link rel="stylesheet" type="text/css"
-	href="${pageContext.request.contextPath}/resources/typehead/styles.css">
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
 	<div class="wrapper">

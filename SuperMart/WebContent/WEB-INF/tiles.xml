@@ -177,6 +177,23 @@
 		<put-attribute name="body"
 			value="/WEB-INF/views/jsp/admin/nhapmua/edit.jsp" />
 	</definition>
+	
+	<!-- Xuat ban -->
+	<definition name="xuatban" extends="admin">
+		<put-attribute name="title" value="Xuất bán" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/jsp/admin/xuatban/index.jsp" />
+	</definition>
+	<definition name="xuatban/add" extends="admin">
+		<put-attribute name="title" value="Xuất bán" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/jsp/admin/xuatban/add.jsp" />
+	</definition>
+	<definition name="xuatban/edit" extends="admin">
+		<put-attribute name="title" value="Xuất bán" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/jsp/admin/xuatban/edit.jsp" />
+	</definition>
 
 	<!-- Trang bán hàng -->
 	<definition name="home"

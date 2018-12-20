@@ -1,7 +1,7 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
- 	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
 	xmlns:p="http://www.springframework.org/schema/p"
 	xmlns:tx="http://www.springframework.org/schema/tx"
 	xsi:schemaLocation="
@@ -15,14 +15,20 @@
 		http://www.springframework.org/schema/aop/spring-aop-4.0.xsd">
 
 	<!-- quét tất cả các class có trong package -->
-	<context:component-scan base-package="com.supermart.controllers"/>
-	<context:component-scan base-package="com.supermart.models"/>
-	<context:component-scan base-package="com.supermart.service"/>
-	
-<!-- 	<bean class="org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping" /> -->
-	
-<!-- 	<bean name="/home" class="com.supermart.controllers.home.LayoutHomeController" /> -->
-<!-- 	<bean name="/admin" class="com.supermart.controllers.admin.LayoutsController" /> -->
+	<context:component-scan
+		base-package="com.supermart.controllers" />
+	<context:component-scan
+		base-package="com.supermart.models" />
+	<context:component-scan
+		base-package="com.supermart.service" />
+
+	<!-- <bean class="org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping" 
+		/> -->
+
+	<!-- <bean name="/home" class="com.supermart.controllers.home.LayoutHomeController" 
+		/> -->
+	<!-- <bean name="/admin" class="com.supermart.controllers.admin.LayoutsController" 
+		/> -->
 	<bean id="viewResolver"
 		class="org.springframework.web.servlet.view.UrlBasedViewResolver">
 		<property name="viewClass"
@@ -36,14 +42,14 @@
 			</list>
 		</property>
 	</bean>
-	
+
 
 	<!-- Database-related Configuration to connect with database -->
 	<bean id="dataSource"
 		class="org.springframework.jdbc.datasource.DriverManagerDataSource"
 		p:driverClassName="com.mysql.jdbc.Driver"
-		p:url="jdbc:mysql://localhost:3306/qlbh?useSSL=false" p:username="root"
-		p:password="admin@123" />
+		p:url="jdbc:mysql://localhost:3306/qlbh?useSSL=false"
+		p:username="root" p:password="admin@123" />
 
 	<!-- Hibernate-related Configuration -->
 
@@ -67,10 +73,10 @@
 		class="org.springframework.orm.hibernate4.HibernateTransactionManager">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
-	
+
 	<bean id="multipartResolver"
-	   class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
-	    <property name="maxUploadSize" value="5000000"/>
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<property name="maxUploadSize" value="5000000" />
 	</bean>
 
 </beans>

@@ -51,6 +51,7 @@
           </a>
           <ul class="treeview-menu">
             <li><a href="${pageContext.request.contextPath}/admin/nhapmua">Nhập mua</a></li>
+            <li><a href="${pageContext.request.contextPath}/admin/xuatban">Xuất bán</a></li>
           </ul>
         </li>
       </ul>
