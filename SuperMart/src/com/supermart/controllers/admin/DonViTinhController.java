@@ -58,7 +58,7 @@ public class DonViTinhController {
 		long totalPage = total/size;
 		if(totalPage*size < total) {
 			totalPage += 1;
-		}
+		} 
 		result.setTotal(totalPage);
 		ModelAndView modelView = new ModelAndView("donvitinh");
 		modelView.addObject("result", result);

@@ -2,13 +2,17 @@ package com.supermart.controllers.admin;
 
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.google.gson.Gson;
+import com.mysql.cj.xdevapi.JsonArray;
 import com.supermart.models.KhachHang;
 import com.supermart.service.KhachHangService;
 import com.supermart.service.PagingVm;
@@ -65,6 +69,18 @@ public class KhachHangController {
 		modelView.addObject("result", result);
 		return modelView;
 	}
+	
+	@RequestMapping(value = "khachhang/GetAllData", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	@ResponseBody
+	public ResponseEntity<String>  GetAllData()
+    {
+		System.out.println("!");
+        Gson gson = new Gson();
+        String jsonStudents = gson.toJson(_service.list());
+		return new ResponseEntity<String>(jsonStudents, HttpStatus.OK);
+
+//		return _service.list();
+    }
 
 	@RequestMapping(value = "khachhang/add", method = RequestMethod.GET)
 	public ModelAndView addKH() {

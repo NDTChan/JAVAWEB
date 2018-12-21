@@ -1,10 +1,6 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<script src="~/Scripts/angular.min.js"></script>
-<script src="~/Scripts/angular-animate.min.js"></script>
-<script src="~/Scripts/angular-sanitize.min.js"></script>
-<script src="~/Scripts/ui-bootstrap-tpls-2.5.0.min.js"></script>
-<script src="~/Scripts/dynamic-number.min.js"></script>
+
 <style>
     #myWorkContent {
         overflow-x: scroll;
@@ -24,7 +20,7 @@
         font-size: 16px;
     }
 </style>
-<div class="row" ng-app="salesPromotionApp" ng-controller="salesPromotionAddCtrl">
+<div class="row" ng-app="xuatBanApp" ng-controller="xuatBanAddCtrl">
     <script type="text/ng-template" id="SearchMerchandise.html">
         <div class="modal-header">
             <h2 class="modal-title">Danh sách hàng hóa</h2>
@@ -54,8 +50,8 @@
                     <tbody>
                         <tr class="even pointer" ng-repeat="item in data" ng-dblclick="selecteItem(item)">
                             <td>{{$index + 1}}</td>
-                            <td class="text-left">{{item.MAVATTU}}</td>
-                            <td class="text-left">{{item.TENVATTU}}</td>
+                            <td class="text-left">{{item.MaVatTu}}</td>
+                            <td class="text-left">{{item.TenVatTu}}</td>
                         </tr>
                     </tbody>
                 </table>
@@ -68,110 +64,29 @@
     <div class="col-lg-12">
         <div class="panel panel-default">
             <div class="panel-heading">
-                <h4>Thêm mới chương trình khuyễn mãi</h4>
+                <h4>Thêm mới phiếu xuất bán</h4>
             </div>
             <div class="panel-body">
                 <div class="modal-body" ng-form name="_form">
                     <div class="row">
-                        <div class="col-md-3">
+                        <div class="col-md-6">
                             <div class="form-group">
                                 <div class="md-style-label-input" style="padding-bottom: 10px;">
-                                    Mã chương trình
+                                    Mã chứng từ
                                     <span style="color: red">(*)</span>
                                 </div>
                                 <div class="md-4-style-input">
-                                    <input class="form-control" type="text" ng-model="target.SalesPromotionCode" maxlength="50" name="SalesPromotionCode" required disabled style="text-align:center" />
-                                    <span style="color: red" ng-show="_form.SalesPromotionCode.$dirty && _form.SalesPromotionCode.$invalid">
-                                        <span ng-show="_form.SalesPromotionCode.$error.required">Không được để trống</span>
-                                    </span>
+                                    <input class="form-control" type="text" ng-model="target.MaChungTu" readonly />
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-9">
+                        <div class="col-md-6">
                             <div class="form-group">
                                 <div class="md-style-label-input" style="padding-bottom: 10px;">
-                                    Tên chương trình
+                                    Khách hàng
                                     <span style="color: red">(*)</span>
                                 </div>
                                 <div class="md-4-style-input">
-                                    <input class="form-control" type="text" ng-model="target.SalesPromotionName" maxlength="255" name="SalesPromotionName" required style="text-align:center" />
-                                    <span style="color: red" ng-show="_form.SalesPromotionName.$dirty && _form.SalesPromotionName.$invalid">
-                                        <span ng-show="_form.SalesPromotionName.$error.required">Không được để trống</span>
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="form-group">
-                            <div class="col-md-6">
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <div class="md-style-label-input" style="padding-bottom: 10px;">
-                                                Ngày bắt đầu chương trình<span style="color: red">(*)</span>
-                                            </div>
-                                            <div class="md-4-style-input">
-                                                <p class="input-group">
-                                                    <input type="text" class="form-control" uib-datepicker-popup="dd/MM/yyyy" ng-model="target.SalesPromotionStartTime" name="SalesPromotionStartTime" placeholder="dd/MM/yyyy" is-open="SalesPromotionStartTime.opened" close-text="Close" required />
-                                                    <span class="input-group-btn">
-                                                        <button type="button" class="btn btn-default" ng-click="SalesPromotionStartTime.opened = true"><i class="glyphicon glyphicon-calendar"></i></button>
-                                                    </span>
-                                                </p>
-                                                <span style="color: red" ng-show="_form.SalesPromotionStartTime.$dirty && _form.SalesPromotionStartTime.$invalid">
-                                                    <span ng-show="_form.SalesPromotionStartTime.$error.required">Không được để trống</span>
-                                                </span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <div class="md-style-label-input" style="padding-bottom: 10px;">
-                                                Giờ bắt đầu chương trình<span style="color: red">(*)</span>
-                                            </div>
-                                            <div class="md-4-style-input">
-                                                <div uib-timepicker ng-model="salesPromotionStartTime" name="salesPromotionStartTime" ng-change="changedSalesPromotionStartTime()" show-spinners="false" show-meridian="false" required></div>
-                                                <span style="color: red" ng-show="_form.salesPromotionStartTime.$dirty && _form.salesPromotionStartTime.$invalid">
-                                                    <span ng-show="_form.salesPromotionStartTime.$error.required">Không được để trống</span>
-                                                </span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <div class="md-style-label-input" style="padding-bottom: 10px;">
-                                                Ngày kết thúc chương trình<span style="color: red">(*)</span>
-                                            </div>
-                                            <div class="md-4-style-input">
-                                                <p class="input-group">
-                                                    <input type="text" class="form-control" uib-datepicker-popup="dd/MM/yyyy" ng-model="target.SalesPromotionEndTime" name="SalesPromotionEndTime" placeholder="dd/MM/yyyy" is-open="SalesPromotionEndTime.opened" close-text="Close" required />
-                                                    <span class="input-group-btn">
-                                                        <button type="button" class="btn btn-default" ng-click="SalesPromotionEndTime.opened = true"><i class="glyphicon glyphicon-calendar"></i></button>
-                                                    </span>
-                                                </p>
-                                                <span style="color: red" ng-show="_form.SalesPromotionEndTime.$dirty && _form.SalesPromotionEndTime.$invalid">
-                                                    <span ng-show="_form.SalesPromotionEndTime.$error.required">Không được để trống</span>
-                                                </span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <div class="md-style-label-input" style="padding-bottom: 10px;">
-                                                Giờ kết thúc chương trình<span style="color: red">(*)</span>
-                                            </div>
-                                            <div class="md-4-style-input">
-                                                <div uib-timepicker ng-model="salesPromotionEndTime" name="salesPromotionEndTime" ng-change="changedSalesPromotionEndTime()" show-spinners="false" show-meridian="false" required></div>
-                                                <span style="color: red" ng-show="_form.salesPromotionEndTime.$dirty && _form.salesPromotionEndTime.$invalid">
-                                                    <span ng-show="_form.salesPromotionEndTime.$error.required">Không được để trống</span>
-                                                </span>
-                                            </div>
-                                        </div>
-                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -196,10 +111,9 @@
                                 <th style="width:3%;font-size: 12px;" class="text-center">STT</th>
                                 <th style="width:15%;font-size: 12px;" class="text-center">Mã hàng</th>
                                 <th style="width:25%;font-size: 12px;" class="text-center">Tên hàng</th>
-                                <th style="width:15%;font-size: 12px;" class="text-center">Đơn giá</th>
-                                <th style="width:10%;font-size: 12px;" class="text-center">Tỷ lệ KM (%)</th>
-                                <th style="width:10%;font-size: 12px;" class="text-center">Tiền KM</th>
-                                <th style="width:15%;font-size: 12px;" class="text-center">Đơn giá sau KM</th>
+                                <th style="width:15%;font-size: 12px;" class="text-center">Số lượng</th>
+                                <th style="width:10%;font-size: 12px;" class="text-center">Đơn giá</th>
+                                <th style="width:10%;font-size: 12px;" class="text-center">Thành tiền</th>
                                 <th style="width:auto"></th>
                             </tr>
                         </thead>
@@ -223,9 +137,6 @@
                                 </td>
                                 <td>
                                     <input id="UnitPriceAfterDiscount" class="form-control" type="text" style="text-align:right; width:100%; font-size:16px;" ng-model="newItem.UnitPriceAfterDiscount" awnum="number" readonly>
-                                </td>
-                                <td style="text-align: center;">
-                                    <a class="btn btn-info btn-xs" title="Thêm" ng-click="addRow()"> <i class="fa fa-plus"></i></a>
                                 </td>
                             </tr>
                         </tbody>
@@ -256,9 +167,6 @@
                                 <td>
                                     <input id="UnitPriceAfterDiscount" class="form-control" type="text" style="text-align:right; width:100%; font-size:16px;" ng-model="item.UnitPriceAfterDiscount" awnum="number" readonly>
                                 </td>
-                                <td style="text-align: center;">
-                                    <a class="btn btn-info btn-xs" title="Xóa" ng-click="removeItem($index)"> <i class="fa fa-minus"></i></a>
-                                </td>
                             </tr>
                         </tbody>
                     </table>
@@ -272,5 +180,5 @@
             </div>
         </div>
     </div>
-    <script src="~/Scripts/controller/salesPromotionController.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/Script/xuatBanController.js"></script>
 </div>

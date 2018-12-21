@@ -2,6 +2,9 @@ package com.supermart.controllers.admin;
 
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,7 +16,7 @@ import com.supermart.service.PagingVm;
 import com.supermart.service.XuatBanService;
 
 @Controller
-@RequestMapping(value = "admin")
+@RequestMapping(value = "admin", method = RequestMethod.GET)
 @RestController
 public class XuatBanController {
 	@Autowired
@@ -62,4 +65,16 @@ public class XuatBanController {
 		modelView.addObject("result", result);
 		return modelView;
 	}
+	
+	@RequestMapping(value="xuatban/add", method = RequestMethod.GET)
+	public ModelAndView add() {
+		ModelAndView modelView = new ModelAndView("xuatban/add");
+		return modelView;
+	}
+	
+	@RequestMapping(value = "xuatban/BuildCode", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<String> BuildCode()
+    {
+		return new ResponseEntity<String>("\"" + _service.GetNewCode() + "\"", HttpStatus.OK);
+    }
 }

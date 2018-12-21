@@ -35,6 +35,20 @@
 	src="${pageContext.request.contextPath}/resources/bootstrap/dist/js/bootstrap.min.js"></script>
 <script
 	src="${pageContext.request.contextPath}/resources/dist/js/adminlte.min.js"></script>
+<script
+	src="${pageContext.request.contextPath}/resources/angular.min.js"></script>
+<script
+	src="${pageContext.request.contextPath}/resources/angular-animate.min.js"></script>
+<script
+	src="${pageContext.request.contextPath}/resources/angular-sanitize.min.js"></script>
+<script
+	src="${pageContext.request.contextPath}/resources/ui-bootstrap-tpls-2.5.0.min.js"></script>
+<script
+	src="${pageContext.request.contextPath}/resources/dynamic-number.min.js"></script>
+<link rel="stylesheet" type="text/css"
+	href="${pageContext.request.contextPath}/resources/jquery.toast.min.css">
+<script
+	src="${pageContext.request.contextPath}/resources/jquery.toast.min.js"></script>
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
 	<div class="wrapper">

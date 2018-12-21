@@ -1,5 +1,7 @@
 package com.supermart.service;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import javax.transaction.Transactional;
 import org.hibernate.Query;
@@ -50,5 +52,22 @@ public class XuatBanService {
 			query = sessionFactory.getCurrentSession().createQuery(queryString);
 		}
 		return query.list().size();
+	}
+
+	public String GetNewCode() {
+		Query query;
+		String queryString = "";
+		queryString = "FROM VatTuChungTu WHERE LoaiChungTu = 'XBAN'";
+		query = sessionFactory.getCurrentSession().createQuery(queryString);
+		List<VatTuChungTu> lst = query.list();
+		if (lst.size() > 0) {
+			ArrayList<Integer> lstInt = new ArrayList<Integer>();
+			for (VatTuChungTu item : lst) {
+				lstInt.add(Integer.parseInt(item.MaChungTu.substring(4)));
+			}
+			Collections.sort(lstInt);
+			return String.format("XBAN" + String.valueOf(lstInt.get(lstInt.size() - 1) + 1));
+		}
+		return "XBAN1";
 	}
 }
