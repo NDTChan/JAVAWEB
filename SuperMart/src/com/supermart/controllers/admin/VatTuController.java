@@ -16,10 +16,12 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.google.gson.Gson;
 import com.sun.jmx.snmp.Timestamp;
 import com.supermart.models.VatTu;
 import com.supermart.service.PagingVm;
 import com.supermart.service.VatTuService;
+import org.springframework.http.HttpHeaders;
 
 @Controller
 @RequestMapping(value = "admin")
@@ -81,9 +83,13 @@ public class VatTuController {
 		return modelView;
 	}
 
-	@RequestMapping(value = "vattu/addAction", method = RequestMethod.POST)
+	@RequestMapping(value = "vattu/addAction", method = RequestMethod.POST, produces = "text/plain;charset=UTF-8")
 	public String submit(@ModelAttribute("vattu") VatTu vattu) throws IOException {
-		_service.add(vattu);
+		try {
+			_service.add(vattu);
+		}catch(Exception ex) {
+			System.out.println( ex.getMessage());
+		}
 		return "vattu";
 	}
 
@@ -112,6 +118,27 @@ public class VatTuController {
 		_service.delete(Id);
 		return new ResponseEntity<String>("true", HttpStatus.OK);
 	}
+	
+	@RequestMapping(value = "vattu/BlurMaVatTu/{MaVatTu}", method = RequestMethod.GET, produces = "application/json; charset=utf8")
+	@ResponseBody
+	public ResponseEntity<String> BlurMaVatTu(@PathVariable String MaVatTu) {
+		HttpHeaders responseHeaders = new HttpHeaders();
+		responseHeaders.add("Content-Type", "application/json; charset=utf-8");
+		Gson gson = new Gson();
+		String jsonObject = gson.toJson(_service.GetDataByMaVatTu(MaVatTu));
+		return new ResponseEntity<String>(jsonObject, responseHeaders, HttpStatus.OK);
+	}
+
+	@RequestMapping(value = "vattu/GetInfoMerchandiseByCode/{MaVatTu}", method = RequestMethod.GET, produces = "application/json; charset=utf8")
+	@ResponseBody
+	public ResponseEntity<String> GetInfoMerchandiseByCode(@PathVariable String MaVatTu) {
+		HttpHeaders responseHeaders = new HttpHeaders();
+		responseHeaders.add("Content-Type", "application/json; charset=utf-8");
+		Gson gson = new Gson();
+		String jsonObject = gson.toJson(_service.GetInfoMerchandiseByCode(MaVatTu));
+		return new ResponseEntity<String>(jsonObject, responseHeaders, HttpStatus.OK);
+	}
+
 
 	@RequestMapping(value = "vattu/uploadFile", method = RequestMethod.POST)
 	public ResponseEntity<String> uploadFile(@RequestParam("mavattu") String mavattu,

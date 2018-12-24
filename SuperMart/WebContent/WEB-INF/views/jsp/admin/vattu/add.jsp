@@ -9,9 +9,8 @@
 			tra lại !</span>
 		<div class="row"></div>
 	</c:if>
-	<form:form method="POST" name="form" id="upload-form"
-		action="${pageContext.request.contextPath}/admin/vattu/addAction"
-		enctype="multipart/form-data" modelAttribute="vattu">
+	<form:form method="POST" name="form"
+		action="${pageContext.request.contextPath}/admin/vattu/addAction" modelAttribute="vattu">
 		<input type="hidden" class="form-control" value="${operation }"
 			name="Operation" maxlength="255">
 		<input type="hidden" class="form-control" value="0" name="Id"
@@ -112,11 +111,10 @@
 				</div>
 			</div>
 			<div class="row">
-				<button class="btn btn-primary" type="submit" value="Submit">Lưu
-					lại</button>
-				<button type="button" class="btn btn-default"
-					onclick="window.location='${pageContext.request.contextPath}/admin/vattu';">
-					Hủy</button>
+				<button class="btn btn-primary" type="submit" value="Submit">Lưu lại</button>
+				<button type="button" class="btn btn-default" onclick="window.location='${pageContext.request.contextPath}/admin/vattu';">
+					Hủy
+				</button>
 			</div>
 		</div>
 	</form:form>
