@@ -88,9 +88,15 @@
 				<div class="col-md-10">
 					<div class="form-group">
 						<label>Ảnh</label><span style="color: red"> (*)</span>
-						<input id="imageUpload" type="file" class="form-control" onChange="loadImage()"/>
+						<input id="imageUpload" type="file" class="form-control"/>
 						<form:input path="Anh" id="Anh" type="hidden" name="Anh" 
  							class="form-control" maxlength="255" /> 
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<div id="list-image">
 					</div>
 				</div>
 			</div>
@@ -117,33 +123,36 @@
 </div>
 
 <script>
-	function loadImage() {
-		var imageFiles = document.getElementById("imageUpload");
-		var maNhaCC = document.getElementsByName("MaNhaCungCap");
-		var fullPath = document.getElementById('imageUpload').value;
-		if (fullPath) {
-			var data = new FormData();
-			data.append("image", imageFiles.files[0]);
-			var d = new Date();
-		    var n = d.getTime();
-		    var ext = fullPath.substr(fullPath.lastIndexOf('.') + 1);
-			data.append("name", n+'.'+ext);
-			jQuery
-					.ajax({
-						url : '${pageContext.request.contextPath}/admin/vattu/uploadFile',
-						data : data,
-						cache : false,
-						contentType : false,
-						processData : false,
-						method : 'POST',
-						success : function(response) {
-							if(response){
-								$('#Anh').val(response);
-							}
-							
+	$(function(){
+		$('#imageUpload').change(function(){
+			var imageFiles = document.getElementById("imageUpload");
+			var maNhaCC = document.getElementsByName("MaNhaCungCap");
+			var mavattu = document.getElementById('MaVatTu').value;
+			if (mavattu) {
+				var data = new FormData();
+				var mavattu =  $('#MaVatTu').val().toString();
+				data.append("image", imageFiles.files[0]);
+				data.append("mavattu", mavattu);
+				jQuery.ajax({
+					url : '${pageContext.request.contextPath}/admin/vattu/uploadFile',
+					data : data,
+					cache : false,
+					contentType : false,
+					processData : false,
+					method : 'POST',
+					success : function(response) {
+						if(response){
+							var link = '/Upload/' +response;
+							$('#Anh').val(link);
+							var strHtml = "<img src='"+link+"' width=200px height=200px>";
+							$('#list-image').innerHTML = strHtml; 
 						}
-					});
-		}
+					}
+				});
+			}else{
+				alert("Nhập mã vật tư");
+			}
+		});
 
-	}
+	});
 </script>

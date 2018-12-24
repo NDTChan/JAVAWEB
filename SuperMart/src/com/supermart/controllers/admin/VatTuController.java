@@ -4,6 +4,7 @@ import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.Date;
 import java.util.List;
 import javax.servlet.ServletContext;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.sun.jmx.snmp.Timestamp;
 import com.supermart.models.VatTu;
 import com.supermart.service.PagingVm;
 import com.supermart.service.VatTuService;
@@ -34,38 +36,35 @@ public class VatTuController {
 		PagingVm<VatTu> result = new PagingVm<VatTu>();
 		System.out.println(searchKey);
 		long total = 0;
-		int size = 2;
-		List<VatTu> ls ;
-		if(currentpage != null) {
+		int size = 10;
+		List<VatTu> ls;
+		if (currentpage != null) {
 			int page = Integer.parseInt(currentpage);
-			if(searchKey!=null) {
+			if (searchKey != null) {
 				result.setKeySearch(searchKey);
-				ls = _service.list(size*page, size, searchKey);
-				total =_service.Count(searchKey);
-			}
-			else {
-				ls = _service.list(size*page, size, null);
-				total =_service.Count(null);
+				ls = _service.list(size * page, size, searchKey);
+				total = _service.Count(searchKey);
+			} else {
+				ls = _service.list(size * page, size, null);
+				total = _service.Count(null);
 			}
 			result.setData(ls);
 			result.setCurrentPage(page);
-		}
-		else {
-			if(searchKey!=null) {
+		} else {
+			if (searchKey != null) {
 				result.setKeySearch(searchKey);
 				ls = _service.list(0, size, searchKey);
-				total =_service.Count(searchKey);
-			}
-			else {
+				total = _service.Count(searchKey);
+			} else {
 				ls = _service.list(0, size, null);
-				total =_service.Count(null);
+				total = _service.Count(null);
 			}
 			result.setData(ls);
 			result.setCurrentPage(0);
 		}
-		
-		long totalPage = total/size;
-		if(totalPage*size < total) {
+
+		long totalPage = total / size;
+		if (totalPage * size < total) {
 			totalPage += 1;
 		}
 		result.setTotal(totalPage);
@@ -81,12 +80,12 @@ public class VatTuController {
 		modelView.addObject("operation", operation);
 		return modelView;
 	}
-	
+
 	@RequestMapping(value = "vattu/addAction", method = RequestMethod.POST)
-    public String submit( @ModelAttribute("vattu")VatTu vattu) throws IOException{
-        _service.add(vattu);
-        return "vattu";
-    }
+	public String submit(@ModelAttribute("vattu") VatTu vattu) throws IOException {
+		_service.add(vattu);
+		return "vattu";
+	}
 
 	@RequestMapping(value = "vattu/edit", method = RequestMethod.GET)
 	public ModelAndView editDVT(int id) {
@@ -113,35 +112,33 @@ public class VatTuController {
 		_service.delete(Id);
 		return new ResponseEntity<String>("true", HttpStatus.OK);
 	}
-	
-	@RequestMapping(value="vattu/uploadFile",
-            method=RequestMethod.POST)
-	public ResponseEntity<String> createRole(@RequestParam("name") String name,@RequestParam("image") MultipartFile image){
-	// your code goes hereys
-		System.out.println(image);
-		if(image != null) {
+
+	@RequestMapping(value = "vattu/uploadFile", method = RequestMethod.POST)
+	public ResponseEntity<String> uploadFile(@RequestParam("mavattu") String mavattu,
+			@RequestParam("image") MultipartFile file) throws IOException {
+		String nameImage = "";
+		if (!file.getOriginalFilename().isEmpty()) {
 			try {
-				byte[] bytes = image.getBytes();
-				String rootPath = "/Upload";
-				
-				File dir  = new File(rootPath + File.separator);
-				if(!dir.exists()) {
+				Date date = new Date();
+				Timestamp ts = new Timestamp(date.getTime());
+				byte[] bytes = file.getBytes();
+				String rootPath = servletContext.getRealPath("/Upload/" + mavattu);
+				File dir = new File(rootPath);
+				if (!dir.exists())
 					dir.mkdirs();
-				}
-				File serverFile = new File(servletContext.getRealPath("/Upload/") + name);
-				
+				nameImage = mavattu +"_"+ ts.getSysUpTime() + ".jpg";
+				// Create the file on server
+				File serverFile = new File(dir.getAbsolutePath() + "/" + nameImage);
 				BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(serverFile));
 				stream.write(bytes);
 				stream.close();
-				System.out.println(serverFile.getAbsolutePath());
-				return new ResponseEntity<String>(serverFile.getName(), HttpStatus.OK);
-			}catch(Exception e) {
-				System.out.println(e);
-				return new ResponseEntity<String>("Đéo tìm thấy file", HttpStatus.NOT_FOUND);
+			} catch (Exception ex) {
+				return new ResponseEntity<>("Invalid file.", HttpStatus.BAD_REQUEST);
 			}
-		}else {
-			return new ResponseEntity<String>("Đéo tìm thấy file", HttpStatus.NOT_FOUND);
+		} else {
+			return new ResponseEntity<>("Invalid file.", HttpStatus.BAD_REQUEST);
 		}
-		
+		return new ResponseEntity<String>(nameImage, HttpStatus.OK);
+
 	}
 }

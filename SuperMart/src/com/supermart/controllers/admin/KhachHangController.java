@@ -26,7 +26,7 @@ public class KhachHangController {
 		PagingVm<KhachHang> result = new PagingVm<KhachHang>();
 		System.out.println(searchKey);
 		long total = 0;
-		int size = 2;
+		int size = 10;
 		List<KhachHang> ls ;
 		if(currentpage != null) {
 			int page = Integer.parseInt(currentpage);

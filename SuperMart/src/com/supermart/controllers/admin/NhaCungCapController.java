@@ -26,7 +26,7 @@ public class NhaCungCapController {
 		PagingVm<NhaCungCap> result = new PagingVm<NhaCungCap>();
 		System.out.println(searchKey);
 		long total = 0;
-		int size = 2;
+		int size = 10;
 		List<NhaCungCap> ls ;
 		if(currentpage != null) {
 			int page = Integer.parseInt(currentpage);

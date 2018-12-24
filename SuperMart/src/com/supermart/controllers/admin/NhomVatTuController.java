@@ -22,9 +22,8 @@ public class NhomVatTuController {
 	@RequestMapping(value = "nhomvattu", method = RequestMethod.GET)
 	public ModelAndView getAllPaging(ModelMap model, String currentpage, String searchKey) {
 		PagingVm<NhomVatTu> result = new PagingVm<NhomVatTu>();
-		System.out.println(searchKey);
 		long total = 0;
-		int size = 2;
+		int size = 10;
 		List<NhomVatTu> ls ;
 		if(currentpage != null) {
 			int page = Integer.parseInt(currentpage);

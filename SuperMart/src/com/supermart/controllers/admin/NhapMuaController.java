@@ -28,7 +28,7 @@ public class NhapMuaController {
 	public ModelAndView getAllPaging(ModelMap model, String currentpage, String searchKey) {
 		PagingVm<VatTuChungTu> result = new PagingVm<VatTuChungTu>();
 		long total = 0;
-		int size = 2;
+		int size =10;
 		List<VatTuChungTu> ls;
 		if (currentpage != null) {
 			int page = Integer.parseInt(currentpage);

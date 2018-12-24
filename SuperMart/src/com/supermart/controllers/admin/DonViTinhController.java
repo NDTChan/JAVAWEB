@@ -25,7 +25,7 @@ public class DonViTinhController {
 	public ModelAndView getAllPaging(ModelMap model, String currentpage, String searchKey) {
 		PagingVm<DonViTinh> result = new PagingVm<DonViTinh>();
 		long total = 0;
-		int size = 2;
+		int size = 10;
 		List<DonViTinh> ls ;
 		if(currentpage != null) {
 			int page = Integer.parseInt(currentpage);
