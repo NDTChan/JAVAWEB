@@ -21,6 +21,8 @@ import com.sun.jmx.snmp.Timestamp;
 import com.supermart.models.VatTu;
 import com.supermart.service.PagingVm;
 import com.supermart.service.VatTuService;
+import com.supermart.service.VatTuVm;
+
 import org.springframework.http.HttpHeaders;
 
 @Controller
@@ -76,7 +78,7 @@ public class VatTuController {
 	}
 
 	@RequestMapping(value = "vattu/add", method = RequestMethod.GET)
-	public ModelAndView addDVT() {
+	public ModelAndView add() {
 		String operation = "add";
 		ModelAndView modelView = new ModelAndView("vattu/add", "vattu", new VatTu());
 		modelView.addObject("operation", operation);
@@ -88,19 +90,28 @@ public class VatTuController {
 		try {
 			_service.add(vattu);
 		}catch(Exception ex) {
-			System.out.println( ex.getMessage());
+			System.out.println(ex.getMessage());
 		}
-		return "vattu";
+		return "redirect: /SuperMart/admin/vattu";
 	}
 
 	@RequestMapping(value = "vattu/edit", method = RequestMethod.GET)
-	public ModelAndView editDVT(int id) {
+	public ModelAndView edit(int id) {
 		VatTu instance = _service.getById(id);
 		String operation = "edit";
-		ModelAndView modelView = new ModelAndView("vattu/edit");
-		modelView.addObject("instance", instance);
+		ModelAndView modelView = new ModelAndView("vattu/edit", "vattu", instance);
 		modelView.addObject("operation", operation);
 		return modelView;
+	}
+	
+	@RequestMapping(value = "vattu/editAction", method = RequestMethod.POST, produces = "text/plain;charset=UTF-8")
+	public String submitEdit(@ModelAttribute("vattu") VatTu vattu) throws IOException {
+		try {
+			_service.update(vattu.Id, vattu);
+		}catch(Exception ex) {
+			System.out.println(ex.getMessage());
+		}
+		return "redirect: /SuperMart/admin/vattu";
 	}
 
 	@RequestMapping(value = "vattu/detail", method = RequestMethod.GET)

@@ -83,12 +83,19 @@ public class VatTuService {
 		return query.list();
 	}
 
-	public void update(int id, VatTuVm.Dto model) {
+	public void update(int id, VatTu model) {
 //		sessionFactory.getCurrentSession().beginTransaction();
 		ModelMapper modelMapper = new ModelMapper();
 		VatTu vt = getById(id);
 		if (vt != null) {
-			vt = modelMapper.map(model, VatTu.class);
+			vt.setAnh(model.getAnh());
+			vt.setGiaBan(model.getGiaBan());
+			vt.setGiaMua(model.getGiaMua());
+			vt.setMaDonViTinh(model.getMaDonViTinh());
+			vt.setMaLoaiVatTu(model.getMaLoaiVatTu());
+			vt.setSoLuong(model.getSoLuong());
+			vt.setTenVatTu(model.getTenVatTu());
+			vt.setTrangThai(model.getTrangThai());
 			sessionFactory.getCurrentSession().update(vt);
 		}
 
