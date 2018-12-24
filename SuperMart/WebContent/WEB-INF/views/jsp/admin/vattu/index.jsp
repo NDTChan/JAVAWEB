@@ -64,7 +64,7 @@
 						</td>
 						<td class="text-center">
 							<p>
-								<a class="btn btn-info btn-xs" href="${pageContext.request.contextPath}/admin/vattu/detail?id=${m.getId()}"><i class="fa fa-fw fa-info"></i></a>
+<%-- 								<a class="btn btn-info btn-xs" href="${pageContext.request.contextPath}/admin/vattu/detail?id=${m.getId()}"><i class="fa fa-fw fa-info"></i></a> --%>
 								<a class="btn btn-warning btn-xs" href="${pageContext.request.contextPath}/admin/vattu/edit?id=${m.getId()}"><i class="fa fa-fw fa-edit"></i></a> 
 								<a class="btn btn-danger btn-xs" onclick="deleteItem(${m.getId()})"><i class="fa fa-fw fa-trash-o"></i></a>
 							</p>

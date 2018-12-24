@@ -11,6 +11,13 @@ public class VatTuVm {
 		private double GiaMua;
 		private double GiaBan;
 		private double SoLuong;
+		private double ThanhTien;
+		public double getThanhTien() {
+			return ThanhTien;
+		}
+		public void setThanhTien(double thanhTien) {
+			ThanhTien = thanhTien;
+		}
 		private String Anh;
 		private int TrangThai;
 		public String getMaVatTu() {

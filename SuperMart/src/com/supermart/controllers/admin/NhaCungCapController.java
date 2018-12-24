@@ -1,6 +1,7 @@
 package com.supermart.controllers.admin;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -8,6 +9,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.google.gson.Gson;
 import com.supermart.models.NhaCungCap;
 import com.supermart.service.NhaCungCapService;
 import com.supermart.service.PagingVm;
@@ -126,6 +128,16 @@ public class NhaCungCapController {
 		ModelAndView modelView = new ModelAndView("nhacungcap/detail");
 		modelView.addObject("instance", instance);
 		return modelView;
+	}
+	
+	@RequestMapping(value = "nhacungcap/GetAllData", method = RequestMethod.GET, produces = "application/json; charset=utf8")
+	@ResponseBody
+	public ResponseEntity<String> GetAllData() {
+		HttpHeaders responseHeaders = new HttpHeaders();
+		responseHeaders.add("Content-Type", "application/json; charset=utf-8");
+		Gson gson = new Gson();
+		String jsonObject = gson.toJson(_service.list());
+		return new ResponseEntity<String>(jsonObject, responseHeaders, HttpStatus.OK);
 	}
 
 	@RequestMapping(value = "nhacungcap/deleteItem", method = RequestMethod.GET, produces = "application/json")

@@ -2,10 +2,16 @@ package com.supermart.controllers.admin;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.codehaus.jackson.map.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -13,10 +19,11 @@ import org.springframework.web.servlet.ModelAndView;
 import com.supermart.models.VatTuChungTu;
 import com.supermart.service.NhaCungCapService;
 import com.supermart.service.NhapMuaService;
+import com.supermart.service.NhapMuaVm;
 import com.supermart.service.PagingVm;
 
 @Controller
-@RequestMapping(value = "admin", method = RequestMethod.GET)
+@RequestMapping(value = "admin")
 @RestController
 public class NhapMuaController {
 	@Autowired
@@ -66,10 +73,9 @@ public class NhapMuaController {
 	}
 	
 	@RequestMapping(value = "nhapmua/add", method = RequestMethod.GET)
-	public ModelAndView addDVT() {
+	public ModelAndView add() {
 		ModelAndView modelView = new ModelAndView("nhapmua/add");
 		ObjectMapper mapper = new ObjectMapper();
-		modelView.addObject("MaChungTu", _service.getNewMaChungTu());
 		String json = "";
 		try {
 			json = mapper.writeValueAsString( _serviceNhaCungCap.list());
@@ -78,5 +84,11 @@ public class NhapMuaController {
 		}
 		modelView.addObject("lstNhaCungCap", json);
 		return modelView;
+	}
+
+	
+	@RequestMapping(value = "nhapmua/BuildCode", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<String> BuildCode() throws Exception {
+		return new ResponseEntity<String>("\"" + _service.getNewMaChungTu() + "\"", HttpStatus.OK);
 	}
 }
