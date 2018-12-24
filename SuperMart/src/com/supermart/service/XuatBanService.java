@@ -1,14 +1,18 @@
 package com.supermart.service;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Date;
 import java.util.List;
 import javax.transaction.Transactional;
 import org.hibernate.Query;
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import com.supermart.models.VatTuChungTu;
+import com.supermart.models.VatTuChungTuChiTiet;
 
 @Component
 @Transactional
@@ -69,5 +73,30 @@ public class XuatBanService {
 			return String.format("XBAN" + String.valueOf(lstInt.get(lstInt.size() - 1) + 1));
 		}
 		return "XBAN1";
+	}
+
+	public boolean InsertData(XuatBanVm param) {
+		try {
+			Session session= sessionFactory.openSession();
+			session.beginTransaction();
+			VatTuChungTu data = new VatTuChungTu();
+			data.MaChungTu = param.MaChungTu;
+			data.LoaiChungTu = "XBAN";
+			data.MaKhachHang = param.MaKhachHang;
+			data.NgayChungTu = param.NgayChungTu;
+			data.TrangThai = 0;
+			session.saveOrUpdate(data);
+			if (param.DataDetails != null && !param.DataDetails.isEmpty()) {
+				for (VatTuChungTuChiTiet item : param.DataDetails) {
+					session.saveOrUpdate(item);
+				}
+			}
+			session.getTransaction().commit();
+			return true;
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+			return false;
+		}
 	}
 }

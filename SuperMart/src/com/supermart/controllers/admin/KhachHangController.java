@@ -21,47 +21,44 @@ import com.supermart.service.PagingVm;
 @RequestMapping(value = "admin")
 @RestController
 public class KhachHangController {
-	
+
 	@Autowired
 	KhachHangService _service;
-	
+
 	@RequestMapping(value = "khachhang", method = RequestMethod.GET)
 	public ModelAndView getAllPaging(ModelMap model, String currentpage, String searchKey) {
 		PagingVm<KhachHang> result = new PagingVm<KhachHang>();
 		System.out.println(searchKey);
 		long total = 0;
 		int size = 2;
-		List<KhachHang> ls ;
-		if(currentpage != null) {
+		List<KhachHang> ls;
+		if (currentpage != null) {
 			int page = Integer.parseInt(currentpage);
-			if(searchKey!=null) {
+			if (searchKey != null) {
 				result.setKeySearch(searchKey);
-				ls = _service.list(size*page, size, searchKey);
-				total =_service.Count(searchKey);
-			}
-			else {
-				ls = _service.list(size*page, size, null);
-				total =_service.Count(null);
+				ls = _service.list(size * page, size, searchKey);
+				total = _service.Count(searchKey);
+			} else {
+				ls = _service.list(size * page, size, null);
+				total = _service.Count(null);
 			}
 			result.setData(ls);
 			result.setCurrentPage(page);
-		}
-		else {
-			if(searchKey!=null) {
+		} else {
+			if (searchKey != null) {
 				result.setKeySearch(searchKey);
 				ls = _service.list(0, size, searchKey);
-				total =_service.Count(searchKey);
-			}
-			else {
+				total = _service.Count(searchKey);
+			} else {
 				ls = _service.list(0, size, null);
-				total =_service.Count(null);
+				total = _service.Count(null);
 			}
 			result.setData(ls);
 			result.setCurrentPage(0);
 		}
-		
-		long totalPage = total/size;
-		if(totalPage*size < total) {
+
+		long totalPage = total / size;
+		if (totalPage * size < total) {
 			totalPage += 1;
 		}
 		result.setTotal(totalPage);
@@ -69,18 +66,16 @@ public class KhachHangController {
 		modelView.addObject("result", result);
 		return modelView;
 	}
-	
-	@RequestMapping(value = "khachhang/GetAllData", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	@ResponseBody
-	public ResponseEntity<String>  GetAllData()
-    {
-		System.out.println("!");
-        Gson gson = new Gson();
-        String jsonStudents = gson.toJson(_service.list());
-		return new ResponseEntity<String>(jsonStudents, HttpStatus.OK);
 
-//		return _service.list();
-    }
+	@RequestMapping(value = "khachhang/GetAllData", method = RequestMethod.GET, produces = "application/json; charset=utf8")
+	@ResponseBody
+	public ResponseEntity<String> GetAllData() {
+		HttpHeaders responseHeaders = new HttpHeaders();
+		responseHeaders.add("Content-Type", "application/json; charset=utf-8");
+		Gson gson = new Gson();
+		String jsonObject = gson.toJson(_service.list());
+		return new ResponseEntity<String>(jsonObject, responseHeaders, HttpStatus.OK);
+	}
 
 	@RequestMapping(value = "khachhang/add", method = RequestMethod.GET)
 	public ModelAndView addKH() {
@@ -89,7 +84,7 @@ public class KhachHangController {
 		modelView.addObject("operation", operation);
 		return modelView;
 	}
-	
+
 	@RequestMapping(value = "khachhang/edit", method = RequestMethod.GET)
 	public ModelAndView editKH(int id) {
 		KhachHang instance = _service.getById(id);
@@ -99,9 +94,10 @@ public class KhachHangController {
 		modelView.addObject("operation", operation);
 		return modelView;
 	}
-	
+
 	@RequestMapping(value = "khachhang/form", method = RequestMethod.GET)
-	public ModelAndView addKHNew(String Operation, int Id, String MaKhachHang, String TenKhachHang, String DiaChi, String SoDienThoai, String Email) {
+	public ModelAndView addKHNew(String Operation, int Id, String MaKhachHang, String TenKhachHang, String DiaChi,
+			String SoDienThoai, String Email) {
 		KhachHang instance = new KhachHang(Id, MaKhachHang, TenKhachHang, DiaChi, SoDienThoai, Email);
 		try {
 			if (Operation.equals("add")) {
@@ -134,6 +130,7 @@ public class KhachHangController {
 			}
 		}
 	}
+
 	@RequestMapping(value = "khachhang/deleteItem", method = RequestMethod.GET, produces = "application/json")
 	public ResponseEntity<String> delete(String id) {
 		int Id = Integer.parseInt(id);

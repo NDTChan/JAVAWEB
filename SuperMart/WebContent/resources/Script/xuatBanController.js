@@ -1,15 +1,15 @@
-var app = angular.module('xuatBanApp', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'dynamicNumber']);
+var app = angular.module('xuatBanApp', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'dynamicNumber', 'ui.select']);
 
 app.config(function (dynamicNumberStrategyProvider) {
     dynamicNumberStrategyProvider.addStrategy('number', {
         numInt: 18,
         numFract: 3,
-        numSep: ',',
+        numSep: '.',
         numPos: true,
         numNeg: true,
         numRound: 'round',
         numThousand: true,
-        numThousandSep: ' '
+        numThousandSep: ','
     });
 });
 
@@ -28,42 +28,28 @@ app.directive('ngEnter', function () {
 
 app.controller('xuatBanAddCtrl', function ($scope, $http, $uibModal) {
     $scope.target = {
-        SalesPromotionStartTime: new Date(),
-        SalesPromotionEndTime: new Date(),
         Details: []
     };
-    $scope.SalesPromotionStartTime = { opened: false };
-    $scope.salesPromotionStartTime = new Date();
-    $scope.SalesPromotionEndTime = { opened: false };
-    $scope.salesPromotionEndTime = new Date();
-
-    $scope.changedSalesPromotionStartTime = function () {
-        if ($scope.salesPromotionStartTime) {
-            $scope.target.SalesPromotionStartTime.setHours($scope.salesPromotionStartTime.getHours());
-            $scope.target.SalesPromotionStartTime.setMinutes($scope.salesPromotionStartTime.getMinutes());
-            $scope.target.SalesPromotionStartTime.setSeconds(0);
-        }
-    }
-
-    $scope.changedSalesPromotionEndTime = function () {
-        if ($scope.salesPromotionEndTime) {
-            $scope.target.SalesPromotionEndTime.setHours($scope.salesPromotionEndTime.getHours());
-            $scope.target.SalesPromotionEndTime.setMinutes($scope.salesPromotionEndTime.getMinutes());
-            $scope.target.SalesPromotionEndTime.setSeconds(0);
-        }
-    }
-
+    $scope.TongSoLuong = 0;
+    $scope.TongTien = 0;
+    
     $scope.addRow = function () {
         if (!$scope.newItem) {
-            document.getElementById('MerchandiseCode').focus();
-        } else if (!$scope.newItem.MerchandiseCode) {
-            document.getElementById('MerchandiseCode').focus();
-        } else if (!$scope.newItem.DiscountPercentage) {
-            document.getElementById('DiscountPercentage').focus();
+            document.getElementById('MaVatTu').focus();
+        } else if (!$scope.newItem.MaVatTu) {
+            document.getElementById('MaVatTu').focus();
+        } else if (!$scope.newItem.SoLuong) {
+            document.getElementById('SoLuong').focus();
         } else {
             $scope.target.Details.push($scope.newItem);
             $scope.newItem = {};
-            document.getElementById('MerchandiseCode').focus();
+            $scope.TongSoLuong = 0;
+            $scope.TongTien = 0;
+            $scope.target.Details.forEach(function (v){
+            	$scope.TongSoLuong += v.SoLuong;
+            	$scope.TongTien += v.ThanhTien;
+            });
+            document.getElementById('MaVatTu').focus();
         }
     }
 
@@ -84,14 +70,14 @@ app.controller('xuatBanAddCtrl', function ($scope, $http, $uibModal) {
     $http({
         method: "GET",
         url: "/SuperMart/admin/khachhang/GetAllData",
-        contentType: 'application/json;charset=UTF-8',
+        contentType: 'application/json; charset=utf-8',
         dataType: 'json',
         headers : {
            'Accept': 'application/json, */*'
          },
     }).then(function success(response) {
         if (response && response.status === 200 && response.data) {
-            console.log(response);
+            $scope.lstKhachHang = response.data;
         }
     }, function error(response) {
         console.log(response);
@@ -99,48 +85,20 @@ app.controller('xuatBanAddCtrl', function ($scope, $http, $uibModal) {
 
     //change Mã vật tư
     $scope.blurMerchandiseCode = function (maVatTu) {
-        var checkExistMerchandiseModel = {
-            SalesPromotionStartTime: $scope.target.SalesPromotionStartTime,
-            SalesPromotionEndTime: $scope.target.SalesPromotionEndTime,
-            MerchandiseCode: maVatTu
-        }
         if (maVatTu) {
-            $scope.parameter = {
-                MerchandiseCode: maVatTu
-            };
             $http({
-                method: "POST",
-                url: "/Admin/InputMerchandise/BlurMaVatTu",
+                method: "GET",
+                url: "/SuperMart/admin/vattu/BlurMaVatTu/" + maVatTu,
                 contentType: 'application/json',
-                dataType: 'json',
-                data: $scope.parameter
+                dataType: 'json'
             }).then(function success(response) {
-                if (response && response.status === 200 && response.data && response.data.data) {
-                    $scope.newItem = response.data.data;
-                    $scope.newItem.MerchandiseCode = response.data.data.MaVatTu;
-                    $scope.newItem.MerchandiseName = response.data.data.TenVatTu;
-                    $scope.newItem.UnitPrice = response.data.data.GiaBanLeCoVat;
-                    $scope.newItem.VALIDATECODE = response.data.data.MaVatTu;
-                    document.getElementById('DiscountPercentage').focus();
-                    $http({
-                        method: "POST",
-                        url: "/Admin/SalesPromotion/CheckExistMerchandise",
-                        contentType: 'application/json',
-                        dataType: 'json',
-                        data: checkExistMerchandiseModel
-                    }).then(function success(response) {
-                        if (response && response.status === 200 && response.data && response.data.data) {
-                            $.toast({
-                                heading: 'Error',
-                                text: 'Mã hàng này đã có chương trình khuyến mãi !',
-                                showHideTransition: 'slide',
-                                icon: 'error'
-                            });
-                            $scope.newItem = {};
-                        }
-                    }, function error(response) {
-                        console.log(response);
-                    });
+                if (response && response.status === 200 && response.data) {
+                    $scope.newItem.MaVatTu = response.data.MaVatTu;
+                    $scope.newItem.TenVatTu = response.data.TenVatTu;
+                    $scope.newItem.DonGia = response.data.GiaBan;
+                    $scope.newItem.SoLuong = $scope.newItem.SoLuong ? $scope.newItem.SoLuong : 1;
+                    $scope.newItem.ThanhTien = $scope.newItem.DonGia * $scope.newItem.SoLuong;
+                    document.getElementById('SoLuong').focus();
                 } else {
                     var modalInstance = $uibModal.open({
                         backdrop: 'static',
@@ -154,32 +112,14 @@ app.controller('xuatBanAddCtrl', function ($scope, $http, $uibModal) {
                         }
                     });
                     modalInstance.result.then(function (updatedData) {
-                        if (updatedData && updatedData.MAVATTU) {
+                        if (updatedData && updatedData.MaVatTu) {
                             $scope.newItem = {};
-                            $scope.newItem.MerchandiseCode = updatedData.MaVatTu;
-                            $scope.newItem.MerchandiseName = updatedData.TenVatTu;
-                            $scope.newItem.UnitPrice = updatedData.GiaBanLeCoVat;
-                            $scope.newItem.VALIDATECODE = updatedData.MaVatTu;
-                            document.getElementById('DiscountPercentage').focus();
-                            $http({
-                                method: "POST",
-                                url: "/Admin/SalesPromotion/CheckExistMerchandise",
-                                contentType: 'application/json',
-                                dataType: 'json',
-                                data: checkExistMerchandiseModel
-                            }).then(function success(response) {
-                                if (response && response.status === 200 && response.data && response.data.data) {
-                                    $.toast({
-                                        heading: 'Error',
-                                        text: 'Mã hàng này đã có chương trình khuyến mãi !',
-                                        showHideTransition: 'slide',
-                                        icon: 'error'
-                                    });
-                                    $scope.newItem = {};
-                                }
-                            }, function error(response) {
-                                console.log(response);
-                            });
+                            $scope.newItem.MaVatTu = updatedData.MaVatTu;
+                            $scope.newItem.TenVatTu = updatedData.TenVatTu;
+                            $scope.newItem.DonGia = updatedData.GiaBan;
+                            $scope.newItem.SoLuong = $scope.newItem.SoLuong ? $scope.newItem.SoLuong : 1;
+                            $scope.newItem.ThanhTien = $scope.newItem.DonGia * $scope.newItem.SoLuong;
+                            document.getElementById('SoLuong').focus();
                         }
                     }, function () { });
                 }
@@ -189,41 +129,62 @@ app.controller('xuatBanAddCtrl', function ($scope, $http, $uibModal) {
         }
     };
 
-    $scope.changeDiscountPercentage = function (item) {
-        item.DiscountMoney = parseInt(item.UnitPrice) * parseInt(item.DiscountPercentage) / 100;
-        item.UnitPriceAfterDiscount = item.UnitPrice - item.DiscountMoney;
+    $scope.changeSoLuong = function (item) {
+        item.ThanhTien = item.DonGia * item.SoLuong;
+        $scope.TongSoLuong = 0;
+        $scope.TongTien = 0;
+        $scope.target.Details.forEach(function (v){
+        	$scope.TongSoLuong += v.SoLuong;
+        	$scope.TongTien += v.ThanhTien;
+        });
     };
 
     $scope.removeItem = function (index) {
         $scope.target.Details.splice(index, 1);
+        $scope.TongSoLuong = 0;
+        $scope.TongTien = 0;
+        $scope.target.Details.forEach(function (v){
+        	$scope.TongSoLuong += v.SoLuong;
+        	$scope.TongTien += v.ThanhTien;
+        });
     };
 
     $scope.save = function () {
         if ($scope.target.Details.length > 0) {
             angular.forEach($scope.target.Details, function (value) {
-                value.SalesPromotionCode = $scope.target.SalesPromotionCode;
+                value.MaChungTu = $scope.target.MaChungTu;
             });
+            $scope.target.NgayChungTu = new Date();
             $http({
                 method: "POST",
-                url: "/Admin/SalesPromotion/Post",
+                url: "/SuperMart/admin/xuatban/Post",
                 contentType: 'application/json',
                 dataType: 'json',
-                data: $scope.target
+                data: JSON.stringify($scope.target)
             }).then(function success(response) {
-                $.toast({
-                    heading: 'Success',
-                    text: 'Thành công !',
-                    showHideTransition: 'slide',
-                    icon: 'success',
-                    afterHidden: function () {
-                        window.location.href = window.location.origin + "/Admin/SalesPromotion";
-                    }
-                });
+            	if (response.data) {
+                    $.toast({
+                        heading: 'Success',
+                        text: 'Thành công !',
+                        showHideTransition: 'slide',
+                        icon: 'success',
+                        afterHidden: function () {
+                            window.location.href = window.location.origin + "SuperMart/admin/xuatban";
+                        }
+                    });
+            	} else {
+            		$.toast({
+                        heading: 'Error',
+                        text: 'Thất bại !',
+                        showHideTransition: 'slide',
+                        icon: 'error'
+                    });
+            	}
             }, function error(response) {
                 console.log(response);
             });
         } else {
-            alert("Yêu cầu nhập các mặt hàng khuyến mãi!");
+            alert("Yêu cầu nhập các mặt hàng Xuất bán!");
         }
     };
 });
@@ -380,24 +341,14 @@ app.controller('salesPromotionEditCtrl', function ($scope, $http, $uibModal) {
 
 app.controller('SearchMerchandiseController', function ($scope, $uibModalInstance, $http, items) {
     if (items) {
-        $scope.parameter = {
-            MAVATTU: items
-        };
         $http({
-            method: "POST",
-            url: "/Admin/InputMerchandise/GetInfoMerchandiseByCode",
+            method: "GET",
+            url: "/SuperMart/admin/vattu/GetInfoMerchandiseByCode/" + items,
             contentType: 'application/json',
-            dataType: 'json',
-            data: $scope.parameter
+            dataType: 'json'
         }).then(function success(response) {
-            if (response && response.status === 200 && response.data && response.data.data && response.data.data.length > 0) {
-                angular.forEach(response.data.data, function (v, k) {
-                    v.MAVATTU = v.MaVatTu;
-                    v.TENVATTU = v.TenVatTu;
-                });
-                $scope.data = response.data.data;
-            }
-            else {
+            if (response && response.status === 200 && response.data && response.data && response.data.length > 0) {
+                $scope.data = response.data;
             }
         }, function error(response) {
         });

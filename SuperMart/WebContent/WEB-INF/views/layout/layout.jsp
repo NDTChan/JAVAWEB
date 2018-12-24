@@ -49,6 +49,14 @@
 	href="${pageContext.request.contextPath}/resources/jquery.toast.min.css">
 <script
 	src="${pageContext.request.contextPath}/resources/jquery.toast.min.js"></script>
+<link rel="stylesheet" type="text/css"
+	href="${pageContext.request.contextPath}/resources/select.min.css">
+<script src="${pageContext.request.contextPath}/resources/select.min.js"></script>
+<style type="text/css">
+.ui-select-match .btn-default {
+	background-color: #fff;
+}
+</style>
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
 	<div class="wrapper">
