@@ -4,12 +4,11 @@ import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.Date;
 import java.util.List;
 import javax.servlet.ServletContext;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -17,7 +16,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.google.gson.Gson;
+import com.sun.jmx.snmp.Timestamp;
 import com.supermart.models.VatTu;
 import com.supermart.service.PagingVm;
 import com.supermart.service.VatTuService;
@@ -37,7 +36,7 @@ public class VatTuController {
 		PagingVm<VatTu> result = new PagingVm<VatTu>();
 		System.out.println(searchKey);
 		long total = 0;
-		int size = 2;
+		int size = 10;
 		List<VatTu> ls;
 		if (currentpage != null) {
 			int page = Integer.parseInt(currentpage);
@@ -114,54 +113,33 @@ public class VatTuController {
 		return new ResponseEntity<String>("true", HttpStatus.OK);
 	}
 
-	@RequestMapping(value = "vattu/BlurMaVatTu/{MaVatTu}", method = RequestMethod.GET, produces = "application/json; charset=utf8")
-	@ResponseBody
-	public ResponseEntity<String> BlurMaVatTu(@PathVariable String MaVatTu) {
-		HttpHeaders responseHeaders = new HttpHeaders();
-		responseHeaders.add("Content-Type", "application/json; charset=utf-8");
-		Gson gson = new Gson();
-		String jsonObject = gson.toJson(_service.GetDataByMaVatTu(MaVatTu));
-		return new ResponseEntity<String>(jsonObject, responseHeaders, HttpStatus.OK);
-	}
-
-	@RequestMapping(value = "vattu/GetInfoMerchandiseByCode/{MaVatTu}", method = RequestMethod.GET, produces = "application/json; charset=utf8")
-	@ResponseBody
-	public ResponseEntity<String> GetInfoMerchandiseByCode(@PathVariable String MaVatTu) {
-		HttpHeaders responseHeaders = new HttpHeaders();
-		responseHeaders.add("Content-Type", "application/json; charset=utf-8");
-		Gson gson = new Gson();
-		String jsonObject = gson.toJson(_service.GetInfoMerchandiseByCode(MaVatTu));
-		return new ResponseEntity<String>(jsonObject, responseHeaders, HttpStatus.OK);
-	}
-
 	@RequestMapping(value = "vattu/uploadFile", method = RequestMethod.POST)
-	public ResponseEntity<String> createRole(@RequestParam("name") String name,
-			@RequestParam("image") MultipartFile image) {
-		// your code goes hereys
-		System.out.println(image);
-		if (image != null) {
+	public ResponseEntity<String> uploadFile(@RequestParam("mavattu") String mavattu,
+			@RequestParam("image") MultipartFile file) throws IOException {
+		String nameImage = "";
+		if (!file.getOriginalFilename().isEmpty()) {
 			try {
-				byte[] bytes = image.getBytes();
-				String rootPath = "/Upload";
-
-				File dir = new File(rootPath + File.separator);
-				if (!dir.exists()) {
+				Date date = new Date();
+				Timestamp ts = new Timestamp(date.getTime());
+				byte[] bytes = file.getBytes();
+				String rootPath = servletContext.getRealPath("/Upload/" + mavattu);
+				File dir = new File(rootPath);
+				if (!dir.exists())
 					dir.mkdirs();
-				}
-				File serverFile = new File(servletContext.getRealPath("/Upload/") + name);
-
+				nameImage = mavattu +"_"+ ts.getSysUpTime() + ".jpg";
+				// Create the file on server
+				File serverFile = new File(dir.getAbsolutePath() + "/" + nameImage);
 				BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(serverFile));
 				stream.write(bytes);
 				stream.close();
-				System.out.println(serverFile.getAbsolutePath());
-				return new ResponseEntity<String>(serverFile.getName(), HttpStatus.OK);
-			} catch (Exception e) {
-				System.out.println(e);
-				return new ResponseEntity<String>("Đéo tìm thấy file", HttpStatus.NOT_FOUND);
+			} catch (Exception ex) {
+				return new ResponseEntity<>("Invalid file.", HttpStatus.BAD_REQUEST);
 			}
 		} else {
-			return new ResponseEntity<String>("Đéo tìm thấy file", HttpStatus.NOT_FOUND);
+			return new ResponseEntity<>("Invalid file.", HttpStatus.BAD_REQUEST);
 		}
+		String result = mavattu+"/"+nameImage;
+		return new ResponseEntity<String>(result, HttpStatus.OK);
 
 	}
 }

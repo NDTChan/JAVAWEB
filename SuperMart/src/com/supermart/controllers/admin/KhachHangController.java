@@ -4,7 +4,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -12,7 +11,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.google.gson.Gson;
-import com.mysql.cj.xdevapi.JsonArray;
 import com.supermart.models.KhachHang;
 import com.supermart.service.KhachHangService;
 import com.supermart.service.PagingVm;
@@ -30,7 +28,7 @@ public class KhachHangController {
 		PagingVm<KhachHang> result = new PagingVm<KhachHang>();
 		System.out.println(searchKey);
 		long total = 0;
-		int size = 2;
+		int size = 10;
 		List<KhachHang> ls;
 		if (currentpage != null) {
 			int page = Integer.parseInt(currentpage);

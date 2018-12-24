@@ -24,7 +24,7 @@ public class LoaiVatTuController {
 		PagingVm<LoaiVatTu> result = new PagingVm<LoaiVatTu>();
 		System.out.println(searchKey);
 		long total = 0;
-		int size = 2;
+		int size =10;
 		List<LoaiVatTu> ls ;
 		if(currentpage != null) {
 			int page = Integer.parseInt(currentpage);
