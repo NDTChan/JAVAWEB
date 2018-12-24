@@ -144,8 +144,8 @@
 						if(response){
 							var link = '/Upload/' +response;
 							$('#Anh').val(link);
-							var strHtml = "<img src='"+link+"' width=200px height=200px>";
-							$('#list-image').innerHTML = strHtml; 
+							var strHtml = "<img src='${pageContext.request.contextPath}/"+link+"' width=200px height=200px>";
+							$('#list-image').html(strHtml); 
 						}
 					}
 				});

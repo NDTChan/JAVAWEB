@@ -138,7 +138,8 @@ public class VatTuController {
 		} else {
 			return new ResponseEntity<>("Invalid file.", HttpStatus.BAD_REQUEST);
 		}
-		return new ResponseEntity<String>(nameImage, HttpStatus.OK);
+		String result = mavattu+"/"+nameImage;
+		return new ResponseEntity<String>(result, HttpStatus.OK);
 
 	}
 }

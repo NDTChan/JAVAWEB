@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -46,32 +47,38 @@
 			<form name="user" method="post"
 				action="${pageContext.request.contextPath}/register/registerProcess">
 				<div class="form-group has-feedback">
-					<input type="text" class="form-control" placeholder="Username" name="Username">
-					<span class="glyphicon glyphicon-user form-control-feedback"></span>
+					<input type="text" class="form-control" placeholder="Username"
+						name="Username"> <span
+						class="glyphicon glyphicon-user form-control-feedback"></span>
 				</div>
 				<div class="form-group has-feedback">
-					<input type="password" class="form-control" placeholder="Password" name="Password">
-					<span class="glyphicon glyphicon-lock form-control-feedback"></span>
+					<input type="password" class="form-control" placeholder="Password"
+						name="Password"> <span
+						class="glyphicon glyphicon-lock form-control-feedback"></span>
 				</div>
 				<div class="form-group has-feedback">
-					<input type="text" class="form-control" placeholder="Full name" name="FullName">
-					<span class="fa fa-user form-control-feedback"></span>
+					<input type="text" class="form-control" placeholder="Full name"
+						name="FullName"> <span
+						class="fa fa-user form-control-feedback"></span>
 				</div>
 				<div class="form-group has-feedback">
-					<input type="text" class="form-control" placeholder="Phone number" name="PhoneNumber">
-					<span class="glyphicon glyphicon-earphone form-control-feedback"></span>
+					<input type="text" class="form-control" placeholder="Phone number"
+						name="PhoneNumber"> <span
+						class="glyphicon glyphicon-earphone form-control-feedback"></span>
 				</div>
 				<div class="form-group has-feedback">
-					<input type="email" class="form-control" placeholder="Email" name="Email">
-					<span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+					<input type="email" class="form-control" placeholder="Email"
+						name="Email"> <span
+						class="glyphicon glyphicon-envelope form-control-feedback"></span>
 				</div>
 				<div class="form-group has-feedback">
-					<input type="text" class="form-control" placeholder="Address" name="Address">
-					<span class="glyphicon glyphicon-home form-control-feedback"></span>
+					<input type="text" class="form-control" placeholder="Address"
+						name="Address"> <span
+						class="glyphicon glyphicon-home form-control-feedback"></span>
 				</div>
 				<c:if test="${error}">
-					<span style="color: red"> Tên đăng nhập đã trùng hoặc kết nối đến cơ sở dữ liệu bị lỗi !
-					</span>
+					<span style="color: red"> Tên đăng nhập đã trùng hoặc kết
+						nối đến cơ sở dữ liệu bị lỗi ! </span>
 				</c:if>
 				<div class="row">
 					<div class="col-xs-8"></div>
@@ -83,8 +90,8 @@
 				</div>
 			</form>
 
-			<a href="${pageContext.request.contextPath}/login" class="text-center">I already have a
-				membership</a>
+			<a href="${pageContext.request.contextPath}/login"
+				class="text-center">I already have a membership</a>
 		</div>
 		<!-- /.form-box -->
 	</div>

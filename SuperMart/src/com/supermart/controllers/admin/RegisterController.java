@@ -27,12 +27,12 @@ public class RegisterController {
 	@RequestMapping(value = "/registerProcess", method = RequestMethod.POST)
 	public ModelAndView addUser(HttpServletRequest request, HttpServletResponse response,
 			@ModelAttribute("user") User user) {
-		System.out.println(registerService.checkExistUser(user));
+		boolean error = false;
 		if (!registerService.checkExistUser(user)) {
 			registerService.register(user);
 			return new ModelAndView("login");
 		} else {
-			boolean error = true;
+			error = true;
 			ModelAndView mav = new ModelAndView("register");
 			mav.addObject("error", error);
 			return mav;
