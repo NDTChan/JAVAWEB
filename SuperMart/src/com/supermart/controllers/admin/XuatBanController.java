@@ -1,9 +1,6 @@
 package com.supermart.controllers.admin;
 
 import java.util.List;
-
-import javax.servlet.http.HttpServletRequest;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -83,7 +80,7 @@ public class XuatBanController {
 
 	@RequestMapping(value = "xuatban/Post", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
-	public ResponseEntity<String> Post(@RequestBody XuatBanVm param, HttpServletRequest request) {
+	public ResponseEntity<String> Post(@RequestBody XuatBanVm param) {
 		Gson gson = new Gson();
 		String jsonObject = gson.toJson(_service.InsertData(param));
 		return new ResponseEntity<String>(jsonObject, HttpStatus.OK);

@@ -155,13 +155,7 @@ app.controller('xuatBanAddCtrl', function ($scope, $http, $uibModal) {
                 value.MaChungTu = $scope.target.MaChungTu;
             });
             $scope.target.NgayChungTu = new Date();
-            $http({
-                method: "POST",
-                url: "/SuperMart/admin/xuatban/Post",
-                contentType: 'application/json',
-                dataType: 'json',
-                data: JSON.stringify($scope.target)
-            }).then(function success(response) {
+            $http.post("/SuperMart/admin/xuatban/Post", $scope.target).then(function success(response) {
             	if (response.data) {
                     $.toast({
                         heading: 'Success',
