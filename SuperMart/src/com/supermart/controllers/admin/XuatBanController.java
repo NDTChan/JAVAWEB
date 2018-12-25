@@ -7,11 +7,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import com.google.gson.Gson;
 import com.supermart.models.VatTuChungTu;
@@ -78,11 +74,11 @@ public class XuatBanController {
 		return new ResponseEntity<String>("\"" + _service.GetNewCode() + "\"", HttpStatus.OK);
 	}
 
-	@RequestMapping(value = "xuatban/Post", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
-	@ResponseBody
-	public ResponseEntity<String> Post(@RequestBody XuatBanVm param) {
+	@RequestMapping(value = "xuatban/Post", method = RequestMethod.POST, consumes = "application/json", produces = "application/json", headers = "Accept=application/json")
+	public @ResponseBody ResponseEntity<String> Post(@RequestBody String param) {
 		Gson gson = new Gson();
-		String jsonObject = gson.toJson(_service.InsertData(param));
+		XuatBanVm data = gson.fromJson(param, XuatBanVm.class);
+		String jsonObject = gson.toJson(_service.InsertData(data));
 		return new ResponseEntity<String>(jsonObject, HttpStatus.OK);
 	}
 }

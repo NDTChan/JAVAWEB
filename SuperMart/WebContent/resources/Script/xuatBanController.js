@@ -154,7 +154,6 @@ app.controller('xuatBanAddCtrl', function ($scope, $http, $uibModal) {
             angular.forEach($scope.target.Details, function (value) {
                 value.MaChungTu = $scope.target.MaChungTu;
             });
-            $scope.target.NgayChungTu = new Date();
             $http.post("/SuperMart/admin/xuatban/Post", $scope.target).then(function success(response) {
             	if (response.data) {
                     $.toast({

@@ -13,7 +13,7 @@ public class XuatBanVm {
 	public String MaKhachHang;
 	public String NoiDung;
 	public int TrangThai;
-	public List<VatTuChungTuChiTiet> DataDetails;
+	public List<VatTuChungTuChiTiet> Details;
 
 	public int getId() {
 		return Id;
@@ -71,16 +71,16 @@ public class XuatBanVm {
 		TrangThai = trangThai;
 	}
 
-	public List<VatTuChungTuChiTiet> getDataDetails() {
-		return DataDetails;
+	public List<VatTuChungTuChiTiet> getDetails() {
+		return Details;
 	}
 
-	public void setDataDetails(List<VatTuChungTuChiTiet> dataDetails) {
-		DataDetails = dataDetails;
+	public void setDetails(List<VatTuChungTuChiTiet> details) {
+		Details = details;
 	}
 
 	public XuatBanVm() {
-		DataDetails = new ArrayList<VatTuChungTuChiTiet>();
+		Details = new ArrayList<VatTuChungTuChiTiet>();
 		TrangThai = 0;
 	}
 }

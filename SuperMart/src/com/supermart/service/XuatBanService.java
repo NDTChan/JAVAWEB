@@ -83,11 +83,11 @@ public class XuatBanService {
 			data.MaChungTu = param.MaChungTu;
 			data.LoaiChungTu = "XBAN";
 			data.MaKhachHang = param.MaKhachHang;
-			data.NgayChungTu = param.NgayChungTu;
+			data.NgayChungTu = new Date();
 			data.TrangThai = 0;
 			session.saveOrUpdate(data);
-			if (param.DataDetails != null && !param.DataDetails.isEmpty()) {
-				for (VatTuChungTuChiTiet item : param.DataDetails) {
+			if (param.Details != null && !param.Details.isEmpty()) {
+				for (VatTuChungTuChiTiet item : param.Details) {
 					session.saveOrUpdate(item);
 				}
 			}

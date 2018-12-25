@@ -1,7 +1,7 @@
 package com.supermart.models;
 
 import java.io.Serializable;
-import java.sql.Date;
+import java.util.Date;
 
 public class VatTuChungTu implements Serializable {
 
