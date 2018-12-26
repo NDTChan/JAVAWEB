@@ -87,7 +87,7 @@ public class NhapMuaService {
 		List<VatTuChungTu> listVtct = query.list();
 		if (listVtct.size() > 0) {
 			for (int i = 0; i < listVtct.size(); i++) {
-				listIndex.add(Integer.parseInt(listVtct.get(i).MaChungTu.substring(5)));
+				listIndex.add(Integer.parseInt(listVtct.get(i).MaChungTu.substring(4)));
 			}
 			Collections.sort(listIndex);
 			return "NMUA" + (listIndex.get(listIndex.size() - 1) + 1);

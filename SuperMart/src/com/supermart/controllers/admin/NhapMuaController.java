@@ -118,11 +118,4 @@ public class NhapMuaController {
 		String jsonObject = gson.toJson(_service.GetItemById(id));
 		return new ResponseEntity<String>(jsonObject, HttpStatus.OK);
 	}
-	
-	@RequestMapping(value = "nhapmua/approve", method = RequestMethod.GET)
-	public ResponseEntity<String> getItemById(String machungtu) {
-		Gson gson = new Gson();
-		String jsonObject = gson.toJson(_service.GetItemById(id));
-		return new ResponseEntity<String>(jsonObject, HttpStatus.OK);
-	}
 }
