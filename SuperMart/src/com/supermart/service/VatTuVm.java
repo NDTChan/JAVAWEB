@@ -1,5 +1,8 @@
 package com.supermart.service;
 
+import com.supermart.models.LoaiVatTu;
+import com.supermart.models.VatTu;
+
 public class VatTuVm {
 	public class Dto {
 		private String MaVatTu;
@@ -89,3 +92,5 @@ public class VatTuVm {
 	}
 	
 }
+
+

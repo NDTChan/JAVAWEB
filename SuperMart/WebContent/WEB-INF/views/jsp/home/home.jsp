@@ -192,7 +192,7 @@
 
 <script>
 	$(document).ready(function(){
-		var url = '${pageContext.request.contextPath}/home/viewNewMerchansedise?first='+1+'&max='+4; 
+		var url = '${pageContext.request.contextPath}/home/viewNewMerchansedise?first='+0+'&max='+7; 
 		$('#myCarousel').load(url);
 	})
 </script>

@@ -10,12 +10,12 @@
 						<span class="sale_tag"></span>
 						<p>
 							<a href="product_detail.html"><img
-								src="${pageContext.request.contextPath}/resources/themes/images/ladies/1.jpg"
+								src="${pageContext.request.contextPath}/${m.getVatTu().getAnh()}"
 								alt="" /></a>
 						</p>
-						<a href="product_detail.html" class="title">Ut wisi enim ad</a><br />
-						<a href="products.html" class="category">Commodo consequat</a>
-						<p class="price">$17.25</p>
+						<a href="product_detail.html" class="title">${m.getVatTu().getTenVatTu()}</a><br />
+						<a href="products.html" class="category">${m.getLoaiVatTu().getTenLoaiVatTu()}</a>
+						<p class="price">${m.getVatTu().getGiaBan()}</p>
 					</div>
 				</li>
 			</c:forEach>
