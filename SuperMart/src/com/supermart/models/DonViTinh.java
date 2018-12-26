@@ -6,7 +6,7 @@ public class DonViTinh implements Serializable{
 
 	private static final long serialVersionUID = 6329454289569501949L;
 	private int Id;
-	private String MaDonViTinh;
+	public  String MaDonViTinh;
 	private String TenDonViTinh;
 	private int TrangThai;
 	

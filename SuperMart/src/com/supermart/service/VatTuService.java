@@ -1,5 +1,7 @@
 package com.supermart.service;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import javax.transaction.Transactional;
@@ -107,4 +109,19 @@ public class VatTuService {
 		sessionFactory.getCurrentSession().delete(vt);
 	}
 
+	public String getNewMaVatTu() {
+		String hql = "FROM VatTu";
+		Query query = sessionFactory.getCurrentSession().createQuery(hql);
+		ArrayList<Integer> listIndex = new ArrayList<Integer>();
+		List<VatTu> listVt = query.list();
+		if (listVt.size() > 0) {
+			for (int i = 0; i < listVt.size(); i++) {
+				listIndex.add(Integer.parseInt(listVt.get(i).MaVatTu.substring(2)));
+			}
+			Collections.sort(listIndex);
+			return "VT" + (listIndex.get(listIndex.size() - 1) + 1);
+		} else {
+			return "VT1";
+		}
+	}
 }

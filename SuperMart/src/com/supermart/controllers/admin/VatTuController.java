@@ -82,6 +82,7 @@ public class VatTuController {
 		String operation = "add";
 		ModelAndView modelView = new ModelAndView("vattu/add", "vattu", new VatTu());
 		modelView.addObject("operation", operation);
+		modelView.addObject("MaVatTu", _service.getNewMaVatTu());
 		return modelView;
 	}
 

@@ -1,5 +1,7 @@
 package com.supermart.service;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import javax.transaction.Transactional;
@@ -85,5 +87,21 @@ public class NhaCungCapService {
 	{
 		NhaCungCap ncc=getById(id);
 		sessionFactory.getCurrentSession().delete(ncc);
+	}
+	
+	public String getNewMaNhaCungCap() {
+		String hql = "FROM NhaCungCap";
+		Query query = sessionFactory.getCurrentSession().createQuery(hql);
+		ArrayList<Integer> listIndex = new ArrayList<Integer>();
+		List<NhaCungCap> ListNcc = query.list();
+		if (ListNcc.size() > 0) {
+			for (int i = 0; i < ListNcc.size(); i++) {
+				listIndex.add(Integer.parseInt(ListNcc.get(i).MaNhaCungCap.substring(3)));
+			}
+			Collections.sort(listIndex);
+			return "NCC" + (listIndex.get(listIndex.size() - 1) + 1);
+		} else {
+			return "NCC1";
+		}
 	}
 }

@@ -68,6 +68,7 @@ public class NhomVatTuController {
 		String operation = "add";
 		ModelAndView modelView = new ModelAndView("nhomvattu/add");
 		modelView.addObject("operation", operation);
+		modelView.addObject("MaNhomVatTu", _service.getNewMaNhomVatTu());
 		return modelView;
 	}
 

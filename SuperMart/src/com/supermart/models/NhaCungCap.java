@@ -6,7 +6,7 @@ public class NhaCungCap implements Serializable {
 
 	private static final long serialVersionUID = 6329454289569501949L;
 	private int Id;
-	private String MaNhaCungCap;
+	public String MaNhaCungCap;
 	private String TenNhaCungCap;
 	private String DiaChi;
 	private String DienThoai;

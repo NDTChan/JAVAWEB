@@ -80,6 +80,7 @@ public class KhachHangController {
 		String operation = "add";
 		ModelAndView modelView = new ModelAndView("khachhang/add");
 		modelView.addObject("operation", operation);
+		modelView.addObject("MaKhachHang", _service.getNewMaKhachHang());
 		return modelView;
 	}
 
