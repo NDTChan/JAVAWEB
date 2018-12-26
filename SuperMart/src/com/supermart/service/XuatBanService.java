@@ -11,6 +11,8 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
+import com.supermart.models.VatTu;
 import com.supermart.models.VatTuChungTu;
 import com.supermart.models.VatTuChungTuChiTiet;
 
@@ -20,6 +22,8 @@ public class XuatBanService {
 	@Autowired
 	private SessionFactory sessionFactory;
 
+	@Autowired
+	VatTuService _vatTuService;
 //	Session session;
 
 	public List<VatTuChungTu> list() {
@@ -77,7 +81,7 @@ public class XuatBanService {
 
 	public boolean InsertData(XuatBanVm param) {
 		try {
-			Session session= sessionFactory.openSession();
+			Session session = sessionFactory.openSession();
 			session.beginTransaction();
 			VatTuChungTu data = new VatTuChungTu();
 			data.MaChungTu = param.MaChungTu;
@@ -89,11 +93,14 @@ public class XuatBanService {
 			if (param.Details != null && !param.Details.isEmpty()) {
 				for (VatTuChungTuChiTiet item : param.Details) {
 					session.saveOrUpdate(item);
+					VatTu vatTu = _vatTuService.GetDataByMaVatTu(item.MaVatTu);
+					vatTu.SoLuong -= item.SoLuong;
+					session.saveOrUpdate(vatTu);
 				}
 			}
 			session.getTransaction().commit();
 			return true;
-			
+
 		} catch (Exception e) {
 			// TODO: handle exception
 			return false;
