@@ -49,7 +49,7 @@
 		class="org.springframework.jdbc.datasource.DriverManagerDataSource"
 		p:driverClassName="com.mysql.jdbc.Driver"
 		p:url="jdbc:mysql://localhost:3306/qlbh?useSSL=false"
-		p:username="root" p:password="admin@123" />
+		p:username="root" p:password="Haduong1997" />
 
 	<!-- Hibernate-related Configuration -->
 
