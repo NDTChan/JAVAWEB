@@ -2,6 +2,7 @@ package com.supermart.controllers.admin;
 
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -21,7 +22,9 @@ import com.supermart.service.XuatBanVm;
 public class XuatBanController {
 	@Autowired
 	XuatBanService _service;
-
+	
+	int Id;
+	
 	@RequestMapping(value = "xuatban", method = RequestMethod.GET)
 	public ModelAndView getAllPaging(ModelMap model, String currentpage, String searchKey) {
 		PagingVm<VatTuChungTu> result = new PagingVm<VatTuChungTu>();
@@ -68,6 +71,13 @@ public class XuatBanController {
 		ModelAndView modelView = new ModelAndView("xuatban/add");
 		return modelView;
 	}
+	
+	@RequestMapping(value = "xuatban/edit", method = RequestMethod.GET)
+	public ModelAndView edit(int id) {
+		Id = id;
+		ModelAndView modelView = new ModelAndView("xuatban/edit");
+		return modelView;
+	}
 
 	@RequestMapping(value = "xuatban/BuildCode", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<String> BuildCode() {
@@ -80,5 +90,20 @@ public class XuatBanController {
 		XuatBanVm data = gson.fromJson(param, XuatBanVm.class);
 		String jsonObject = gson.toJson(_service.InsertData(data));
 		return new ResponseEntity<String>(jsonObject, HttpStatus.OK);
+	}
+	
+	@RequestMapping(value = "xuatban/Get", method = RequestMethod.GET, produces = "application/json; charset=utf8")
+	@ResponseBody
+	public ResponseEntity<String> Get() {
+		HttpHeaders responseHeaders = new HttpHeaders();
+		responseHeaders.add("Content-Type", "application/json; charset=utf-8");
+		Gson gson = new Gson();
+		String jsonObject = gson.toJson(_service.getByID(Id));
+		return new ResponseEntity<String>(jsonObject, responseHeaders, HttpStatus.OK);
+	}
+	
+	@RequestMapping(value = "xuatban/deleteItem", method = RequestMethod.GET, produces = "application/json")
+	public ResponseEntity<Boolean> delete(int id) {
+		return new ResponseEntity<Boolean>(_service.delete(id), HttpStatus.OK);
 	}
 }

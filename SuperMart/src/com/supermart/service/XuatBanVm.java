@@ -13,7 +13,25 @@ public class XuatBanVm {
 	public String MaKhachHang;
 	public String NoiDung;
 	public int TrangThai;
-	public List<VatTuChungTuChiTiet> Details;
+	public List<XuatBanChiTietVm> Details;
+	public List<XuatBanChiTietVm> DeleteList;
+	
+
+	public List<XuatBanChiTietVm> getDetails() {
+		return Details;
+	}
+
+	public void setDetails(List<XuatBanChiTietVm> details) {
+		Details = details;
+	}
+
+	public List<XuatBanChiTietVm> getDeleteList() {
+		return DeleteList;
+	}
+
+	public void setDeleteList(List<XuatBanChiTietVm> deleteList) {
+		DeleteList = deleteList;
+	}
 
 	public int getId() {
 		return Id;
@@ -71,16 +89,10 @@ public class XuatBanVm {
 		TrangThai = trangThai;
 	}
 
-	public List<VatTuChungTuChiTiet> getDetails() {
-		return Details;
-	}
-
-	public void setDetails(List<VatTuChungTuChiTiet> details) {
-		Details = details;
-	}
-
+	
 	public XuatBanVm() {
-		Details = new ArrayList<VatTuChungTuChiTiet>();
+		Details = new ArrayList<XuatBanChiTietVm>();
+		DeleteList = new ArrayList<XuatBanChiTietVm>();
 		TrangThai = 0;
 	}
 }
