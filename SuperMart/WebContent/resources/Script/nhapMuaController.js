@@ -148,32 +148,13 @@ app.controller('nhapMuaAddCtrl', function ($scope, $http, $uibModal) {
         	$scope.TongTien += v.ThanhTien;
         });
     };
-
+    
     $scope.save = function () {
         if ($scope.target.Details.length > 0) {
             angular.forEach($scope.target.Details, function (value) {
                 value.MaChungTu = $scope.target.MaChungTu;
             });
-            $scope.target.NgayChungTu = new Date();
-            console.log('$scope.target', $scope.target);
-            var form_data = new FormData();
-
-            for ( var key in $scope.target ) {
-                form_data.append(key, item[key]);
-            }
-
-            $.ajax({
-                url         : '/SuperMart/api/test',
-                data        : form_data,
-                processData : false,
-                contentType : false,
-                type: 'POST'
-            }).done(function(data){
-            	console.log('data', data);
-                // do stuff
-            })
-            /*$http.post("/SuperMart/api/test", JSON.stringify($scope.target)).then(function success(response) {
-            	console.log('response', response);
+            $http.post("/SuperMart/admin/nhapmua/Post", $scope.target).then(function success(response) {
             	if (response.data) {
                     $.toast({
                         heading: 'Success',
@@ -181,7 +162,7 @@ app.controller('nhapMuaAddCtrl', function ($scope, $http, $uibModal) {
                         showHideTransition: 'slide',
                         icon: 'success',
                         afterHidden: function () {
-                            window.location.href = window.location.origin + "SuperMart/admin/xuatban";
+                            window.location.href = window.location.origin + "SuperMart/admin/nhapmua";
                         }
                     });
             	} else {
@@ -194,7 +175,7 @@ app.controller('nhapMuaAddCtrl', function ($scope, $http, $uibModal) {
             	}
             }, function error(response) {
                 console.log(response);
-            });*/
+            });
         } else {
             alert("Yêu cầu nhập các mặt hàng Xuất bán!");
         }
