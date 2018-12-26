@@ -9,7 +9,7 @@
 					<div class="product-box">
 						<span class="sale_tag"></span>
 						<p>
-							<a href="product_detail.html"><img
+							<a href="${pageContext.request.contextPath}/sanpham/${m.getVatTu().getMaVatTu()}"><img
 								src="${pageContext.request.contextPath}/${m.getVatTu().getAnh()}"
 								style="width:200px;height:300px"></a>
 						</p>
