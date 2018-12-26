@@ -162,7 +162,7 @@ app.controller('xuatBanAddCtrl', function ($scope, $http, $uibModal) {
                         showHideTransition: 'slide',
                         icon: 'success',
                         afterHidden: function () {
-                            window.location.href = window.location.origin + "SuperMart/admin/xuatban";
+                            window.location.href = window.location.origin + "/SuperMart/admin/xuatban";
                         }
                     });
             	} else {
