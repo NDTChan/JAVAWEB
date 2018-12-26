@@ -19,7 +19,7 @@
 					<div class="form-group">
 						<label>Mã Nhà Cung Cấp:</label><span style="color: red"> (*)</span>
 						<input type="text" class="form-control" name="MaNhaCungCap"
-							maxlength="255" required>
+							value="${MaNhaCungCap}" maxlength="255" required readonly>
 					</div>
 				</div>
 				<div class="col-md-6">

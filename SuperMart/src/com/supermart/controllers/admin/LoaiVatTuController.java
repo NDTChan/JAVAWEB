@@ -69,6 +69,7 @@ public class LoaiVatTuController {
 		String operation = "add";
 		ModelAndView modelView = new ModelAndView("loaivattu/add");
 		modelView.addObject("operation", operation);
+		modelView.addObject("MaLoaiVatTu", _service.getNewMaLoaiVatTu());
 		return modelView;
 	}
 

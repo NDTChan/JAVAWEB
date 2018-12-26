@@ -20,7 +20,7 @@
 					<div class="form-group">
 						<label>Mã đơn vị tính</label><span style="color: red"> (*)</span>
 						<input type="text" class="form-control" name="MaDonViTinh"
-							maxlength="255" required>
+							value="${MaDonViTinh}" maxlength="255" required readonly>
 					</div>
 				</div>
 			</div>

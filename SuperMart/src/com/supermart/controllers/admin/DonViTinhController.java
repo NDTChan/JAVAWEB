@@ -1,6 +1,8 @@
 package com.supermart.controllers.admin;
 
 import java.util.List;
+
+import org.codehaus.jackson.map.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -70,6 +72,7 @@ public class DonViTinhController {
 		String operation = "add";
 		ModelAndView modelView = new ModelAndView("donvitinh/add");
 		modelView.addObject("operation", operation);
+		modelView.addObject("MaDonViTinh", _service.getNewMaDonVi());
 		return modelView;
 	}
 
