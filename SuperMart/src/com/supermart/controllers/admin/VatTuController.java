@@ -6,6 +6,8 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Date;
 import java.util.List;
+import java.util.Random;
+
 import javax.servlet.ServletContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -17,11 +19,9 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.google.gson.Gson;
-import com.sun.jmx.snmp.Timestamp;
 import com.supermart.models.VatTu;
 import com.supermart.service.PagingVm;
 import com.supermart.service.VatTuService;
-import com.supermart.service.VatTuVm;
 
 import org.springframework.http.HttpHeaders;
 
@@ -157,14 +157,14 @@ public class VatTuController {
 		String nameImage = "";
 		if (!file.getOriginalFilename().isEmpty()) {
 			try {
-				Date date = new Date();
-				Timestamp ts = new Timestamp(date.getTime());
+				Random rand = new Random(); 
+				int rand_int1 = rand.nextInt(1000);
 				byte[] bytes = file.getBytes();
 				String rootPath = servletContext.getRealPath("/Upload/" + mavattu);
 				File dir = new File(rootPath);
 				if (!dir.exists())
 					dir.mkdirs();
-				nameImage = mavattu +"_"+ ts.getSysUpTime() + ".jpg";
+				nameImage = mavattu +"_"+ rand_int1 + ".jpg";
 				// Create the file on server
 				File serverFile = new File(dir.getAbsolutePath() + "/" + nameImage);
 				BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(serverFile));

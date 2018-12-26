@@ -203,6 +203,11 @@
 			value="/WEB-INF/views/jsp/home/home.jsp" />
 	</definition>
 
+	<definition name="product_Detail" extends="home">
+		<put-attribute name="title" value="Chi tiết sản phẩm" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/jsp/home/product_Detail.jsp" />
+	</definition>
 	<!--partial view -->
 	<definition name="viewNewMerchansedise"
 		template="/WEB-INF/views/jsp/home/partialView/viewNewMerchansedise.jsp">
