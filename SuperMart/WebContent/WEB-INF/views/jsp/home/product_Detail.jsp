@@ -7,25 +7,8 @@
 			<div class="span4">
 				<a href="themes/images/ladies/1.jpg" class="thumbnail"
 					data-fancybox-group="group1" title="Description 1"><img alt=""
-					src="themes/images/ladies/1.jpg"></a>
-				<ul class="thumbnails small">
-					<li class="span1"><a href="themes/images/ladies/2.jpg"
-						class="thumbnail" data-fancybox-group="group1"
-						title="Description 2"><img src="themes/images/ladies/2.jpg"
-							alt=""></a></li>
-					<li class="span1"><a href="themes/images/ladies/3.jpg"
-						class="thumbnail" data-fancybox-group="group1"
-						title="Description 3"><img src="themes/images/ladies/3.jpg"
-							alt=""></a></li>
-					<li class="span1"><a href="themes/images/ladies/4.jpg"
-						class="thumbnail" data-fancybox-group="group1"
-						title="Description 4"><img src="themes/images/ladies/4.jpg"
-							alt=""></a></li>
-					<li class="span1"><a href="themes/images/ladies/5.jpg"
-						class="thumbnail" data-fancybox-group="group1"
-						title="Description 5"><img src="themes/images/ladies/5.jpg"
-							alt=""></a></li>
-				</ul>
+					src="${pageContext.request.contextPath}/${instance.getAnh() }"></a>
+				
 			</div>
 			<div class="span5">
 				<address>
