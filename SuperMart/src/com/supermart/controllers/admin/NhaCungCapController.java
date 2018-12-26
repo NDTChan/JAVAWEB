@@ -73,6 +73,7 @@ public class NhaCungCapController {
 		String operation = "add";
 		ModelAndView modelView = new ModelAndView("nhacungcap/add");
 		modelView.addObject("operation", operation);
+		modelView.addObject("MaNhaCungCap", _service.getNewMaNhaCungCap());
 		return modelView;
 	}
 

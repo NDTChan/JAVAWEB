@@ -11,7 +11,7 @@
 						<p>
 							<a href="product_detail.html"><img
 								src="${pageContext.request.contextPath}/${m.getVatTu().getAnh()}"
-								alt="" /></a>
+								style="width:200px;height:300px"></a>
 						</p>
 						<a href="${pageContext.request.contextPath}/sanpham/${m.getVatTu().getMaVatTu()}" class="title">${m.getVatTu().getTenVatTu()}</a><br />
 						<a href="products.html" class="category">${m.getLoaiVatTu().getTenLoaiVatTu()}</a>

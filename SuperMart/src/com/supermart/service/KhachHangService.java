@@ -1,5 +1,7 @@
 package com.supermart.service;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import javax.transaction.Transactional;
@@ -78,6 +80,22 @@ public class KhachHangService {
 	public void delete(int id) {
 		KhachHang kh = getById(id);
 		sessionFactory.getCurrentSession().delete(kh);
+	}
+	
+	public String getNewMaKhachHang() {
+		String hql = "FROM KhachHang";
+		Query query = sessionFactory.getCurrentSession().createQuery(hql);
+		ArrayList<Integer> listIndex = new ArrayList<Integer>();
+		List<KhachHang> listKh = query.list();
+		if (listKh.size() > 0) {
+			for (int i = 0; i < listKh.size(); i++) {
+				listIndex.add(Integer.parseInt(listKh.get(i).MaKhachHang.substring(2)));
+			}
+			Collections.sort(listIndex);
+			return "KH" + (listIndex.get(listIndex.size() - 1) + 1);
+		} else {
+			return "KH1";
+		}
 	}
 
 }

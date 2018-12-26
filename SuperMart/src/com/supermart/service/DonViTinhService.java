@@ -1,5 +1,7 @@
 package com.supermart.service;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 
@@ -90,6 +92,23 @@ public class DonViTinhService {
 	{
 		DonViTinh dvt=getById(id);
 		sessionFactory.getCurrentSession().delete(dvt);
+	}
+	
+	public String getNewMaDonVi() {
+		String hql = "FROM DonViTinh";
+		Query query = sessionFactory.getCurrentSession().createQuery(hql);
+		ArrayList<Integer> listIndex = new ArrayList<Integer>();
+		List<DonViTinh> listDvt = query.list();
+		if (listDvt.size() > 0) {
+			for (int i = 0; i < listDvt.size(); i++) {
+				//System.out.println(listDvt.get(i).MaDonViTinh.substring(3));
+				listIndex.add(Integer.parseInt(listDvt.get(i).MaDonViTinh.substring(3)));
+			}
+			Collections.sort(listIndex);
+			return "DVT" + (listIndex.get(listIndex.size() - 1) + 1);
+		} else {
+			return "DVT1";
+		}
 	}
 
 }

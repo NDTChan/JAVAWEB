@@ -20,7 +20,8 @@
 				<div class="col-md-10">
 					<div class="form-group">
 						<label>Mã vật tư</label><span style="color: red"> (*)</span>
-						<form:input path="MaVatTu" class="form-control" maxlength="255" />
+						<input type="text" class="form-control" name="MaVatTu"
+							value="${MaVatTu}" maxlength="255" required readonly/>
 					</div>
 				</div>
 			</div>

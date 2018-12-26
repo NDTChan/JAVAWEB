@@ -19,7 +19,7 @@
 					<div class="form-group">
 						<label>Mã nhóm vật tư:</label><span style="color: red"> (*)</span>
 						<input type="text" class="form-control" name="MaNhomVatTu"
-							maxlength="255" required>
+							value="${MaNhomVatTu}" maxlength="255" required readonly>
 					</div>
 				</div>
 			</div>

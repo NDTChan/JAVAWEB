@@ -4,7 +4,7 @@ public class LoaiVatTu implements Serializable  {
 
 	private static final long serialVersionUID = 6329454289569501949L;
 	private int Id;
-	private String MaLoaiVatTu;
+	public String MaLoaiVatTu;
 	private String TenLoaiVatTu;
 	private int TrangThai;
 	

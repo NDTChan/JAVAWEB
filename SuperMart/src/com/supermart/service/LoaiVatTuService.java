@@ -1,5 +1,7 @@
 package com.supermart.service;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import javax.transaction.Transactional;
@@ -82,5 +84,21 @@ public class LoaiVatTuService {
 	{
 		LoaiVatTu lvt=getById(id);
 		sessionFactory.getCurrentSession().delete(lvt);
+	}
+	
+	public String getNewMaLoaiVatTu() {
+		String hql = "FROM LoaiVatTu";
+		Query query = sessionFactory.getCurrentSession().createQuery(hql);
+		ArrayList<Integer> listIndex = new ArrayList<Integer>();
+		List<LoaiVatTu> listLvt = query.list();
+		if (listLvt.size() > 0) {
+			for (int i = 0; i < listLvt.size(); i++) {
+				listIndex.add(Integer.parseInt(listLvt.get(i).MaLoaiVatTu.substring(3)));
+			}
+			Collections.sort(listIndex);
+			return "LVT" + (listIndex.get(listIndex.size() - 1) + 1);
+		} else {
+			return "LVT1";
+		}
 	}
 }

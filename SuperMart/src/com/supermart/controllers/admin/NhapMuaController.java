@@ -14,12 +14,18 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
+
+import com.google.gson.Gson;
+import com.supermart.models.DonViTinh;
 import com.supermart.models.VatTuChungTu;
 import com.supermart.service.NhaCungCapService;
 import com.supermart.service.NhapMuaService;
+import com.supermart.service.NhapMuaVm;
 import com.supermart.service.PagingVm;
+import com.supermart.service.XuatBanVm;
 
 @Controller
 @RequestMapping(value = "admin")
@@ -89,5 +95,27 @@ public class NhapMuaController {
 	@RequestMapping(value = "nhapmua/BuildCode", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<String> BuildCode() throws Exception {
 		return new ResponseEntity<String>("\"" + _service.getNewMaChungTu() + "\"", HttpStatus.OK);
+	}
+	
+	@RequestMapping(value = "nhapmua/Post", method = RequestMethod.POST, consumes = "application/json", produces = "application/json", headers = "Accept=application/json")
+	public @ResponseBody ResponseEntity<String> Post(@RequestBody String param) {
+		Gson gson = new Gson();
+		NhapMuaVm data = gson.fromJson(param, NhapMuaVm.class);
+		String jsonObject = gson.toJson(_service.InsertData(data));
+		return new ResponseEntity<String>(jsonObject, HttpStatus.OK);
+	}
+	
+	@RequestMapping(value = "nhapmua/edit", method = RequestMethod.GET)
+	public ModelAndView editDVT(int id) {
+		ModelAndView modelView = new ModelAndView("nhapmua/edit");
+		modelView.addObject("id", id);
+		return modelView;
+	}
+	
+	@RequestMapping(value = "nhapmua/getItemById", method = RequestMethod.GET)
+	public ResponseEntity<String> getItemById(int id) {
+		Gson gson = new Gson();
+		String jsonObject = gson.toJson(_service.GetItemById(id));
+		return new ResponseEntity<String>(jsonObject, HttpStatus.OK);
 	}
 }
