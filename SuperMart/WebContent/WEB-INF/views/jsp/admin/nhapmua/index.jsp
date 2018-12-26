@@ -52,7 +52,7 @@
 						<td class="text-center">
 							<p>
 								<a class="btn btn-info btn-xs"
-									href="${pageContext.request.contextPath}/admin/nhapmua/detail?id=${m.getId()}"><i
+									href="javascript:void(0);" onclick="approve('${m.getMaChungTu()}')"><i
 									class="fa fa-fw fa-info"></i></a> <a class="btn btn-warning btn-xs"
 									href="${pageContext.request.contextPath}/admin/nhapmua/edit?id=${m.getId()}"><i
 									class="fa fa-fw fa-edit"></i></a> <a class="btn btn-danger btn-xs"
@@ -108,6 +108,15 @@
 		var searchKey = $('#searchKey').val();
  		var url = "${pageContext.request.contextPath}/admin/nhapmua?currentpage=0&searchKey="+searchKey;
  		window.location = url;
+	}
+	
+	function approve(machungtu){
+		$.get("${pageContext.request.contextPath}/admin/nhapmua/approve?machungtu="+machungtu, function(data, status){
+	        if(data==='true'){
+	        	alert('Duyệt thành công');
+	        	window.location='${pageContext.request.contextPath}/admin/nhapmua';
+	        }
+	    });
 	}
 </script>
 

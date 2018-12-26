@@ -21,7 +21,8 @@
 	font-size: 16px;
 }
 </style>
-<div class="row" ng-app="nhapMuaApp" ng-controller="nhapMuaAddCtrl">
+
+<div class="row" ng-app="nhapMuaApp" ng-controller="nhapMuaEditCtrl">
 	<script type="text/ng-template" id="SearchMerchandise.html">
         <div class="modal-header">
             <h2 class="modal-title">Danh sách hàng hóa</h2>
@@ -65,9 +66,10 @@
 	<div class="col-lg-12">
 		<div class="panel panel-default">
 			<div class="panel-heading">
-				<h4>Thêm mới phiếu nhập mua</h4>
+				<h4>Sửa phiếu nhập mua</h4>
 			</div>
 			<div class="panel-body">
+				<input id="id" value="${id }" ng-model="target.id" type="hidden"/>
 				<div class="modal-body" ng-form="_form">
 					<div class="row">
 						<div class="col-md-6">

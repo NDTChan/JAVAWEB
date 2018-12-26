@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.google.gson.Gson;
+import com.supermart.models.DonViTinh;
 import com.supermart.models.VatTuChungTu;
 import com.supermart.service.NhaCungCapService;
 import com.supermart.service.NhapMuaService;
@@ -101,6 +102,27 @@ public class NhapMuaController {
 		Gson gson = new Gson();
 		NhapMuaVm data = gson.fromJson(param, NhapMuaVm.class);
 		String jsonObject = gson.toJson(_service.InsertData(data));
+		return new ResponseEntity<String>(jsonObject, HttpStatus.OK);
+	}
+	
+	@RequestMapping(value = "nhapmua/edit", method = RequestMethod.GET)
+	public ModelAndView editDVT(int id) {
+		ModelAndView modelView = new ModelAndView("nhapmua/edit");
+		modelView.addObject("id", id);
+		return modelView;
+	}
+	
+	@RequestMapping(value = "nhapmua/getItemById", method = RequestMethod.GET)
+	public ResponseEntity<String> getItemById(int id) {
+		Gson gson = new Gson();
+		String jsonObject = gson.toJson(_service.GetItemById(id));
+		return new ResponseEntity<String>(jsonObject, HttpStatus.OK);
+	}
+	
+	@RequestMapping(value = "nhapmua/approve", method = RequestMethod.GET)
+	public ResponseEntity<String> getItemById(String machungtu) {
+		Gson gson = new Gson();
+		String jsonObject = gson.toJson(_service.GetItemById(id));
 		return new ResponseEntity<String>(jsonObject, HttpStatus.OK);
 	}
 }
