@@ -6,11 +6,15 @@ import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 import javax.transaction.Transactional;
+
+import org.aspectj.weaver.ast.Var;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
+import com.supermart.models.VatTu;
 import com.supermart.models.VatTuChungTu;
 import com.supermart.models.VatTuChungTuChiTiet;
 
@@ -20,6 +24,8 @@ public class XuatBanService {
 	@Autowired
 	private SessionFactory sessionFactory;
 
+	@Autowired
+	VatTuService _vatTuService;
 //	Session session;
 
 	public List<VatTuChungTu> list() {
@@ -77,7 +83,7 @@ public class XuatBanService {
 
 	public boolean InsertData(XuatBanVm param) {
 		try {
-			Session session= sessionFactory.openSession();
+			Session session = sessionFactory.openSession();
 			session.beginTransaction();
 			VatTuChungTu data = new VatTuChungTu();
 			data.MaChungTu = param.MaChungTu;
@@ -87,13 +93,79 @@ public class XuatBanService {
 			data.TrangThai = 0;
 			session.saveOrUpdate(data);
 			if (param.Details != null && !param.Details.isEmpty()) {
-				for (VatTuChungTuChiTiet item : param.Details) {
-					session.saveOrUpdate(item);
+				for (XuatBanChiTietVm item : param.Details) {
+					VatTuChungTuChiTiet vatTuChungTuChiTiet = new VatTuChungTuChiTiet();
+					vatTuChungTuChiTiet.DonGia = item.DonGia;
+					vatTuChungTuChiTiet.MaChungTu = item.MaChungTu;
+					vatTuChungTuChiTiet.MaVatTu = item.MaVatTu;
+					vatTuChungTuChiTiet.SoLuong = item.SoLuong;
+					vatTuChungTuChiTiet.ThanhTien = item.ThanhTien;
+					session.saveOrUpdate(vatTuChungTuChiTiet);
+					VatTu vatTu = _vatTuService.GetDataByMaVatTu(vatTuChungTuChiTiet.MaVatTu);
+					vatTu.SoLuong -= vatTuChungTuChiTiet.SoLuong;
+					session.saveOrUpdate(vatTu);
 				}
 			}
 			session.getTransaction().commit();
 			return true;
-			
+
+		} catch (Exception e) {
+			// TODO: handle exception
+			return false;
+		}
+	}
+
+	public XuatBanVm getByID(int id) {
+		XuatBanVm xuatBanVm = (XuatBanVm) sessionFactory.getCurrentSession().get(VatTuChungTuChiTiet.class, id);
+		if (xuatBanVm != null) {
+			Query query;
+			String queryString = "";
+			queryString = "FROM VatTuChungTuChiTiet WHERE MaChungTu = '" + xuatBanVm.MaChungTu + "'";
+			query = sessionFactory.getCurrentSession().createQuery(queryString);
+			List<VatTuChungTuChiTiet> lst = query.list();
+			for (VatTuChungTuChiTiet vatTuChungTuChiTiet : lst) {
+				VatTu vatTu = _vatTuService.GetDataByMaVatTu(vatTuChungTuChiTiet.MaVatTu);
+				XuatBanChiTietVm xuatBanChiTietVm = new XuatBanChiTietVm();
+				xuatBanChiTietVm.Id = vatTuChungTuChiTiet.Id;
+				xuatBanChiTietVm.MaChungTu = vatTuChungTuChiTiet.MaChungTu;
+				xuatBanChiTietVm.MaVatTu = vatTuChungTuChiTiet.MaChungTu;
+				xuatBanChiTietVm.TenVatTu = vatTu.TenVatTu;
+				xuatBanChiTietVm.SoLuong = vatTuChungTuChiTiet.SoLuong;
+				xuatBanChiTietVm.DonGia = vatTuChungTuChiTiet.DonGia;
+				xuatBanChiTietVm.ThanhTien = vatTuChungTuChiTiet.ThanhTien;
+				xuatBanVm.Details.add(xuatBanChiTietVm);
+			}
+			return xuatBanVm;
+		}
+		return null;
+	}
+	
+	public boolean delete(int id) {
+		try {
+			Session session = sessionFactory.openSession();
+			session.beginTransaction();
+			XuatBanVm xuatBanVm = getByID(id);
+			VatTuChungTu vatTuChungTu = new VatTuChungTu();
+			vatTuChungTu.Id = id;
+			vatTuChungTu.MaChungTu = xuatBanVm.MaChungTu;
+			vatTuChungTu.LoaiChungTu = xuatBanVm.LoaiChungTu;
+			vatTuChungTu.MaKhachHang = xuatBanVm.MaKhachHang;
+			vatTuChungTu.NgayChungTu = xuatBanVm.NgayChungTu;
+			vatTuChungTu.NoiDung = xuatBanVm.NoiDung;
+			vatTuChungTu.TrangThai = xuatBanVm.TrangThai;
+			for (XuatBanChiTietVm xuatBanChiTietVm : xuatBanVm.Details) {
+				VatTuChungTuChiTiet vatTuChungTuChiTiet = new VatTuChungTuChiTiet();
+				vatTuChungTuChiTiet.Id = xuatBanChiTietVm.Id;
+				vatTuChungTuChiTiet.MaChungTu = xuatBanChiTietVm.MaChungTu;
+				vatTuChungTuChiTiet.MaVatTu = xuatBanChiTietVm.MaChungTu;
+				vatTuChungTuChiTiet.SoLuong = xuatBanChiTietVm.SoLuong;
+				vatTuChungTuChiTiet.DonGia = xuatBanChiTietVm.DonGia;
+				vatTuChungTuChiTiet.ThanhTien = xuatBanChiTietVm.ThanhTien;
+				session.delete(vatTuChungTuChiTiet);
+			}
+			session.delete(vatTuChungTu);
+			session.getTransaction().commit();
+			return true;
 		} catch (Exception e) {
 			// TODO: handle exception
 			return false;

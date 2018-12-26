@@ -13,7 +13,7 @@
 								src="${pageContext.request.contextPath}/${m.getVatTu().getAnh()}"
 								alt="" /></a>
 						</p>
-						<a href="product_detail.html" class="title">${m.getVatTu().getTenVatTu()}</a><br />
+						<a href="${pageContext.request.contextPath}/sanpham/${m.getVatTu().getMaVatTu()}" class="title">${m.getVatTu().getTenVatTu()}</a><br />
 						<a href="products.html" class="category">${m.getLoaiVatTu().getTenLoaiVatTu()}</a>
 						<p class="price">${m.getVatTu().getGiaBan()}</p>
 					</div>
